@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gOT-cN-0oc" userLabel="ReactApp Cell" customClass="ReactAppTableViewCell" customModule="VIPER_Hybrid_Container" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="229"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Qx-0q-9fg" userLabel="ReactAppImageView">
+                    <rect key="frame" x="0.0" y="0.0" width="343" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="5pB-3w-j77"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="752" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOI-Pi-2F6" userLabel="TitleLabel">
+                    <rect key="frame" x="16" y="175" width="313" height="24"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="OOI-Pi-2F6" firstAttribute="leading" secondItem="gOT-cN-0oc" secondAttribute="leading" constant="16" id="2Le-2D-p1v"/>
+                <constraint firstItem="6Qx-0q-9fg" firstAttribute="top" secondItem="gOT-cN-0oc" secondAttribute="top" id="6dI-g3-1x8"/>
+                <constraint firstItem="6Qx-0q-9fg" firstAttribute="leading" secondItem="gOT-cN-0oc" secondAttribute="leading" id="7gH-TG-eAq"/>
+                <constraint firstAttribute="trailing" secondItem="OOI-Pi-2F6" secondAttribute="trailing" constant="14" id="ZJR-IM-oNB"/>
+                <constraint firstAttribute="trailing" secondItem="6Qx-0q-9fg" secondAttribute="trailing" id="arY-54-GnD"/>
+                <constraint firstAttribute="bottom" secondItem="OOI-Pi-2F6" secondAttribute="bottom" constant="30" id="jUH-3j-jd7"/>
+                <constraint firstItem="OOI-Pi-2F6" firstAttribute="top" secondItem="6Qx-0q-9fg" secondAttribute="bottom" constant="25" id="pYZ-LU-rwW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="reactAppImageView" destination="6Qx-0q-9fg" id="D67-fB-z7c"/>
+                <outlet property="titleLabel" destination="OOI-Pi-2F6" id="Qdr-l8-0k9"/>
+            </connections>
+            <point key="canvasLocation" x="-248" y="-483"/>
+        </view>
+    </objects>
+</document>
