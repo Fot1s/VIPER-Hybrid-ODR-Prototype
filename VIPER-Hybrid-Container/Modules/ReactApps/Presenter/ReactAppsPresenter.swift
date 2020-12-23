@@ -5,8 +5,7 @@
 //  Created by Fotis Chatzinikos on 13/12/2020.
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
-
-import Starscream ;
+import Starscream
 
 class ReactAppsPresenter: ReactAppsPresentation {
 
@@ -14,7 +13,7 @@ class ReactAppsPresenter: ReactAppsPresentation {
     var interactor: ReactAppsUseCase!
     var router: ReactAppsWireframe!
     
-    var websocket: WebSocket!
+    var socketService: WebSocketTestService!
     
     var reactApps: [ReactApp] = [] {
         didSet {
@@ -32,15 +31,8 @@ class ReactAppsPresenter: ReactAppsPresentation {
         //POSSIBLY CREATING A WEBSOCLET MANAGER SINGLETON
         //THAT IS INJECTED IN THE MODULE ON CREATION
         //START WEB SOCKET TESTS
-        
-        let url = URL(string: "ws://echo.websocket.org")!
-        let request = URLRequest(url: url)
-        
-        websocket = WebSocket(request: request)
-        
-        websocket.delegate = self
-        
-        websocket.connect()
+        socketService = WebSocketTestService.shared
+        socketService.connect(withDelegate: self)
         
         //END WEB SOCKET TESTS
     }
@@ -53,7 +45,7 @@ class ReactAppsPresenter: ReactAppsPresentation {
 extension ReactAppsPresenter: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("Did connect: \(socket)")
-        websocket.write(string:"Test message") {
+        socket.write(string:"Test message") {
             print("Message sent after connect!")
         }
     }
@@ -69,8 +61,6 @@ extension ReactAppsPresenter: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Data: \(data)")
     }
-    
-
 }
 
 extension ReactAppsPresenter: ReactAppsInteractorOutput {

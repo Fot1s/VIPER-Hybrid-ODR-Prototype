@@ -39,6 +39,7 @@
 		A657A81225866378008130A9 /* HybridContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657A81125866378008130A9 /* HybridContentViewController.swift */; };
 		A657A81425866945008130A9 /* HybridContentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A657A81325866945008130A9 /* HybridContentStoryboard.storyboard */; };
 		A657A83E25866ABA008130A9 /* react in Resources */ = {isa = PBXBuildFile; fileRef = A657A83C25866ABA008130A9 /* react */; settings = {ASSET_TAGS = (react, ); }; };
+		A65B08502593906D00AF27D1 /* WebSocketTestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B084F2593906D00AF27D1 /* WebSocketTestService.swift */; };
 		A6739E042587A85B00692A3F /* slots in Resources */ = {isa = PBXBuildFile; fileRef = A6739E032587A85B00692A3F /* slots */; settings = {ASSET_TAGS = (slots, ); }; };
 		CAF4204C08BA1F1298658D96 /* Pods_VIPER_Hybrid_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		A657A81125866378008130A9 /* HybridContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridContentViewController.swift; sourceTree = "<group>"; };
 		A657A81325866945008130A9 /* HybridContentStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HybridContentStoryboard.storyboard; sourceTree = "<group>"; };
 		A657A83C25866ABA008130A9 /* react */ = {isa = PBXFileReference; lastKnownFileType = folder; path = react; sourceTree = "<group>"; };
+		A65B084F2593906D00AF27D1 /* WebSocketTestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTestService.swift; sourceTree = "<group>"; };
 		A6739E032587A85B00692A3F /* slots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slots; sourceTree = "<group>"; };
 		DE0CA6E86B300817C9517F04 /* Pods-VIPER-Hybrid-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.release.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.release.xcconfig"; sourceTree = "<group>"; };
 		FFBA6A89152AB0DFFFB7634C /* Pods-VIPER-Hybrid-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.debug.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				A657A7B7258590AF008130A9 /* ReactAppsAPIService.swift */,
 				A657A7B8258590AF008130A9 /* Endpoints.swift */,
+				A65B084F2593906D00AF27D1 /* WebSocketTestService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				A657A80E25865D12008130A9 /* HybridContentRouter.swift in Sources */,
 				A657A7F32585B6CD008130A9 /* ReactAppsInteractor.swift in Sources */,
 				A657A7C525859C21008130A9 /* RootContract.swift in Sources */,
+				A65B08502593906D00AF27D1 /* WebSocketTestService.swift in Sources */,
 				A657A81225866378008130A9 /* HybridContentViewController.swift in Sources */,
 				A649D1E3258675BB008B6C31 /* HybridContentPresenter.swift in Sources */,
 				A657A81025865D97008130A9 /* HybridContentContract.swift in Sources */,
