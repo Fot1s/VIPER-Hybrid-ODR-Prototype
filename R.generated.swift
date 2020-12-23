@@ -48,12 +48,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `image-launch-screen`.
     static let imageLaunchScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-launch-screen")
     /// Image `image-placeholder`.
     static let imagePlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-placeholder")
+    /// Image `intro-react-image`.
+    static let introReactImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro-react-image")
     
     /// `UIImage(named: "image-launch-screen", bundle: ..., traitCollection: ...)`
     static func imageLaunchScreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -63,6 +65,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "image-placeholder", bundle: ..., traitCollection: ...)`
     static func imagePlaceholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.imagePlaceholder, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "intro-react-image", bundle: ..., traitCollection: ...)`
+    static func introReactImage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.introReactImage, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -242,6 +249,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "intro-react-image") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'intro-react-image' is used in storyboard 'IntroStoryboard', but couldn't be loaded.") }
         if _R.storyboard.introStoryboard().introViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'introViewController' could not be loaded from storyboard 'IntroStoryboard' as 'IntroViewController'.") }
       }
       
