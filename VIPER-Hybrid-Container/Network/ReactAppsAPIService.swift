@@ -13,7 +13,9 @@ import AlamofireObjectMapper
 
 class ReactAppsAPIService {
     
-    static func fetchReactApps(completion: @escaping ([ReactApp]?) -> Void){
+    static let shared = ReactAppsAPIService()
+    
+    func fetchReactApps(completion: @escaping ([ReactApp]?) -> Void){
         Alamofire
             .request(Endpoints.ReactApps.fetch.url, method: .get)
             .validate()

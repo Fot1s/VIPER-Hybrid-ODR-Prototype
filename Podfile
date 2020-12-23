@@ -9,6 +9,7 @@ target 'VIPER-Hybrid-Container' do
   pod 'Kingfisher', '~> 3.0'
   pod 'PKHUD', '~> 4.0'
   pod 'R.swift','~> 3.0'
+  pod 'Starscream', '<= 3.0.5'
 end
 
 post_install do |installer|

@@ -27,6 +27,7 @@ class ReactAppsRouter: ReactAppsWireframe {
         presenter.router = router
 
         interactor.output = presenter
+        interactor.apiService = ReactAppsAPIService.shared
         
         router.viewController = view
         

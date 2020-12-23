@@ -10,10 +10,12 @@ import Foundation
 
 class ReactAppsInteractor: ReactAppsUseCase {
     
+    var apiService: ReactAppsAPIService!
+
     weak var output: ReactAppsInteractorOutput!
 
     func fetchReactApps() {
-        ReactAppsAPIService
+        apiService
             .fetchReactApps() { reactApps in
                 if let reactApps = reactApps {
                     self.output.reactAppsFetched(reactApps)

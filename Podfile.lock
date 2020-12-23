@@ -9,12 +9,14 @@ PODS:
   - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
+  - Starscream (3.0.5)
 
 DEPENDENCIES:
   - AlamofireObjectMapper (~> 4.0)
   - Kingfisher (~> 3.0)
   - PKHUD (~> 4.0)
   - R.swift (~> 3.0)
+  - Starscream (<= 3.0.5)
 
 SPEC REPOS:
   trunk:
@@ -25,6 +27,7 @@ SPEC REPOS:
     - PKHUD
     - R.swift
     - R.swift.Library
+    - Starscream
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -34,7 +37,8 @@ SPEC CHECKSUMS:
   PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: 3a2db240ba5eef11e3bbc8b732c0f24de3c8ba7f
+PODFILE CHECKSUM: 6e1acf211f83801d67a64e4292282de2aa9bf6b7
 
 COCOAPODS: 1.10.0
