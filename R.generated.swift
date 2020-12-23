@@ -91,10 +91,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `HybridContentStoryboard`.
     static let hybridContentStoryboard = _R.storyboard.hybridContentStoryboard()
+    /// Storyboard `IntroStoryboard`.
+    static let introStoryboard = _R.storyboard.introStoryboard()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `ReactAppsStoryboard`.
@@ -103,6 +105,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "HybridContentStoryboard", bundle: ...)`
     static func hybridContentStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.hybridContentStoryboard)
+    }
+    
+    /// `UIStoryboard(name: "IntroStoryboard", bundle: ...)`
+    static func introStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.introStoryboard)
     }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -203,9 +210,10 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
-      try reactAppsStoryboard.validate()
       try launchScreen.validate()
+      try introStoryboard.validate()
       try hybridContentStoryboard.validate()
+      try reactAppsStoryboard.validate()
     }
     
     struct hybridContentStoryboard: Rswift.StoryboardResourceType, Rswift.Validatable {
@@ -219,6 +227,22 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if _R.storyboard.hybridContentStoryboard().hybridContentViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'hybridContentViewController' could not be loaded from storyboard 'HybridContentStoryboard' as 'HybridContentViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct introStoryboard: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let introViewController = StoryboardViewControllerResource<IntroViewController>(identifier: "IntroViewController")
+      let name = "IntroStoryboard"
+      
+      func introViewController(_: Void = ()) -> IntroViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: introViewController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.introStoryboard().introViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'introViewController' could not be loaded from storyboard 'IntroStoryboard' as 'IntroViewController'.") }
       }
       
       fileprivate init() {}

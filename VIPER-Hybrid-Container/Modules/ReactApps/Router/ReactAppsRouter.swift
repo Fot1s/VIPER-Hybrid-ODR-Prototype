@@ -18,8 +18,6 @@ class ReactAppsRouter: ReactAppsWireframe {
         let interactor = ReactAppsInteractor()
         let router = ReactAppsRouter()
         
-        let navigation = UINavigationController(rootViewController: view!)
-        
         view?.presenter = presenter
 
         presenter.view = view
@@ -31,7 +29,7 @@ class ReactAppsRouter: ReactAppsWireframe {
         
         router.viewController = view
         
-        return navigation
+        return view!
     }
     
     func presentHybridContent(forReactApp reactApp: ReactApp) {

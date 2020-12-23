@@ -10,8 +10,8 @@ import UIKit
 
 class RootRouter: RootWireframe {
     
-    func presentReactAppsScreen(in window: UIWindow) {
+    func presentIntroScreen(in window: UIWindow) {
         window.makeKeyAndVisible()
-        window.rootViewController = ReactAppsRouter.assembleModule()
+        window.rootViewController = IntroRouter.assembleModule()
     }
 }

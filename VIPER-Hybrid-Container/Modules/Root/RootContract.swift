@@ -9,5 +9,5 @@
 import UIKit
 
 protocol RootWireframe: class {
-    func presentReactAppsScreen(in window: UIWindow)
+    func presentIntroScreen(in window: UIWindow)
 }
