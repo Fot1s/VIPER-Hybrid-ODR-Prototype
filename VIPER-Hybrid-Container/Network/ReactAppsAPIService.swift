@@ -15,6 +15,10 @@ class ReactAppsAPIService {
     
     static let shared = ReactAppsAPIService()
     
+    private init() {
+        
+    }
+    
     func fetchReactApps(completion: @escaping ([ReactApp]?) -> Void){
         Alamofire
             .request(Endpoints.ReactApps.fetch.url, method: .get)
