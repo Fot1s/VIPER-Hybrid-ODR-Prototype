@@ -21,18 +21,21 @@ protocol Endpoint {
 enum Endpoints {
     
     enum ReactApps: Endpoint {
-        case fetch
-        
+        case fetchReactApps
+        case fetchMatches
+
         public var path: String {
             switch self {
-            case .fetch: return "/react-apps/"
+            case .fetchReactApps: return "/react-apps/"
+            case .fetchMatches: return "/react-prototype/sportsbook/backend/"
             }
         }
         
         public var url: String {
-            switch self {
-            case .fetch: return "\(API.baseUrl)\(path)"
-            }
+            return "\(API.baseUrl)\(path)"
+//            switch self {
+//            case .fetchReactApps: return "\(API.baseUrl)\(path)"
+//            }
         }
     }
 }
