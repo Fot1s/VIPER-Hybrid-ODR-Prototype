@@ -35,8 +35,7 @@ class IntroRouter: IntroWireframe {
     }
     
     func presentSportsBook() {
-        //TODO: Implement when new module is ready
-//        let sportsBookViewController = SportsBookRouter.assembleModule()
-//        viewController?.navigationController?.pushViewController(sportsBookViewController, animated: true)
+        let sportsBookViewController = SportsBookRouter.assembleModule()
+        viewController?.navigationController?.pushViewController(sportsBookViewController, animated: true)
     }
 }

@@ -11,9 +11,9 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 
-class ReactAppsAPIService {
+class APIService {
     
-    static let shared = ReactAppsAPIService()
+    static let shared = APIService()
     
     private init() {
         

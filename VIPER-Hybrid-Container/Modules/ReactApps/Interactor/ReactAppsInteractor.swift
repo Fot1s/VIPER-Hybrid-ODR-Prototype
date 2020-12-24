@@ -10,7 +10,7 @@ import Foundation
 
 class ReactAppsInteractor: ReactAppsUseCase {
     
-    var apiService: ReactAppsAPIService!
+    var apiService: APIService!
 
     weak var output: ReactAppsInteractorOutput!
 

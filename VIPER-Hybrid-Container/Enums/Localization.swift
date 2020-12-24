@@ -17,5 +17,14 @@ enum Localization {
     enum HybridContent {
         static let navigationBarTitle = "HYBRID_CONTENT_NAVIGATION_BAR_TITLE".localized()
     }
+    
+    enum Intro {
+        static let navigationBarTitle = "INTRO_NAVIGATION_BAR_TITLE".localized()
+    }
+
+    enum Playbook {
+        static let navigationBarTitle = "PLAYBOOK_NAVIGATION_BAR_TITLE".localized()
+    }
+
 }
 

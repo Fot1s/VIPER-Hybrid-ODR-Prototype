@@ -75,14 +75,21 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
     /// Nib `ReactAppTableViewCell`.
     static let reactAppTableViewCell = _R.nib._ReactAppTableViewCell()
+    /// Nib `SportsBookTableViewCell`.
+    static let sportsBookTableViewCell = _R.nib._SportsBookTableViewCell()
     
     /// `UINib(name: "ReactAppTableViewCell", in: bundle)`
     static func reactAppTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.reactAppTableViewCell)
+    }
+    
+    /// `UINib(name: "SportsBookTableViewCell", in: bundle)`
+    static func sportsBookTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.sportsBookTableViewCell)
     }
     
     fileprivate init() {}
@@ -98,7 +105,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `HybridContentStoryboard`.
     static let hybridContentStoryboard = _R.storyboard.hybridContentStoryboard()
@@ -108,6 +115,8 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `ReactAppsStoryboard`.
     static let reactAppsStoryboard = _R.storyboard.reactAppsStoryboard()
+    /// Storyboard `SportsBookStoryboard`.
+    static let sportsBookStoryboard = _R.storyboard.sportsBookStoryboard()
     
     /// `UIStoryboard(name: "HybridContentStoryboard", bundle: ...)`
     static func hybridContentStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
@@ -127,6 +136,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "ReactAppsStoryboard", bundle: ...)`
     static func reactAppsStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.reactAppsStoryboard)
+    }
+    
+    /// `UIStoryboard(name: "SportsBookStoryboard", bundle: ...)`
+    static func sportsBookStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.sportsBookStoryboard)
     }
     
     fileprivate init() {}
@@ -151,27 +165,49 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 2 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
     struct localizable {
       /// Base translation: Hybrid Content
       /// 
-      /// Locales: en, Base, el, et
-      static let hYBRID_CONTENT_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "HYBRID_CONTENT_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el", "et"], comment: nil)
+      /// Locales: en, Base, el
+      static let hYBRID_CONTENT_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "HYBRID_CONTENT_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
+      /// Base translation: Intro
+      /// 
+      /// Locales: en, Base, el
+      static let iNTRO_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "INTRO_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
+      /// Base translation: Playbook
+      /// 
+      /// Locales: en, Base, el
+      static let pLAYBOOK_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "PLAYBOOK_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
       /// Base translation: React Applications
       /// 
-      /// Locales: en, Base, el, et
-      static let rEACT_APPS_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "REACT_APPS_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el", "et"], comment: nil)
+      /// Locales: en, Base, el
+      static let rEACT_APPS_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "REACT_APPS_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
       
       /// Base translation: Hybrid Content
       /// 
-      /// Locales: en, Base, el, et
+      /// Locales: en, Base, el
       static func hYBRID_CONTENT_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
         return NSLocalizedString("HYBRID_CONTENT_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "Hybrid Content", comment: "")
       }
       
+      /// Base translation: Intro
+      /// 
+      /// Locales: en, Base, el
+      static func iNTRO_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
+        return NSLocalizedString("INTRO_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "Intro", comment: "")
+      }
+      
+      /// Base translation: Playbook
+      /// 
+      /// Locales: en, Base, el
+      static func pLAYBOOK_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
+        return NSLocalizedString("PLAYBOOK_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "Playbook", comment: "")
+      }
+      
       /// Base translation: React Applications
       /// 
-      /// Locales: en, Base, el, et
+      /// Locales: en, Base, el
       static func rEACT_APPS_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
         return NSLocalizedString("REACT_APPS_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "React Applications", comment: "")
       }
@@ -212,6 +248,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _SportsBookTableViewCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "SportsBookTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> SportsBookTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SportsBookTableViewCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
@@ -219,6 +266,7 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try launchScreen.validate()
       try introStoryboard.validate()
+      try sportsBookStoryboard.validate()
       try hybridContentStoryboard.validate()
       try reactAppsStoryboard.validate()
     }
@@ -280,6 +328,22 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if _R.storyboard.reactAppsStoryboard().reactAppsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'reactAppsViewController' could not be loaded from storyboard 'ReactAppsStoryboard' as 'ReactAppsViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct sportsBookStoryboard: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "SportsBookStoryboard"
+      let sportsBookViewController = StoryboardViewControllerResource<SportsBookViewController>(identifier: "SportsBookViewController")
+      
+      func sportsBookViewController(_: Void = ()) -> SportsBookViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: sportsBookViewController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.sportsBookStoryboard().sportsBookViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'sportsBookViewController' could not be loaded from storyboard 'SportsBookStoryboard' as 'SportsBookViewController'.") }
       }
       
       fileprivate init() {}

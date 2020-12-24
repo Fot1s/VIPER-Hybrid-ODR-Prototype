@@ -24,7 +24,7 @@ protocol ReactAppsPresentation: class {
 }
 
 protocol ReactAppsUseCase: class {
-    var apiService: ReactAppsAPIService! { get set }
+    var apiService: APIService! { get set }
 
     weak var output: ReactAppsInteractorOutput! { get set }
     

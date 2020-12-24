@@ -2,7 +2,7 @@
 //  HybridContentPresenter.swift
 //  VIPER-Hybrid-Container
 //
-//  Created by Demitri Delinikolas on 13/12/2020.
+//  Created by Fotis Chatzinikos on 13/12/2020.
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
@@ -13,11 +13,15 @@ class HybridContentPresenter: HybridContentPresentation {
     weak var view: HybridContentView?
     var interactor: HybridContentUseCase!
 
-    var reactApp:ReactApp!
+    var reactApp:ReactApp?
 
     func viewDidLoad() {
-        interactor.fetchReactAppODR(reactApp.localPath)
-        view?.showActivityIndicator()
+        if let reactApp = reactApp {
+            interactor.fetchReactAppODR(reactApp.localPath)
+            view?.showActivityIndicator()
+        } else {
+            view?.showActivityError("reactApp is not set!")
+        }
     }
 }
 
