@@ -53,7 +53,7 @@ extension SportsBookViewController: SportsBookView {
         matchesTableView.reloadData()
     }
     
-    func updateSportsBookData(withMatch match:Match, andIndex index:Int) {
+    func updateSportsBookData(withMatch match:Match, updatedMatch:MatchUpdate, andIndex index:Int) {
         
         matches[index] = match
         
@@ -68,7 +68,8 @@ extension SportsBookViewController: SportsBookView {
         //better: find the cell if visible and update it
         if let paths = matchesTableView.indexPathsForVisibleRows , paths.contains(indexPath) {
             if let cell = matchesTableView.cellForRow(at: indexPath) as! SportsBookTableViewCell? {
-                cell.setup(match)
+                cell.setup(match, indexPath)
+                cell.animateLabelColorOnNewValue(updateFor: updatedMatch.updateFor)
             }
         }
     }
@@ -91,7 +92,7 @@ extension SportsBookViewController: UITableViewDataSource, UITableViewDelegate {
         let match = matches[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.setup(match)
+        cell.setup(match, indexPath)
         
         return cell
     }

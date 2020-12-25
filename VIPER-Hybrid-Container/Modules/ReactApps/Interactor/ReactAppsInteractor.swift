@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class ReactAppsInteractor: ReactAppsUseCase {
     
@@ -15,8 +16,7 @@ class ReactAppsInteractor: ReactAppsUseCase {
     weak var output: ReactAppsInteractorOutput!
 
     func fetchReactApps() {
-        apiService
-            .fetchReactApps() { reactApps in
+        apiService.fetch(endPointURL: Endpoints.fetchReactApps.url) { (reactApps:[ReactApp]?) -> () in
                 if let reactApps = reactApps {
                     self.output.reactAppsFetched(reactApps)
                 } else {
@@ -24,5 +24,4 @@ class ReactAppsInteractor: ReactAppsUseCase {
                 }
         }
     }
-    
 }

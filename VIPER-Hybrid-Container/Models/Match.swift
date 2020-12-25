@@ -18,6 +18,7 @@ struct Match {
     var bet_2 = 0
 }
 
+//Could be Codable but Mappable works faster with AlamoFire
 extension Match: Mappable {
     
     init?(map: Map) {

@@ -18,24 +18,19 @@ protocol Endpoint {
     var url: String { get }
 }
 
-enum Endpoints {
+enum Endpoints: Endpoint {
     
-    enum ReactApps: Endpoint {
-        case fetchReactApps
-        case fetchMatches
+    case fetchReactApps
+    case fetchMatches
 
-        public var path: String {
-            switch self {
-            case .fetchReactApps: return "/react-apps/"
-            case .fetchMatches: return "/react-prototype/sportsbook/backend/"
-            }
+    public var path: String {
+        switch self {
+        case .fetchReactApps: return "/react-apps/"
+        case .fetchMatches: return "/react-prototype/sportsbook/backend/"
         }
-        
-        public var url: String {
-            return "\(API.baseUrl)\(path)"
-//            switch self {
-//            case .fetchReactApps: return "\(API.baseUrl)\(path)"
-//            }
-        }
+    }
+    
+    public var url: String {
+        return "\(API.baseUrl)\(path)"
     }
 }

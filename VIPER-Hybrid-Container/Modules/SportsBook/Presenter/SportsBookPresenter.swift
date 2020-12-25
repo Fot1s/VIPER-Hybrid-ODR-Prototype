@@ -51,7 +51,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         print("Connection Started!") ;
         
         //Add a timer to thr current runloop so they work even when the user is interacting
-        timer = Timer(timeInterval: 1.0, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
+        timer = Timer(timeInterval: 5.0, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
         RunLoop.current.add(timer!, forMode: .commonModes)
         
     }
@@ -80,6 +80,15 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         
         //add a random ammount between -5 and 5 to the value:
         let change = -5 + Int(arc4random_uniform(11)) //0 to 10 minus -5 is our range
+        
+        //change might be 0 - skip
+        if (change == 0 ) {
+            print("skipping for 0 change");
+            return
+        } else {
+            print("change: \(change)");
+        }
+        
         value += change
         
         //do not allow for less than 100
@@ -101,7 +110,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         //TODO:IMPLEMENT TABLE UPDATE
 //        print("Updated received: \(updatedMatch)")
         
-        if var oldMatchIndex = self.matches.index(where: { matchFromArray in
+        if let oldMatchIndex = self.matches.index(where: { matchFromArray in
             return (matchFromArray.id == updatedMatch.id)
         }) {
             var match = self.matches[oldMatchIndex]
@@ -116,7 +125,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
             }
             
             self.matches[oldMatchIndex] = match
-            view?.updateSportsBookData(withMatch: match, andIndex: oldMatchIndex)
+            view?.updateSportsBookData(withMatch: match, updatedMatch: updatedMatch, andIndex: oldMatchIndex)
         }
         
 //        if var match = matches.first(where: { $0.id == updatedMatch.id}){

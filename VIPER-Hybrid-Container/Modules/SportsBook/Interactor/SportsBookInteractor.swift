@@ -17,15 +17,24 @@ class SportsBookInteractor: SportsBookUseCase {
     weak var output: SportsBookInteractorOutput!
 
     func fetchMatches() {
-        
+
         apiService
-            .fetchMatches() { matches in
+            .fetch(endPointURL: Endpoints.fetchMatches.url) { (matches:[Match]?) -> () in
                 if let matches = matches {
                     self.output.matchesFetched(matches)
                 } else {
                     self.output.matchesFetchFailed("Error getting Matches from Server!")
                 }
         }
+
+//        apiService
+//            .fetchMatches() { matches in
+//                if let matches = matches {
+//                    self.output.matchesFetched(matches)
+//                } else {
+//                    self.output.matchesFetchFailed("Error getting Matches from Server!")
+//                }
+//        }
     }
     
     func connectToSocketServerForUpdates() {

@@ -12,7 +12,7 @@ protocol SportsBookView: IndicatableView {
     var presenter: SportsBookPresentation! { get set }
     
     func showSportsBookData(_ matches: [Match])
-    func updateSportsBookData(withMatch match:Match, andIndex index:Int)
+    func updateSportsBookData(withMatch match:Match, updatedMatch:MatchUpdate, andIndex index:Int)
 }
 
 protocol SportsBookPresentation: class {

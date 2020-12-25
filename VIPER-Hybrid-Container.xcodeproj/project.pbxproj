@@ -55,6 +55,7 @@
 		A65B08742593E04300AF27D1 /* SportsBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08732593E03500AF27D1 /* SportsBookInteractor.swift */; };
 		A65B08772593E1BE00AF27D1 /* SportsBookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08762593E0F400AF27D1 /* SportsBookRouter.swift */; };
 		A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08792593EDB600AF27D1 /* MatchUpdate.swift */; };
+		A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A664556825965B0C00D30078 /* NetworkProtocol.swift */; };
 		A6739E042587A85B00692A3F /* slots in Resources */ = {isa = PBXBuildFile; fileRef = A6739E032587A85B00692A3F /* slots */; settings = {ASSET_TAGS = (slots, ); }; };
 		CAF4204C08BA1F1298658D96 /* Pods_VIPER_Hybrid_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		A65B08732593E03500AF27D1 /* SportsBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookInteractor.swift; sourceTree = "<group>"; };
 		A65B08762593E0F400AF27D1 /* SportsBookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookRouter.swift; sourceTree = "<group>"; };
 		A65B08792593EDB600AF27D1 /* MatchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpdate.swift; sourceTree = "<group>"; };
+		A664556825965B0C00D30078 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		A6739E032587A85B00692A3F /* slots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slots; sourceTree = "<group>"; };
 		DE0CA6E86B300817C9517F04 /* Pods-VIPER-Hybrid-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.release.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.release.xcconfig"; sourceTree = "<group>"; };
 		FFBA6A89152AB0DFFFB7634C /* Pods-VIPER-Hybrid-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.debug.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.debug.xcconfig"; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				A657A7E02585AA49008130A9 /* ViewProtocols.swift */,
+				A664556825965B0C00D30078 /* NetworkProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				A65B085C25939A7400AF27D1 /* IntroPresenter.swift in Sources */,
 				A657A80E25865D12008130A9 /* HybridContentRouter.swift in Sources */,
 				A657A7F32585B6CD008130A9 /* ReactAppsInteractor.swift in Sources */,
+				A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */,
 				A65B08582593985C00AF27D1 /* IntroViewController.swift in Sources */,
 				A65B08712593DE9900AF27D1 /* SportsBookPresenter.swift in Sources */,
 				A657A7C525859C21008130A9 /* RootContract.swift in Sources */,

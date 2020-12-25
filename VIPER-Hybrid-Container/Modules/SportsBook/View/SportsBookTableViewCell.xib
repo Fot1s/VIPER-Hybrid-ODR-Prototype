@@ -15,55 +15,56 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="gOT-cN-0oc" userLabel="SportsBook Cell" customClass="SportsBookTableViewCell" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="gOT-cN-0oc" userLabel="SportsBook Cell" customClass="SportsBookTableViewCell" customModule="VIPER_Hybrid_Container" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="343" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="752" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-bd-qe9" userLabel="HomeLabel">
                     <rect key="frame" x="16" y="16" width="311" height="24"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="752" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOI-Pi-2F6" userLabel="AwayLabel">
                     <rect key="frame" x="16" y="48" width="311" height="24"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5r-fB-HF7" userLabel="bet_1">
-                    <rect key="frame" x="285" y="16" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="103" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5r-fB-HF7" userLabel="bet_1">
+                    <rect key="frame" x="298.66666666666669" y="8" width="28.333333333333314" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9Z-b7-lbX" userLabel="bet_x">
-                    <rect key="frame" x="285" y="41" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="205" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9Z-b7-lbX" userLabel="bet_x">
+                    <rect key="frame" x="296.66666666666669" y="34" width="30.333333333333314" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPY-QO-Msr" userLabel="bet_2">
-                    <rect key="frame" x="285" y="63" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPY-QO-Msr" userLabel="bet_2">
+                    <rect key="frame" x="288.66666666666669" y="59" width="38.333333333333314" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="mPX-bd-qe9" secondAttribute="trailing" constant="16" id="007-Ml-mx1"/>
+                <constraint firstItem="X9Z-b7-lbX" firstAttribute="top" secondItem="Y5r-fB-HF7" secondAttribute="bottom" constant="5" id="77J-UO-WN3"/>
                 <constraint firstItem="OOI-Pi-2F6" firstAttribute="leading" secondItem="gOT-cN-0oc" secondAttribute="leading" constant="16" id="9Qs-Lv-S5Q"/>
-                <constraint firstItem="aPY-QO-Msr" firstAttribute="top" secondItem="X9Z-b7-lbX" secondAttribute="bottom" constant="1" id="Abp-CC-eQ4"/>
                 <constraint firstItem="mPX-bd-qe9" firstAttribute="top" secondItem="gOT-cN-0oc" secondAttribute="top" constant="16" id="HoW-xn-GJH"/>
                 <constraint firstItem="mPX-bd-qe9" firstAttribute="leading" secondItem="gOT-cN-0oc" secondAttribute="leading" constant="16" id="MEU-g7-CbE"/>
-                <constraint firstItem="X9Z-b7-lbX" firstAttribute="leading" secondItem="aPY-QO-Msr" secondAttribute="leading" id="Vfh-gZ-a9C"/>
+                <constraint firstAttribute="trailing" secondItem="X9Z-b7-lbX" secondAttribute="trailing" constant="16" id="MhR-9h-Tbi"/>
+                <constraint firstItem="aPY-QO-Msr" firstAttribute="top" secondItem="X9Z-b7-lbX" secondAttribute="bottom" constant="4" id="TbO-9k-rdQ"/>
                 <constraint firstItem="OOI-Pi-2F6" firstAttribute="top" secondItem="mPX-bd-qe9" secondAttribute="bottom" constant="8" id="Xcl-L5-dCk"/>
                 <constraint firstAttribute="trailing" secondItem="OOI-Pi-2F6" secondAttribute="trailing" constant="16" id="aGP-z0-dGT"/>
-                <constraint firstItem="Y5r-fB-HF7" firstAttribute="top" secondItem="gOT-cN-0oc" secondAttribute="top" constant="16" id="ah1-c6-ruH"/>
+                <constraint firstItem="Y5r-fB-HF7" firstAttribute="top" secondItem="gOT-cN-0oc" secondAttribute="top" constant="8" id="ah1-c6-ruH"/>
                 <constraint firstAttribute="trailing" secondItem="Y5r-fB-HF7" secondAttribute="trailing" constant="16" id="dcs-fi-6yH"/>
                 <constraint firstAttribute="trailing" secondItem="aPY-QO-Msr" secondAttribute="trailing" constant="16" id="g5a-zD-1if"/>
-                <constraint firstAttribute="bottom" secondItem="aPY-QO-Msr" secondAttribute="bottom" constant="4" id="oeh-s4-Kkp"/>
+                <constraint firstAttribute="bottom" secondItem="aPY-QO-Msr" secondAttribute="bottom" constant="8" id="oeh-s4-Kkp"/>
                 <constraint firstAttribute="bottom" secondItem="OOI-Pi-2F6" secondAttribute="bottom" constant="16" id="twM-0a-dco"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
