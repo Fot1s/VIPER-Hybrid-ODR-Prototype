@@ -5,7 +5,8 @@ target 'VIPER-Hybrid-Container' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'AlamofireObjectMapper', '~> 4.0'
+  #pod 'AlamofireObjectMapper', '~> 4.0'
+  pod 'Alamofire', '~> 4.0'
   pod 'Kingfisher', '~> 3.0'
   pod 'PKHUD', '~> 4.0'
   pod 'R.swift','~> 3.0'

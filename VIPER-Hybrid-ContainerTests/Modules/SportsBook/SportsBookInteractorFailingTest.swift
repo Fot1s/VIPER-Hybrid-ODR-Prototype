@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import ObjectMapper
 import Starscream
 
 @testable import VIPER_Hybrid_Container

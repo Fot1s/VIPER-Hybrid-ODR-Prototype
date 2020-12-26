@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import ObjectMapper
+//import ObjectMapper
 import Starscream
 
 @testable import VIPER_Hybrid_Container
@@ -58,7 +58,7 @@ class SportsBookInteractorTest: XCTestCase {
         
         sut?.fakeUpdateSend(matchToUpdate:emptyMatchToUpdate)
         
-        //just to silense the not used warning:
+        //just to sillence the warning
         emptyMatchToUpdate = MatchUpdate()
         
         XCTAssertNil(mockOutput!.updatedMatch)

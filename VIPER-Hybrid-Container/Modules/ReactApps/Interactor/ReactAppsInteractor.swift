@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 class ReactAppsInteractor: ReactAppsUseCase {
     
