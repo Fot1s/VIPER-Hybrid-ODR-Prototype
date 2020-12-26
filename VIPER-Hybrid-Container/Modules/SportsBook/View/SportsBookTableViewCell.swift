@@ -133,11 +133,11 @@ class SportsBookTableViewCell: UITableViewCell {
             labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueLight
         }
         
-        UIView.transition(with: labelToAnimate, duration: 0.5, options: .transitionFlipFromTop, animations: {
+        UIView.transition(with: labelToAnimate, duration: Constants.Playbook.Values.newBetIntroAnimTime, options: .transitionFlipFromTop, animations: {
             labelToAnimate.textColor = Constants.Playbook.Colors.cellBetNewValueDark
         }, completion: { finished in
             if (finished) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Playbook.Values.newBetOutroDelayTime, execute: { [weak self] in
                     guard let safeSelf = self else { return }
                     
                     if safeSelf.isLive {
