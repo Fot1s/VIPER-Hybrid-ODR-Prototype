@@ -141,13 +141,21 @@ class SportsBookTableViewCell: UITableViewCell {
         }, completion: { finished in
             if (finished) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Playbook.Values.newBetOutroDelayTime, execute: { [weak self] in
-                    guard let safeSelf = self else { return }
+                    guard self != nil else { return }
                     
-                    if safeSelf.isLive && safeSelf.isLive == true {
+                    UIView.transition(with: labelToAnimate, duration: Constants.Playbook.Values.newBetOutroAnimTime, options: .transitionCrossDissolve, animations: {
                         labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
-                    } else {
-                        labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueLight
-                    }
+                    }, completion: { finished in
+                        if (finished) {
+                            guard self != nil else { return }
+
+                            if self!.isLive {
+                                labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
+                            } else {
+                                labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueLight
+                            }
+                        }
+                    })
                 })
             }            
         })
