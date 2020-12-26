@@ -19,7 +19,7 @@ class SportsBookInteractor: SportsBookUseCase {
     func fetchMatches() {
 
         apiService
-            .fetch(endPointURL: Endpoints.fetchMatches.url) { (matches:[Match]?) -> () in
+            .fetch(endPointURL: Endpoints.Matches.url) { (matches:[Match]?) -> () in
                 if let matches = matches {
                     self.output.matchesFetched(matches)
                 } else {

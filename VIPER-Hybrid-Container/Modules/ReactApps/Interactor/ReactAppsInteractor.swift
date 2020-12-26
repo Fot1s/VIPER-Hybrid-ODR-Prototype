@@ -16,7 +16,7 @@ class ReactAppsInteractor: ReactAppsUseCase {
     weak var output: ReactAppsInteractorOutput!
 
     func fetchReactApps() {
-        apiService.fetch(endPointURL: Endpoints.fetchReactApps.url) { (reactApps:[ReactApp]?) -> () in
+        apiService.fetch(endPointURL: Endpoints.ReactApps.url) { (reactApps:[ReactApp]?) -> () in
                 if let reactApps = reactApps {
                     self.output.reactAppsFetched(reactApps)
                 } else {

@@ -83,11 +83,12 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         
         //change might be 0 - skip
         if (change == 0 ) {
-            print("skipping for 0 change");
+            //print("skipping for 0 change");
             return
-        } else {
-            print("change: \(change)");
         }
+//        else {
+//            print("change: \(change)");
+//        }
         
         value += change
         

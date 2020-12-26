@@ -20,13 +20,13 @@ protocol Endpoint {
 
 enum Endpoints: Endpoint {
     
-    case fetchReactApps
-    case fetchMatches
+    case ReactApps
+    case Matches
 
     public var path: String {
         switch self {
-        case .fetchReactApps: return "/react-apps/"
-        case .fetchMatches: return "/react-prototype/sportsbook/backend/"
+        case .ReactApps: return "/react-apps/"
+        case .Matches: return "/react-prototype/sportsbook/backend/"
         }
     }
     
