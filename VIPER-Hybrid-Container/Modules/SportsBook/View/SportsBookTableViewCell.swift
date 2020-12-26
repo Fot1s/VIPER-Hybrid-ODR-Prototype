@@ -43,44 +43,47 @@ class SportsBookTableViewCell: UITableViewCell {
     
     func setup(_ match: Match, _ indexPath: IndexPath) {
         
+        self.backgroundColor = Constants.Playbook.Colors.screenBGColor
+
         if (match.live == 1) {
-            self.backgroundColor = UIColor.black
-            self.cellBackground.backgroundColor = UIColor(red: 23/255, green: 33/255, blue: 37/255, alpha: 1)
-            self.betBackground1.backgroundColor = UIColor.black
-            self.betBackground2.backgroundColor = UIColor.black
-            self.betBackground3.backgroundColor = UIColor.black
+            self.cellBackground.backgroundColor = Constants.Playbook.Colors.cellBGColorDark
+            self.betBackground1.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
+            self.betBackground2.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
+            self.betBackground3.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
             
-            self.dateTimeLabel.textColor = UIColor.white
-            self.homeLabel.textColor = UIColor.white
-            self.awayLabel.textColor = UIColor.white
-            self.bet1Label.textColor = UIColor.white
-            self.betXLabel.textColor = UIColor.white
-            self.bet2Label.textColor = UIColor.white
-            self.homeGoalsLabel.textColor = UIColor.yellow
-            self.awayGoalsLabel.textColor = UIColor.yellow
-            self.bet_1.textColor = UIColor.yellow
-            self.bet_x.textColor = UIColor.yellow
-            self.bet_2.textColor = UIColor.yellow
+            self.dateTimeLabel.textColor = Constants.Playbook.Colors.cellTimeLabel
+            
+            self.homeLabel.textColor = Constants.Playbook.Colors.cellHomeLabelDark
+            self.awayLabel.textColor = Constants.Playbook.Colors.cellAwayLabelDark
+            self.bet1Label.textColor = Constants.Playbook.Colors.cellBetLabelDark
+            self.betXLabel.textColor = Constants.Playbook.Colors.cellBetLabelDark
+            self.bet2Label.textColor = Constants.Playbook.Colors.cellBetLabelDark
+            self.homeGoalsLabel.textColor = Constants.Playbook.Colors.cellHomeGoalsLabelDark
+            self.awayGoalsLabel.textColor = Constants.Playbook.Colors.cellAwayGoalsLabelDark
+            self.bet_1.textColor = Constants.Playbook.Colors.cellBetValueDark
+            self.bet_x.textColor = Constants.Playbook.Colors.cellBetValueDark
+            self.bet_2.textColor = Constants.Playbook.Colors.cellBetValueDark
 
             self.dateTimeLabel.text = displayTime(match.time)
         } else {
-            self.backgroundColor = UIColor.lightGray
-            self.cellBackground.backgroundColor = UIColor.white
-            self.betBackground1.backgroundColor = UIColor.lightGray
-            self.betBackground2.backgroundColor = UIColor.lightGray
-            self.betBackground3.backgroundColor = UIColor.lightGray
             
-            self.dateTimeLabel.textColor = UIColor.black
-            self.homeLabel.textColor = UIColor.black
-            self.awayLabel.textColor = UIColor.black
-            self.bet1Label.textColor = UIColor.black
-            self.betXLabel.textColor = UIColor.black
-            self.bet2Label.textColor = UIColor.black
-            self.homeGoalsLabel.textColor = UIColor.blue
-            self.awayGoalsLabel.textColor = UIColor.blue
-            self.bet_1.textColor = UIColor.blue
-            self.bet_x.textColor = UIColor.blue
-            self.bet_2.textColor = UIColor.blue
+            self.cellBackground.backgroundColor = Constants.Playbook.Colors.cellBGColorLight
+            self.betBackground1.backgroundColor = Constants.Playbook.Colors.cellBetBGColorLight
+            self.betBackground2.backgroundColor = Constants.Playbook.Colors.cellBetBGColorLight
+            self.betBackground3.backgroundColor = Constants.Playbook.Colors.cellBetBGColorLight
+            
+            self.dateTimeLabel.textColor = Constants.Playbook.Colors.cellDateLabel
+            
+            self.homeLabel.textColor = Constants.Playbook.Colors.cellHomeLabelLight
+            self.awayLabel.textColor = Constants.Playbook.Colors.cellAwayLabelLight
+            self.bet1Label.textColor = Constants.Playbook.Colors.cellBetLabelLight
+            self.betXLabel.textColor = Constants.Playbook.Colors.cellBetLabelLight
+            self.bet2Label.textColor = Constants.Playbook.Colors.cellBetLabelLight
+            self.homeGoalsLabel.textColor = Constants.Playbook.Colors.cellHomeGoalsLabelLight
+            self.awayGoalsLabel.textColor = Constants.Playbook.Colors.cellAwayGoalsLabelLight
+            self.bet_1.textColor = Constants.Playbook.Colors.cellBetValueLight
+            self.bet_x.textColor = Constants.Playbook.Colors.cellBetValueLight
+            self.bet_2.textColor = Constants.Playbook.Colors.cellBetValueLight
 
             self.dateTimeLabel.text = match.date
         }
@@ -121,14 +124,15 @@ class SportsBookTableViewCell: UITableViewCell {
             labelToAnimate = bet_2
         }
         
-        labelToAnimate.textColor = UIColor.yellow
+        //at the moment we do not do updates of future games / no need for light version
+        labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
         
         UIView.transition(with: labelToAnimate, duration: 0.5, options: .transitionFlipFromTop, animations: {
-            labelToAnimate.textColor = UIColor.green
+            labelToAnimate.textColor = Constants.Playbook.Colors.cellBetNewValueDark
         }, completion: { finished in
             if (finished) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                    labelToAnimate.textColor = UIColor.yellow
+                    labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
                 })
             }            
         })

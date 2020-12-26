@@ -14,14 +14,26 @@ extension Constants {
     enum Playbook {
         enum Colors {
             static let screenBGColor = UIColor.init(red: 48/255, green: 53/255, blue: 64/255, alpha: 1)//darkgrey
-            static let cellBGColorDark = UIColor.init(red: 48/255, green: 53/255, blue: 64/255, alpha: 1)//darkgrey
-            static let cellBGColorLight = UIColor.init(red: 1, green: 1, blue: 1, alpha: 1)//white
-            //            static let backgroundColor = UIColor.init(red: /255, green: /255, blue: /255, alpha: 1)
-            //            static let backgroundColor = UIColor.init(red: /255, green: /255, blue: /255, alpha: 1)
-            //            static let backgroundColor = UIColor.init(red: /255, green: /255, blue: /255, alpha: 1)
-            //            static let backgroundColor = UIColor.init(red: /255, green: /255, blue: /255, alpha: 1)
-            //            static let backgroundColor = UIColor.init(red: /255, green: /255, blue: /255, alpha: 1)
-            //            static let backgroundColor = UIColor.init(red: /255, green: /255, blue: /255, alpha: 1)
+            static let cellBGColorDark = UIColor.init(red: 32/255, green: 39/255, blue: 53/255, alpha: 1)//darkergrey
+            static let cellBGColorLight = UIColor.white
+            static let cellBetBGColorDark = UIColor.init(red: 65/255, green: 72/255, blue: 86/255, alpha: 1)//grey
+            static let cellBetBGColorLight = UIColor.init(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)//light grey
+            static let cellBetLabelDark = UIColor.white
+            static let cellBetLabelLight = cellAwayLabelLight
+            static let cellBetValueDark = UIColor.init(red: 109/255, green: 246/255, blue: 255/255, alpha: 1)//light blue
+            static let cellBetValueLight = UIColor.black
+            static let cellBetNewValueDark = UIColor.init(red: 240/255, green: 174/255, blue: 35/255, alpha: 1)//orange
+            static let cellBetNewValueLight = cellBetNewValueDark
+            static let cellTimeLabel = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1)
+            static let cellDateLabel = UIColor.init(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
+            static let cellAwayLabelDark = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1)
+            static let cellAwayLabelLight = UIColor.init(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+            static let cellHomeLabelDark = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1)
+            static let cellHomeLabelLight = cellAwayLabelLight
+            static let cellHomeGoalsLabelDark = UIColor.white
+            static let cellHomeGoalsLabelLight = cellAwayLabelLight
+            static let cellAwayGoalsLabelDark = UIColor.white
+            static let cellAwayGoalsLabelLight = cellAwayLabelLight
         }
     }
 }

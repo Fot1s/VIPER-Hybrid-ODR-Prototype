@@ -19,7 +19,7 @@ class ReactAppTableViewCell: UITableViewCell {
         titleLabel?.text = reactApp.title
         reactAppImageView.kf.setImage(
             with: URL(string: reactApp.imageUrl),
-            placeholder: UIImage(named: Constants.imagePlaceholder),
+            placeholder: UIImage(named: Constants.Images.imagePlaceholder),
             options: nil,
             progressBlock: nil,
             completionHandler: nil

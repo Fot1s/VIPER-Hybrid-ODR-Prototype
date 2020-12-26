@@ -41,7 +41,7 @@ class SportsBookViewController: UIViewController {
         
         navigationItem.title = Localization.Playbook.navigationBarTitle
         
-        matchesTableView.backgroundColor = UIColor.black
+        matchesTableView.backgroundColor = Constants.Playbook.Colors.screenBGColor
         matchesTableView.dataSource = self
         matchesTableView.delegate = self
         matchesTableView.rowHeight = UITableViewAutomaticDimension
