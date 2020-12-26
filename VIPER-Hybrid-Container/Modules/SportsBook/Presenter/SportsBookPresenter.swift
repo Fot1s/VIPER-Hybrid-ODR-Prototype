@@ -68,11 +68,11 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         
         switch whichBet {//1,2,3
         case 1:
-            value = match.bet_1
+            value = match.bet1
         case 2:
-            value = match.bet_x
+            value = match.betX
         case 3:
-            value = match.bet_2
+            value = match.bet2
         default:
             value = 0
             print("Error: Should not be here")
@@ -118,11 +118,11 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
             
             switch (updatedMatch.updateFor) {
             case .Home :
-                match.bet_1 = updatedMatch.value
+                match.bet1 = updatedMatch.value
             case .Draw :
-                match.bet_x = updatedMatch.value
+                match.betX = updatedMatch.value
             case .Away :
-                match.bet_2 = updatedMatch.value
+                match.bet2 = updatedMatch.value
             }
             
             self.matches[oldMatchIndex] = match

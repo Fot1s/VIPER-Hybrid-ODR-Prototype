@@ -45,9 +45,9 @@ class SportsBookInteractorTest: XCTestCase {
         XCTAssertTrue(match.id == 1)
         XCTAssertTrue(match.home == "home")
         XCTAssertTrue(match.away == "away")
-        XCTAssertTrue(match.bet_1 == 100)
-        XCTAssertTrue(match.bet_x == 200)
-        XCTAssertTrue(match.bet_2 == 300)
+        XCTAssertTrue(match.bet1 == 100)
+        XCTAssertTrue(match.betX == 200)
+        XCTAssertTrue(match.bet2 == 300)
         
         sut?.connectToSocketServerForUpdates()
         

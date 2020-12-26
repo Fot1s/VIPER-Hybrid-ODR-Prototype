@@ -30,9 +30,9 @@ class SportsBookTableViewCell: UITableViewCell {
         
         homeLabel.text = match.home
         awayLabel.text = match.away
-        bet_1.text = String(format:"%.02f", Double(match.bet_1) / 100.0)
-        bet_x.text = String(format:"%.02f", Double(match.bet_x) / 100.0)
-        bet_2.text = String(format:"%.02f", Double(match.bet_2) / 100.0)
+        bet_1.text = String(format:"%.02f", Double(match.bet1) / 100.0)
+        bet_x.text = String(format:"%.02f", Double(match.betX) / 100.0)
+        bet_2.text = String(format:"%.02f", Double(match.bet2) / 100.0)
     }
     
     func animateLabelColorOnNewValue(updateFor:MatchUpdate.UpdateFor) {

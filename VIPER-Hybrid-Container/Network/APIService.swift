@@ -33,7 +33,7 @@ class APIService: ViperNetwork {
                 do {
                     let jsonData = response.value?.data(using: .utf8)!
                     // Decode data to object
-                    
+                    //print(response.value)
                     let values = try jsonDecoder.decode([T].self, from: jsonData!)
                     
                      completion(values)

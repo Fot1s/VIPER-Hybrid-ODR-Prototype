@@ -11,11 +11,31 @@ import Foundation
 
 struct Match: Codable {
     var id = 0
+    var live = 0
+    var time = 0
+    var date = "20/12/20"
     var home = ""
     var away = ""
-    var bet_1 = 0
-    var bet_x = 0
-    var bet_2 = 0
+    var homeGoals = 0
+    var awayGoals = 0
+    var bet1 = 0
+    var betX = 0
+    var bet2 = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case live = "live"
+        case time = "time"
+        case date = "date"
+        case home = "home"
+        case away = "away"
+        case homeGoals = "home_goals"
+        case awayGoals = "away_goals"
+        case bet1 = "bet_1"
+        case betX = "bet_x"
+        case bet2 = "bet_2"
+    }
+
 }
 
 //Switched To Codable after all :)
