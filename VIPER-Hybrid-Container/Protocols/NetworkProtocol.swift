@@ -10,8 +10,8 @@ import Foundation
 import ObjectMapper
 import Starscream
 
-protocol ViperNetwork {
-    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Mappable
+protocol ViperNetwork { 
+    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable
 }
 
 protocol ViperWebSocket {

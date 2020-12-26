@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import ObjectMapper
+//import ObjectMapper
 
-struct Match {
+struct Match: Codable {
     var id = 0
     var home = ""
     var away = ""
@@ -18,18 +18,20 @@ struct Match {
     var bet_2 = 0
 }
 
-//Could be Codable but Mappable works faster with AlamoFire
-extension Match: Mappable {
-    
-    init?(map: Map) {
-    }
-    
-    mutating func mapping(map: Map) {
-        id      <- map["id"]
-        home    <- map["home"]
-        away    <- map["away"]
-        bet_1    <- map["bet_1"]
-        bet_x    <- map["bet_x"]
-        bet_2    <- map["bet_2"]
-    }
-}
+//Switched To Codable after all :)
+//Could be Codable but Mappable works out of the box with AlamoFire
+//extension Match: Mappable {
+//
+//    init?(map: Map) {
+//    }
+//
+//    mutating func mapping(map: Map) {
+//        id      <- map["id"]
+//        home    <- map["home"]
+//        away    <- map["away"]
+//        bet_1    <- map["bet_1"]
+//        bet_x    <- map["bet_x"]
+//        bet_2    <- map["bet_2"]
+//    }
+//}
+

@@ -135,7 +135,7 @@ class MockAPIService: ViperNetwork {
     }
 
     //Generic version of fetch no need to have multiple versions as bellow
-    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T:Mappable {
+    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T:Codable {
 
         let matches:[Match]? = [Match(id:1, home:"home", away:"away", bet_1:100,bet_x:200,bet_2:300)]
         completion(matches as? [T])
