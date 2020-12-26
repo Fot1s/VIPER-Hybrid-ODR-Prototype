@@ -59,7 +59,6 @@
 		A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08792593EDB600AF27D1 /* MatchUpdate.swift */; };
 		A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A664556825965B0C00D30078 /* NetworkProtocol.swift */; };
 		A6739E042587A85B00692A3F /* slots in Resources */ = {isa = PBXBuildFile; fileRef = A6739E032587A85B00692A3F /* slots */; settings = {ASSET_TAGS = (slots, ); }; };
-		A67E280F25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E280E25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift */; };
 		A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */; };
 		A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */; };
 		A67E281F2596A8C100E86846 /* SportsBookInteractorFailingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281E2596A8C100E86846 /* SportsBookInteractorFailingTest.swift */; };
@@ -146,7 +145,6 @@
 		A664556825965B0C00D30078 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		A6739E032587A85B00692A3F /* slots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slots; sourceTree = "<group>"; };
 		A67E280C25966F2300E86846 /* VIPER-Hybrid-ContainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VIPER-Hybrid-ContainerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A67E280E25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPER_Hybrid_ContainerTests.swift; sourceTree = "<group>"; };
 		A67E281025966F2300E86846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookEntitiesTest.swift; sourceTree = "<group>"; };
 		A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookInteractorTest.swift; sourceTree = "<group>"; };
@@ -569,7 +567,6 @@
 			isa = PBXGroup;
 			children = (
 				A67E28172596812500E86846 /* Modules */,
-				A67E280E25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift */,
 				A67E281025966F2300E86846 /* Info.plist */,
 			);
 			path = "VIPER-Hybrid-ContainerTests";
@@ -914,7 +911,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */,
-				A67E280F25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift in Sources */,
 				A67E281F2596A8C100E86846 /* SportsBookInteractorFailingTest.swift in Sources */,
 				A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */,
 			);
