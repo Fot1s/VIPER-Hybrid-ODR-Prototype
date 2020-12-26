@@ -41,11 +41,14 @@ class SportsBookTableViewCell: UITableViewCell {
         return ((mins > 9) ? "\(mins)" : "0\(mins)") + ":" + ((secs > 9) ? "\(secs)" : "0\(secs)")
     }
     
+    var isLive = false ;
+    
     func setup(_ match: Match, _ indexPath: IndexPath) {
         
         self.backgroundColor = Constants.Playbook.Colors.screenBGColor
 
         if (match.live == 1) {
+            isLive = true
             self.cellBackground.backgroundColor = Constants.Playbook.Colors.cellBGColorDark
             self.betBackground1.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
             self.betBackground2.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
@@ -66,7 +69,7 @@ class SportsBookTableViewCell: UITableViewCell {
 
             self.dateTimeLabel.text = displayTime(match.time)
         } else {
-            
+            isLive = false
             self.cellBackground.backgroundColor = Constants.Playbook.Colors.cellBGColorLight
             self.betBackground1.backgroundColor = Constants.Playbook.Colors.cellBetBGColorLight
             self.betBackground2.backgroundColor = Constants.Playbook.Colors.cellBetBGColorLight
@@ -124,15 +127,24 @@ class SportsBookTableViewCell: UITableViewCell {
             labelToAnimate = bet_2
         }
         
-        //at the moment we do not do updates of future games / no need for light version
-        labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
+        if (self.isLive) {
+            labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
+        } else {
+            labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueLight
+        }
         
         UIView.transition(with: labelToAnimate, duration: 0.5, options: .transitionFlipFromTop, animations: {
             labelToAnimate.textColor = Constants.Playbook.Colors.cellBetNewValueDark
         }, completion: { finished in
             if (finished) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                    labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+                    guard let safeSelf = self else { return }
+                    
+                    if safeSelf.isLive {
+                        labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
+                    } else {
+                        labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueLight
+                    }
                 })
             }            
         })
