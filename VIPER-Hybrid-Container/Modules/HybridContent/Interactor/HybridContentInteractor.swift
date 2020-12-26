@@ -10,7 +10,8 @@ import Foundation
 
 class HybridContentInteractor: HybridContentUseCase {
     
-    var output: HybridContentInteractorOutput!
+    //CAUGHT WITH INSTRUMENTS NEEDS weak!
+    weak var output: HybridContentInteractorOutput!
     
     private var request: NSBundleResourceRequest!
     
@@ -20,21 +21,22 @@ class HybridContentInteractor: HybridContentUseCase {
         request.conditionallyBeginAccessingResources(completionHandler: { resourcesAvailable in
             
             if resourcesAvailable {
-                OperationQueue.main.addOperation({
-                    self.output.reactAppODRAvailable(stringTag)
+                OperationQueue.main.addOperation({ [weak self] in
+
+                    self?.output.reactAppODRAvailable(stringTag)
                 })
             } else {
                 self.request.beginAccessingResources(completionHandler: { error in
                     
                     //not main here switch to main thread:
-                    OperationQueue.main.addOperation({
+                    OperationQueue.main.addOperation({ [weak self] in
                         guard error == nil else {
-                            self.output.reactAppODRFetchFailed(error!.localizedDescription)
+                            self?.output.reactAppODRFetchFailed(error!.localizedDescription)
                             return
                         }
                         
                         //all well load game
-                        self.output.reactAppODRAvailable(stringTag)
+                        self?.output.reactAppODRAvailable(stringTag)
                     })
                 })
             }
