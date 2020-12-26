@@ -14,12 +14,15 @@ class SportsBookViewController: UIViewController {
     
     var presenter: SportsBookPresentation!
     
-    var matches: [Match] = [] {
-        didSet {
-//moved bellow for finer control, updateSportsBookData will reload only single rows
-//            matchesTableView.reloadData()
-        }
-    }
+    var liveMatches: [Match] = []
+//{
+//        didSet {
+////moved bellow for finer control, updateSportsBookData will reload only single rows
+////            matchesTableView.reloadData()
+//        }
+//    }
+    
+    var futureMatches: [Match] = []
     
     
     override func viewDidLoad() {
@@ -38,38 +41,54 @@ class SportsBookViewController: UIViewController {
         
         navigationItem.title = Localization.Playbook.navigationBarTitle
         
+        matchesTableView.backgroundColor = UIColor.black
         matchesTableView.dataSource = self
         matchesTableView.delegate = self
         matchesTableView.rowHeight = UITableViewAutomaticDimension
-        matchesTableView.estimatedRowHeight = 88.0
+        matchesTableView.estimatedRowHeight = 106.0
         matchesTableView.register(SportsBookTableViewCell.self)
     }
 }
 
 extension SportsBookViewController: SportsBookView {
-    
-    func showSportsBookData(_ matches: [Match]) {
-        self.matches = matches
+
+    func showSportsBookData(_ liveMatches: [Match], _ futureMatches: [Match]) {
+        self.liveMatches = liveMatches
+        self.futureMatches = futureMatches
+        
         matchesTableView.reloadData()
     }
     
     func updateSportsBookData(withMatch match:Match, updatedMatch:MatchUpdate, andIndex index:Int) {
         
-        matches[index] = match
+        liveMatches[index] = match
         
         //matchesTableView.reloadData()
         
-        //TODO: Update only changed row
-        let indexPath = IndexPath(row: index, section: 0)
-//        UIView.setAnimationsEnabled(false)
-//        matchesTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
-//        UIView.setAnimationsEnabled(true)
-        
         //better: find the cell if visible and update it
+        let indexPath = IndexPath(row: index, section: 0)
+
         if let paths = matchesTableView.indexPathsForVisibleRows , paths.contains(indexPath) {
             if let cell = matchesTableView.cellForRow(at: indexPath) as! SportsBookTableViewCell? {
-                cell.setup(match, indexPath)
-                cell.animateLabelColorOnNewValue(updateFor: updatedMatch.updateFor)
+//                cell.setup(match, indexPath)
+                cell.animateLabelColorOnNewValue(updatedMatch: updatedMatch)
+            }
+        }
+    }
+    
+    func updateLiveMatchesWithNewTimes(_ liveMatches: [Match]) {
+        self.liveMatches = liveMatches
+        
+        for (index, match) in self.liveMatches.enumerated() {
+
+            let indexPath = IndexPath(row: index, section: 0)
+            //if the match is visible update it
+            if let paths = matchesTableView.indexPathsForVisibleRows , paths.contains(indexPath) {
+                if let cell = matchesTableView.cellForRow(at: indexPath) as! SportsBookTableViewCell? {
+                    cell.displayUpdatedTime(matchTime: match.time)
+                }
+            } else {
+                print("Skipping update not visible \(indexPath.row)") ;
             }
         }
     }
@@ -80,16 +99,31 @@ extension SportsBookViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        
+        let one = liveMatches.count > 0 ? 1 : 0
+        let two = futureMatches.count > 0 ? 1 : 0
+
+        return one + two
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return matches.count
+        if (section == 0) {
+            return liveMatches.count
+        } else {
+            return futureMatches.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SportsBookTableViewCell
-        let match = matches[indexPath.row]
+        
+        let match:Match
+        
+        if (indexPath.section == 0) {
+            match = liveMatches[indexPath.row]
+        } else {
+            match = futureMatches[indexPath.row]
+        }
         
         cell.selectionStyle = .none
         cell.setup(match, indexPath)

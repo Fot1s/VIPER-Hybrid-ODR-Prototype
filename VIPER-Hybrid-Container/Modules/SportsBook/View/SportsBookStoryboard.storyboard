@@ -18,16 +18,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hbb-BA-BXp">
-                                <rect key="frame" x="16" y="80" width="343" height="587"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="599"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <sections/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Hbb-BA-BXp" firstAttribute="bottom" secondItem="Ljm-Gq-cst" secondAttribute="bottom" id="7K7-BR-n5c"/>
-                            <constraint firstItem="Ljm-Gq-cst" firstAttribute="trailing" secondItem="Hbb-BA-BXp" secondAttribute="trailing" constant="16" id="MSA-BD-5m6"/>
-                            <constraint firstItem="Hbb-BA-BXp" firstAttribute="leading" secondItem="Ljm-Gq-cst" secondAttribute="leading" constant="16" id="adx-g4-bzP"/>
-                            <constraint firstItem="Hbb-BA-BXp" firstAttribute="top" secondItem="Ljm-Gq-cst" secondAttribute="top" constant="16" id="vJr-0s-dZy"/>
+                            <constraint firstItem="Ljm-Gq-cst" firstAttribute="trailing" secondItem="Hbb-BA-BXp" secondAttribute="trailing" id="MSA-BD-5m6"/>
+                            <constraint firstItem="Hbb-BA-BXp" firstAttribute="leading" secondItem="Ljm-Gq-cst" secondAttribute="leading" id="adx-g4-bzP"/>
+                            <constraint firstItem="Hbb-BA-BXp" firstAttribute="top" secondItem="Ljm-Gq-cst" secondAttribute="top" constant="4" id="vJr-0s-dZy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ljm-Gq-cst"/>
                     </view>

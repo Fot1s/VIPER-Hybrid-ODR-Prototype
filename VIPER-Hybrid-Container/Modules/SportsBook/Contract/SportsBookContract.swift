@@ -11,8 +11,9 @@ import UIKit
 protocol SportsBookView: IndicatableView {
     var presenter: SportsBookPresentation! { get set }
     
-    func showSportsBookData(_ matches: [Match])
+    func showSportsBookData(_ liveMatches: [Match], _ futureMatches: [Match])
     func updateSportsBookData(withMatch match:Match, updatedMatch:MatchUpdate, andIndex index:Int)
+    func updateLiveMatchesWithNewTimes(_ liveMatches: [Match])
 }
 
 protocol SportsBookPresentation: class {
