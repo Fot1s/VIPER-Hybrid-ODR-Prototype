@@ -11,6 +11,7 @@ import Starscream
 
 class SportsBookInteractor: SportsBookUseCase {
     
+    
     var apiService: ViperNetwork!
     var socketService: ViperWebSocket!
 
@@ -41,7 +42,7 @@ class SportsBookInteractor: SportsBookUseCase {
         socketService.connect(withDelegate: self)
     }
     
-    func fakeUpdateSend(matchToUpdate: MatchUpdate) {
+    func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
         
         let encoder = JSONEncoder()
         //encoder.outputFormatting = .prettyPrinted

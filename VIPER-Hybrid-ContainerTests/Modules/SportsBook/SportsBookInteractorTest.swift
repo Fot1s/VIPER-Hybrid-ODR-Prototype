@@ -54,6 +54,12 @@ class SportsBookInteractorTest: XCTestCase {
         XCTAssertNotNil(mockOutput!.socketConnected)
         XCTAssertTrue(mockOutput!.socketConnected!)
 
+        var emptyMatchToUpdate:MatchUpdate?
+        
+        sut?.fakeUpdateSend(matchToUpdate:emptyMatchToUpdate)
+        
+        XCTAssertNil(mockOutput!.updatedMatch)
+        
         let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
         
         sut?.fakeUpdateSend(matchToUpdate:matchToUpdate)
@@ -115,6 +121,12 @@ class MockWebSocketService: ViperWebSocket {
     func connect(withDelegate delegate:WebSocketDelegate) {
         websocket.delegate = delegate
         websocket.delegate?.websocketDidConnect(socket: websocket)
+        
+        //Just for test coverage:
+        //send an empty Data
+        websocket.delegate?.websocketDidReceiveData(socket: websocket, data: Data())
+        //send a broken json text
+        websocket.delegate?.websocketDidReceiveMessage(socket: websocket, text: "broken")
     }
     
     func write(message: String) {
