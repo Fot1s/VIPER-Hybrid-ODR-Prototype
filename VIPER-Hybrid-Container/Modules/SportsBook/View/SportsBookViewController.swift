@@ -41,11 +41,12 @@ class SportsBookViewController: UIViewController {
         
         navigationItem.title = Localization.Playbook.navigationBarTitle
         
+        view.backgroundColor = Constants.Playbook.Colors.screenBGColor
         matchesTableView.backgroundColor = Constants.Playbook.Colors.screenBGColor
         matchesTableView.dataSource = self
         matchesTableView.delegate = self
         matchesTableView.rowHeight = UITableViewAutomaticDimension
-        matchesTableView.estimatedRowHeight = 106.0
+        matchesTableView.estimatedRowHeight = Constants.Playbook.Values.rowHeight
         matchesTableView.register(SportsBookTableViewCell.self)
     }
 }
@@ -74,6 +75,10 @@ extension SportsBookViewController: SportsBookView {
                 cell.animateLabelColorOnNewValue(updatedMatch: updatedMatch)
             }
         }
+//        else
+//        {
+//            print("Skipping update not visible \(indexPath.row)") ;
+//        }
     }
     
     func updateLiveMatchesWithNewTimes(_ liveMatches: [Match]) {
@@ -87,9 +92,10 @@ extension SportsBookViewController: SportsBookView {
                 if let cell = matchesTableView.cellForRow(at: indexPath) as! SportsBookTableViewCell? {
                     cell.displayUpdatedTime(matchTime: match.time)
                 }
-            } else {
-                print("Skipping update not visible \(indexPath.row)") ;
             }
+//            } else {
+//                print("Skipping update not visible \(indexPath.row)") ;
+//            }
         }
     }
 }

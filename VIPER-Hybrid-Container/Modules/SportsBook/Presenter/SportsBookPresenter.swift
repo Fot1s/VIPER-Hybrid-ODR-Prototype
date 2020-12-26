@@ -76,10 +76,10 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         // only start for liveGames
         
         if (liveMatches.count > 0) {
-            fakeUpdatesTimer = Timer(timeInterval: 5.0, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
+            fakeUpdatesTimer = Timer(timeInterval: Constants.Playbook.Values.fakeUpdatesTimerInterval, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
             RunLoop.current.add(fakeUpdatesTimer!, forMode: .commonModes)
 
-            liveSecondsTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(fireTimerForLiveUpdates), userInfo: nil, repeats: true)
+            liveSecondsTimer = Timer(timeInterval: Constants.Playbook.Values.liveSecondsTimerInterval, target: self, selector: #selector(fireTimerForLiveUpdates), userInfo: nil, repeats: true)
             RunLoop.current.add(liveSecondsTimer!, forMode: .commonModes)
 
         }

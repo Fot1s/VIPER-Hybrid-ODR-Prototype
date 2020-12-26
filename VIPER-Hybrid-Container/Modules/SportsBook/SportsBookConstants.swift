@@ -12,6 +12,13 @@ import UIKit
 extension Constants {
     
     enum Playbook {
+        enum Values {
+            static let rowHeight = CGFloat(106.0)     //the match cell row height
+            static let fakeUpdatesTimerInterval = 0.1 // how ofter we send and mainly receive a fake update via the socket server
+            static let liveSecondsTimerInterval = 0.3   //can play with time :)
+            
+        }
+        
         enum Colors {
             static let screenBGColor = UIColor.init(red: 48/255, green: 53/255, blue: 64/255, alpha: 1)//darkgrey
             static let cellBGColorDark = UIColor.init(red: 32/255, green: 39/255, blue: 53/255, alpha: 1)//darkergrey
@@ -24,11 +31,11 @@ extension Constants {
             static let cellBetValueLight = UIColor.black
             static let cellBetNewValueDark = UIColor.init(red: 240/255, green: 174/255, blue: 35/255, alpha: 1)//orange
             static let cellBetNewValueLight = cellBetNewValueDark
-            static let cellTimeLabel = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1)
-            static let cellDateLabel = UIColor.init(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
+            static let cellTimeLabel = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1) //grey
+            static let cellDateLabel = UIColor.init(red: 130/255, green: 130/255, blue: 130/255, alpha: 1) //drker grey
             static let cellAwayLabelDark = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1)
-            static let cellAwayLabelLight = UIColor.init(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
-            static let cellHomeLabelDark = UIColor.init(red: 167/255, green: 176/255, blue: 185/255, alpha: 1)
+            static let cellAwayLabelLight = UIColor.init(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)//darkest grey
+            static let cellHomeLabelDark = cellAwayLabelDark
             static let cellHomeLabelLight = cellAwayLabelLight
             static let cellHomeGoalsLabelDark = UIColor.white
             static let cellHomeGoalsLabelLight = cellAwayLabelLight
