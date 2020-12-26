@@ -6,6 +6,8 @@
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
+import Foundation
+import CoreFoundation
 
 import UIKit
 import Kingfisher
@@ -49,6 +51,7 @@ class SportsBookTableViewCell: UITableViewCell {
 
         if (match.live == 1) {
             isLive = true
+
             self.cellBackground.backgroundColor = Constants.Playbook.Colors.cellBGColorDark
             self.betBackground1.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
             self.betBackground2.backgroundColor = Constants.Playbook.Colors.cellBetBGColorDark
@@ -140,7 +143,7 @@ class SportsBookTableViewCell: UITableViewCell {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Playbook.Values.newBetOutroDelayTime, execute: { [weak self] in
                     guard let safeSelf = self else { return }
                     
-                    if safeSelf.isLive {
+                    if safeSelf.isLive && safeSelf.isLive == true {
                         labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueDark
                     } else {
                         labelToAnimate.textColor = Constants.Playbook.Colors.cellBetValueLight
