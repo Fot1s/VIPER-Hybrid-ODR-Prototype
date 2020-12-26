@@ -1336,7 +1336,7 @@ private let emptyBuffer = UnsafeBufferPointer<UInt8>(start: nil, count: 0)
 #else
 fileprivate extension String {
     var count: Int {
-        return self.characters.count
+        return self.count
     }
 }
 #endif
