@@ -26,8 +26,8 @@ protocol SportsBookPresentation: class {
 }
 
 protocol SportsBookUseCase: class {
-    var apiService: APIService! { get set }
-    var socketService: WebSocketTestService! { get set }
+    var apiService: ViperNetwork! { get set }
+    var socketService: ViperWebSocket! { get set }
 
     weak var output: SportsBookInteractorOutput! { get set }
     

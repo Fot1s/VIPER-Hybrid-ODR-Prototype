@@ -8,7 +8,17 @@
 
 import Foundation
 import ObjectMapper
+import Starscream
 
-protocol Network {
+protocol ViperNetwork {
     func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Mappable
 }
+
+protocol ViperWebSocket {
+    func connect(withDelegate delegate:WebSocketDelegate)
+    
+    func write(message: String)
+    
+    func disconnect()
+}
+

@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 
-class APIService: Network {
+class APIService: ViperNetwork {
     
     static let shared = APIService()
     

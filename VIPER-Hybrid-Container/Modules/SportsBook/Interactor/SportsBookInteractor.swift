@@ -11,8 +11,8 @@ import Starscream
 
 class SportsBookInteractor: SportsBookUseCase {
     
-    var apiService: APIService!
-    var socketService: WebSocketTestService!
+    var apiService: ViperNetwork!
+    var socketService: ViperWebSocket!
 
     weak var output: SportsBookInteractorOutput!
 
@@ -92,8 +92,6 @@ extension SportsBookInteractor: WebSocketDelegate {
 
     }
     
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("Data: \(data)")
-    }
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {}
     
 }
