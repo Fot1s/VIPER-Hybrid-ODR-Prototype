@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 enum Constants {
-    static let imagePlaceholder = "image-placeholder"
+    enum Images {
+        static let imagePlaceholder = "image-placeholder"
+    }
+    
 }

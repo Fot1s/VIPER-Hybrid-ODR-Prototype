@@ -58,6 +58,9 @@ class SportsBookInteractorTest: XCTestCase {
         
         sut?.fakeUpdateSend(matchToUpdate:emptyMatchToUpdate)
         
+        //just to silense the not used warning:
+        emptyMatchToUpdate = MatchUpdate()
+        
         XCTAssertNil(mockOutput!.updatedMatch)
         
         let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
