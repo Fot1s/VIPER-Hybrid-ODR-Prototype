@@ -10,6 +10,10 @@ target 'VIPER-Hybrid-Container' do
   pod 'PKHUD', '~> 4.0'
   pod 'R.swift','~> 3.0'
   pod 'Starscream', '<= 3.0.5'
+
+  target 'VIPER-Hybrid-ContainerTests' do
+    inherit! :complete
+  end
 end
 
 post_install do |installer|

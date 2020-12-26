@@ -1,0 +1,6 @@
+framework module Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests {
+  umbrella header "Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

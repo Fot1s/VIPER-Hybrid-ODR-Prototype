@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0069F92C63F65D1E6E01B332 /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A387C10D523DAD972573C31E /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework */; };
 		A649D1E3258675BB008B6C31 /* HybridContentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A649D1E2258675BB008B6C31 /* HybridContentPresenter.swift */; };
 		A649D1E525867629008B6C31 /* HybridContentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A649D1E425867629008B6C31 /* HybridContentInteractor.swift */; };
 		A657A7A1258572C9008130A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657A7A0258572C9008130A9 /* AppDelegate.swift */; };
@@ -57,11 +58,36 @@
 		A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08792593EDB600AF27D1 /* MatchUpdate.swift */; };
 		A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A664556825965B0C00D30078 /* NetworkProtocol.swift */; };
 		A6739E042587A85B00692A3F /* slots in Resources */ = {isa = PBXBuildFile; fileRef = A6739E032587A85B00692A3F /* slots */; settings = {ASSET_TAGS = (slots, ); }; };
+		A67E280F25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E280E25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift */; };
+		A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */; };
+		A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */; };
+		A67E281F2596A8C100E86846 /* SportsBookInteractorFailingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281E2596A8C100E86846 /* SportsBookInteractorFailingTest.swift */; };
+		A67E28272596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E28262596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift */; };
 		CAF4204C08BA1F1298658D96 /* Pods_VIPER_Hybrid_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A67E281125966F2300E86846 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A657A795258572C9008130A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A657A79C258572C9008130A9;
+			remoteInfo = "VIPER-Hybrid-Container";
+		};
+		A67E28292596AC3500E86846 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A657A795258572C9008130A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A657A79C258572C9008130A9;
+			remoteInfo = "VIPER-Hybrid-Container";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		131E002378927A559A8E9819 /* Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.release.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.release.xcconfig"; sourceTree = "<group>"; };
+		5B9788EDA27A81A9B427E30E /* Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.debug.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VIPER_Hybrid_Container.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A387C10D523DAD972573C31E /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A649D1E2258675BB008B6C31 /* HybridContentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridContentPresenter.swift; sourceTree = "<group>"; };
 		A649D1E425867629008B6C31 /* HybridContentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridContentInteractor.swift; sourceTree = "<group>"; };
 		A657A79D258572C9008130A9 /* VIPER-Hybrid-Container.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VIPER-Hybrid-Container.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +145,15 @@
 		A65B08792593EDB600AF27D1 /* MatchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpdate.swift; sourceTree = "<group>"; };
 		A664556825965B0C00D30078 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		A6739E032587A85B00692A3F /* slots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slots; sourceTree = "<group>"; };
+		A67E280C25966F2300E86846 /* VIPER-Hybrid-ContainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VIPER-Hybrid-ContainerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A67E280E25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPER_Hybrid_ContainerTests.swift; sourceTree = "<group>"; };
+		A67E281025966F2300E86846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookEntitiesTest.swift; sourceTree = "<group>"; };
+		A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookInteractorTest.swift; sourceTree = "<group>"; };
+		A67E281E2596A8C100E86846 /* SportsBookInteractorFailingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookInteractorFailingTest.swift; sourceTree = "<group>"; };
+		A67E28242596AC3500E86846 /* VIPER-Hybrid-ContainerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VIPER-Hybrid-ContainerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A67E28262596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPER_Hybrid_ContainerUITests.swift; sourceTree = "<group>"; };
+		A67E28282596AC3500E86846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE0CA6E86B300817C9517F04 /* Pods-VIPER-Hybrid-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.release.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.release.xcconfig"; sourceTree = "<group>"; };
 		FFBA6A89152AB0DFFFB7634C /* Pods-VIPER-Hybrid-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.debug.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +167,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A67E280925966F2300E86846 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0069F92C63F65D1E6E01B332 /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A67E28212596AC3500E86846 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -139,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */,
+				A387C10D523DAD972573C31E /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,6 +199,8 @@
 			children = (
 				FFBA6A89152AB0DFFFB7634C /* Pods-VIPER-Hybrid-Container.debug.xcconfig */,
 				DE0CA6E86B300817C9517F04 /* Pods-VIPER-Hybrid-Container.release.xcconfig */,
+				5B9788EDA27A81A9B427E30E /* Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.debug.xcconfig */,
+				131E002378927A559A8E9819 /* Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -172,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				A657A79F258572C9008130A9 /* VIPER-Hybrid-Container */,
+				A67E280D25966F2300E86846 /* VIPER-Hybrid-ContainerTests */,
+				A67E28252596AC3500E86846 /* VIPER-Hybrid-ContainerUITests */,
 				A657A79E258572C9008130A9 /* Products */,
 				7D62E0CBD62D3F7C4033CEDA /* Pods */,
 				1F874438375F544721DD13C9 /* Frameworks */,
@@ -182,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				A657A79D258572C9008130A9 /* VIPER-Hybrid-Container.app */,
+				A67E280C25966F2300E86846 /* VIPER-Hybrid-ContainerTests.xctest */,
+				A67E28242596AC3500E86846 /* VIPER-Hybrid-ContainerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,6 +565,43 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		A67E280D25966F2300E86846 /* VIPER-Hybrid-ContainerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A67E28172596812500E86846 /* Modules */,
+				A67E280E25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift */,
+				A67E281025966F2300E86846 /* Info.plist */,
+			);
+			path = "VIPER-Hybrid-ContainerTests";
+			sourceTree = "<group>";
+		};
+		A67E28172596812500E86846 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A67E28182596812F00E86846 /* SportsBook */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A67E28182596812F00E86846 /* SportsBook */ = {
+			isa = PBXGroup;
+			children = (
+				A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */,
+				A67E281E2596A8C100E86846 /* SportsBookInteractorFailingTest.swift */,
+				A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */,
+			);
+			path = SportsBook;
+			sourceTree = "<group>";
+		};
+		A67E28252596AC3500E86846 /* VIPER-Hybrid-ContainerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A67E28262596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift */,
+				A67E28282596AC3500E86846 /* Info.plist */,
+			);
+			path = "VIPER-Hybrid-ContainerUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -531,6 +625,44 @@
 			productReference = A657A79D258572C9008130A9 /* VIPER-Hybrid-Container.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A67E280B25966F2300E86846 /* VIPER-Hybrid-ContainerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A67E281525966F2300E86846 /* Build configuration list for PBXNativeTarget "VIPER-Hybrid-ContainerTests" */;
+			buildPhases = (
+				F4D0B057C5FDD0001A6F62D1 /* [CP] Check Pods Manifest.lock */,
+				A67E280825966F2300E86846 /* Sources */,
+				A67E280925966F2300E86846 /* Frameworks */,
+				A67E280A25966F2300E86846 /* Resources */,
+				9AD874CA0BB53994B3C7257E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A67E281225966F2300E86846 /* PBXTargetDependency */,
+			);
+			name = "VIPER-Hybrid-ContainerTests";
+			productName = "VIPER-Hybrid-ContainerTests";
+			productReference = A67E280C25966F2300E86846 /* VIPER-Hybrid-ContainerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A67E28232596AC3500E86846 /* VIPER-Hybrid-ContainerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A67E282B2596AC3500E86846 /* Build configuration list for PBXNativeTarget "VIPER-Hybrid-ContainerUITests" */;
+			buildPhases = (
+				A67E28202596AC3500E86846 /* Sources */,
+				A67E28212596AC3500E86846 /* Frameworks */,
+				A67E28222596AC3500E86846 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A67E282A2596AC3500E86846 /* PBXTargetDependency */,
+			);
+			name = "VIPER-Hybrid-ContainerUITests";
+			productName = "VIPER-Hybrid-ContainerUITests";
+			productReference = A67E28242596AC3500E86846 /* VIPER-Hybrid-ContainerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -548,6 +680,16 @@
 					A657A79C258572C9008130A9 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					A67E280B25966F2300E86846 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A657A79C258572C9008130A9;
+					};
+					A67E28232596AC3500E86846 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A657A79C258572C9008130A9;
 					};
 				};
 			};
@@ -567,6 +709,8 @@
 			projectRoot = "";
 			targets = (
 				A657A79C258572C9008130A9 /* VIPER-Hybrid-Container */,
+				A67E280B25966F2300E86846 /* VIPER-Hybrid-ContainerTests */,
+				A67E28232596AC3500E86846 /* VIPER-Hybrid-ContainerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -590,9 +734,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A67E280A25966F2300E86846 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A67E28222596AC3500E86846 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9AD874CA0BB53994B3C7257E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A657A7B325857CBB008130A9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -618,6 +806,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-VIPER-Hybrid-Container-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4D0B057C5FDD0001A6F62D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -703,7 +909,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A67E280825966F2300E86846 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */,
+				A67E280F25966F2300E86846 /* VIPER_Hybrid_ContainerTests.swift in Sources */,
+				A67E281F2596A8C100E86846 /* SportsBookInteractorFailingTest.swift in Sources */,
+				A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A67E28202596AC3500E86846 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A67E28272596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A67E281225966F2300E86846 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A657A79C258572C9008130A9 /* VIPER-Hybrid-Container */;
+			targetProxy = A67E281125966F2300E86846 /* PBXContainerItemProxy */;
+		};
+		A67E282A2596AC3500E86846 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A657A79C258572C9008130A9 /* VIPER-Hybrid-Container */;
+			targetProxy = A67E28292596AC3500E86846 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A657A7A9258572C9008130A9 /* LaunchScreen.storyboard */ = {
@@ -871,6 +1109,74 @@
 			};
 			name = Release;
 		};
+		A67E281325966F2300E86846 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B9788EDA27A81A9B427E30E /* Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
+				INFOPLIST_FILE = "VIPER-Hybrid-ContainerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phinnovation.VIPER-Hybrid-ContainerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VIPER-Hybrid-Container.app/VIPER-Hybrid-Container";
+			};
+			name = Debug;
+		};
+		A67E281425966F2300E86846 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 131E002378927A559A8E9819 /* Pods-VIPER-Hybrid-Container-VIPER-Hybrid-ContainerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
+				INFOPLIST_FILE = "VIPER-Hybrid-ContainerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phinnovation.VIPER-Hybrid-ContainerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VIPER-Hybrid-Container.app/VIPER-Hybrid-Container";
+			};
+			name = Release;
+		};
+		A67E282C2596AC3500E86846 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
+				INFOPLIST_FILE = "VIPER-Hybrid-ContainerUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phinnovation.VIPER-Hybrid-ContainerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "VIPER-Hybrid-Container";
+			};
+			name = Debug;
+		};
+		A67E282D2596AC3500E86846 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
+				INFOPLIST_FILE = "VIPER-Hybrid-ContainerUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.phinnovation.VIPER-Hybrid-ContainerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "VIPER-Hybrid-Container";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -888,6 +1194,24 @@
 			buildConfigurations = (
 				A657A7B0258572C9008130A9 /* Debug */,
 				A657A7B1258572C9008130A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A67E281525966F2300E86846 /* Build configuration list for PBXNativeTarget "VIPER-Hybrid-ContainerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A67E281325966F2300E86846 /* Debug */,
+				A67E281425966F2300E86846 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A67E282B2596AC3500E86846 /* Build configuration list for PBXNativeTarget "VIPER-Hybrid-ContainerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A67E282C2596AC3500E86846 /* Debug */,
+				A67E282D2596AC3500E86846 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
