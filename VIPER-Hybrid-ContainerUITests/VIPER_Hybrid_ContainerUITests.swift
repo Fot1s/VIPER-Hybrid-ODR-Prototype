@@ -32,7 +32,6 @@ class VIPER_Hybrid_ContainerUITests: XCTestCase {
 
         //Launch the app
         let app = XCUIApplication()
-        app.launch()
         
         //wait (max 5 secs) for the Intro screen to appear - check the NavigationBar Title
         let introText = app.navigationBars["Intro"]

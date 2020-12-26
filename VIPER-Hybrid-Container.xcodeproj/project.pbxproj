@@ -10,6 +10,7 @@
 		0069F92C63F65D1E6E01B332 /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A387C10D523DAD972573C31E /* Pods_VIPER_Hybrid_Container_VIPER_Hybrid_ContainerTests.framework */; };
 		A649D1E3258675BB008B6C31 /* HybridContentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A649D1E2258675BB008B6C31 /* HybridContentPresenter.swift */; };
 		A649D1E525867629008B6C31 /* HybridContentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A649D1E425867629008B6C31 /* HybridContentInteractor.swift */; };
+		A64E289725979A41009F2603 /* VIPER_Hybrid_ContainerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E28262596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift */; };
 		A657A7A1258572C9008130A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657A7A0258572C9008130A9 /* AppDelegate.swift */; };
 		A657A7A8258572C9008130A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A657A7A7258572C9008130A9 /* Assets.xcassets */; };
 		A657A7AB258572C9008130A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A657A7A9258572C9008130A9 /* LaunchScreen.storyboard */; };
@@ -62,7 +63,6 @@
 		A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */; };
 		A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */; };
 		A67E281F2596A8C100E86846 /* SportsBookInteractorFailingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281E2596A8C100E86846 /* SportsBookInteractorFailingTest.swift */; };
-		A67E28272596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E28262596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift */; };
 		CAF4204C08BA1F1298658D96 /* Pods_VIPER_Hybrid_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */; };
 /* End PBXBuildFile section */
 
@@ -924,7 +924,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A67E28272596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift in Sources */,
+				A64E289725979A41009F2603 /* VIPER_Hybrid_ContainerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
