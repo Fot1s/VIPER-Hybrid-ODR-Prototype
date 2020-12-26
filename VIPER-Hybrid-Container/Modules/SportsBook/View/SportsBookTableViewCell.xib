@@ -87,8 +87,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.58" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRc-yu-Ofb">
-                                            <rect key="frame" x="67" y="3" width="33.333333333333343" height="21"/>
+                                            <rect key="frame" x="23" y="3" width="77" height="21"/>
                                             <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="77" id="Cds-52-UW9"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -114,7 +117,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.58" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRC-hg-4uN">
-                                            <rect key="frame" x="66.999999999999986" y="3" width="33.333333333333329" height="21"/>
+                                            <rect key="frame" x="25.999999999999986" y="3" width="74" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="74" id="Ur0-i1-SC6"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -140,7 +146,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.58" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8x-FD-3bv">
-                                            <rect key="frame" x="66.999999999999972" y="3" width="33.333333333333343" height="21"/>
+                                            <rect key="frame" x="25" y="3" width="75" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="Sit-ld-a9v"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>

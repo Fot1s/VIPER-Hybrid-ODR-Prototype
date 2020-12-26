@@ -14,8 +14,8 @@ extension Constants {
     enum Playbook {
         enum Values {
             static let rowHeight = CGFloat(106.0)     //the match cell row height
-            static let fakeUpdatesTimerInterval = 0.1 // how ofter we send and mainly receive a fake update via the socket server
-            static let liveSecondsTimerInterval = 0.3   //can play with time :)
+            static let fakeUpdatesTimerInterval = Double(1) // how ofter we send and mainly receive a fake update via the socket server
+            static let liveSecondsTimerInterval = Double(1)   //can play with time :)
             
         }
         
