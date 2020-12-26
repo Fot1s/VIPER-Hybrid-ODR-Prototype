@@ -27,22 +27,26 @@ class APIService: ViperNetwork {
             .request(endPointURL, method: .get)
             .validate()
             .responseString(completionHandler: { (response: DataResponse<String> )  in
-                
-                let jsonDecoder = JSONDecoder()
-                
-                do {
-                    let jsonData = response.value?.data(using: .utf8)!
-                    // Decode data to object
-                    //print(response.value)
-                    let values = try jsonDecoder.decode([T].self, from: jsonData!)
+                switch response.result {
+                case .success(let responseString):
+                    let jsonDecoder = JSONDecoder()
                     
-                     completion(values)
-                }
-                catch {
+                    do {
+                        let jsonData = responseString.data(using: .utf8)!
+                        // Decode data to object
+                        //print(response.value)
+                        let values = try jsonDecoder.decode([T].self, from: jsonData)
+                        
+                        completion(values)
+                    }
+                    catch {
+                        print("Error while fetching elements: \(String(describing: error))")
+                        completion(nil)
+                    }
+                case .failure(let error):
                     print("Error while fetching elements: \(String(describing: error))")
                     completion(nil)
                 }
-                
             } )
     }
 
