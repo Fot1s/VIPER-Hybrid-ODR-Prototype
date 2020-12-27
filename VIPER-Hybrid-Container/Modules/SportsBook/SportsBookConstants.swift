@@ -12,7 +12,7 @@ import UIKit
 extension Constants {
     
     enum Playbook {
-        enum Values {
+        enum Values { 
             static let rowHeight = CGFloat(106.0)     //the match cell row height
             //ALL TIMES IN SECONDS
             static let fakeUpdatesTimerInterval = Double(1) // how ofter we send and mainly receive a fake update via the socket server

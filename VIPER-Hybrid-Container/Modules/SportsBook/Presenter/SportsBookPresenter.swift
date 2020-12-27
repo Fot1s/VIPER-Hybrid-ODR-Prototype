@@ -28,8 +28,8 @@ class SportsBookPresenter: SportsBookPresentation {
 //    }
     
     func viewDidLoad() {
-        interactor.fetchMatches()
         view?.showActivityIndicator()
+        interactor.fetchMatches()
     }
     
     func viewWillDisappear(_ animated: Bool) {
@@ -76,6 +76,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         // only start for liveGames
         
         if (liveMatches.count > 0) {
+            print("Timer will run in \(Constants.Playbook.Values.liveSecondsTimerInterval)")
             fakeUpdatesTimer = Timer(timeInterval: Constants.Playbook.Values.fakeUpdatesTimerInterval, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
             RunLoop.current.add(fakeUpdatesTimer!, forMode: .commonModes)
 
@@ -87,6 +88,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
     }
 
     @objc func fireTimerForLiveUpdates() {
+        print("Timer Run")
         for (index,var match) in liveMatches.enumerated() {
             match.time += 1
             
@@ -168,25 +170,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
             self.liveMatches[oldMatchIndex] = match
             view?.updateSportsBookData(withMatch: match, updatedMatch: updatedMatch, andIndex: oldMatchIndex)
         }
-        
-//        if var match = matches.first(where: { $0.id == updatedMatch.id}){
-//            print("Match Found: \(match)" )
-//
-//            switch (updatedMatch.updateFor) {
-//            case .Home :
-//                match.bet_1 = updatedMatch.value
-//            case .Draw :
-//                match.bet_x = updatedMatch.value
-//            case .Away :
-//                match.bet_2 = updatedMatch.value
-//            }
-//
-//            view?.updateSportsBookData(withMatch: match)
-//
-//        } else {
-//            print("Game not found! \(updatedMatch)")
-//        }
-        
     }
 
     internal func matchesFetchFailed(_ error:String) {
