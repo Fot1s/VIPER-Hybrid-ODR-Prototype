@@ -27,15 +27,6 @@ class SportsBookInteractor: SportsBookUseCase {
                     self.output.matchesFetchFailed("Error getting Matches from Server!")
                 }
         }
-
-//        apiService
-//            .fetchMatches() { matches in
-//                if let matches = matches {
-//                    self.output.matchesFetched(matches)
-//                } else {
-//                    self.output.matchesFetchFailed("Error getting Matches from Server!")
-//                }
-//        }
     }
     
     func connectToSocketServerForUpdates() {

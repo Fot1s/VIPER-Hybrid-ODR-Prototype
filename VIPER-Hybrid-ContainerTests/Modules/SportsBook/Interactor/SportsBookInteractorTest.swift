@@ -35,25 +35,37 @@ class SportsBookInteractorTest: XCTestCase {
         super.tearDown()
     }
     
-    func testInteractor() {
+    func testFetchMatches() {
         
+        //fetch matches - MockAPIService will return 1 match
         sut?.fetchMatches()
 
         XCTAssertNotNil(mockOutput?.matches, "matches should not be nil")
+        XCTAssertTrue(mockOutput?.matches?.count == 1)
         let match = mockOutput!.matches![0]
         
         XCTAssertTrue(match.id == 1)
+        XCTAssertTrue(match.live == 1)
+        XCTAssertTrue(match.time == 300)
+        XCTAssertTrue(match.date == "n/a")
         XCTAssertTrue(match.home == "home")
         XCTAssertTrue(match.away == "away")
+        XCTAssertTrue(match.homeGoals == 0)
+        XCTAssertTrue(match.awayGoals == 0)
         XCTAssertTrue(match.bet1 == 100)
         XCTAssertTrue(match.betX == 200)
         XCTAssertTrue(match.bet2 == 300)
+    }
+    
+    func testConnectToSocketSendAndReceiveAMatchUpdate() {
         
+        //test connection
         sut?.connectToSocketServerForUpdates()
         
         XCTAssertNotNil(mockOutput!.socketConnected)
         XCTAssertTrue(mockOutput!.socketConnected!)
-
+        
+        //test broken update
         var emptyMatchToUpdate:MatchUpdate?
         
         sut?.fakeUpdateSend(matchToUpdate:emptyMatchToUpdate)
@@ -63,20 +75,22 @@ class SportsBookInteractorTest: XCTestCase {
         
         XCTAssertNil(mockOutput!.updatedMatch)
         
+        //test real update
         let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
         
         sut?.fakeUpdateSend(matchToUpdate:matchToUpdate)
         
         XCTAssertNotNil(mockOutput!.updatedMatch)
-
+        
         let updatedMatch = mockOutput!.updatedMatch
         
         XCTAssertTrue(matchToUpdate.id == updatedMatch?.id)
         XCTAssertTrue(matchToUpdate.updateFor == updatedMatch?.updateFor)
         XCTAssertTrue(matchToUpdate.value == updatedMatch?.value)
 
+        //test disconnection 
         sut?.disconnectFromSocketServer()
-
+        
         XCTAssertFalse(mockOutput!.socketConnected!)
     }
 }

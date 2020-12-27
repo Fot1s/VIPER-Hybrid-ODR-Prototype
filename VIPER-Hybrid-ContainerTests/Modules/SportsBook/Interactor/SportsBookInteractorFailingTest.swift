@@ -2,7 +2,7 @@
 //  SportsBookInteractorTest.swift
 //  VIPER-Hybrid-ContainerTests
 //
-//  Created by Demitri Delinikolas on 25/12/2020.
+//  Created by Fotis Chatzinikos on 25/12/2020.
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
@@ -11,6 +11,10 @@ import Starscream
 
 @testable import VIPER_Hybrid_Container
 
+/**
+ Tests for the SportsBookInteractor that should always Fail
+ 
+ */
 class SportsBookInteractorFailingTest: XCTestCase {
     
     var sut: SportsBookInteractor?
@@ -34,31 +38,64 @@ class SportsBookInteractorFailingTest: XCTestCase {
         super.tearDown()
     }
     
-    func testInteractor() {
+    func testFetchMatchesFails() {
         
         sut?.fetchMatches()
 
-        XCTAssertNil(mockOutput?.matches, "matches should be nil")
+        XCTAssertFalse(mockOutput!.matchesFetched!, "matchesFetched should be false")
         
+    }
+
+    func testFakeUpdateSendWithEmptyMatchToUpdateFails() {
+        
+        var matchToUpdate:MatchUpdate?
+        
+        sut?.fakeUpdateSend(matchToUpdate: matchToUpdate)
+    
+        //Just to silence the warning
+        matchToUpdate = MatchUpdate()
+        
+        XCTAssertNil(mockOutput!.updatedMatch, "updatedMatch should be false")
+        
+    }
+
+    //TODO: Clean up the socketserver
+    //FIX:  match should not be sent at all not received!
+    func testFakeUpdateSendWithMatchToUpdateFails() {
+        sut?.connectToSocketServerForUpdates()
+
+        let matchToUpdate:MatchUpdate = MatchUpdate()
+        
+        sut?.fakeUpdateSend(matchToUpdate: matchToUpdate)
+        
+        XCTAssertFalse(mockOutput!.updatedMatch!, "updatedMatch should be false")
+        
+    }
+
+    
+    func testConnectToSocketServerFails() {
         sut?.connectToSocketServerForUpdates()
         
-        XCTAssertNotNil(mockOutput!.socketConnected)
+//        XCTAssertNotNil(mockOutput!.socketConnected)
         XCTAssertFalse(mockOutput!.socketConnected!)
     }
 }
 
+//TODO: Clean up the socketserver
+//FIX:
+
 class FailingMockSportsBookInteractorOutput: SportsBookInteractorOutput {
     
-    var matches:[Match]?
+    var matchesFetched:Bool?
     var socketConnected:Bool?
-    var updatedMatch:MatchUpdate?
+    var updatedMatch:Bool?
     
     func matchesFetched(_ matches: [Match]) {
-        self.matches = matches
+        matchesFetched = true
     }
     
     func matchesFetchFailed(_ error: String) {
-        
+        matchesFetched = false
     }
     
     func connectedToSocketServer() {
@@ -70,9 +107,13 @@ class FailingMockSportsBookInteractorOutput: SportsBookInteractorOutput {
     }
     
     func updatedMatchReceivedFromSocketServer(updatedMatch: MatchUpdate) {
-        self.updatedMatch = updatedMatch
+        self.updatedMatch = false
     }
 }
+
+/**
+ Always fails by simply calling websocketDidDisconnect on connection
+ */
 
 class FailingMockWebSocketService: ViperWebSocket {
 
@@ -101,6 +142,9 @@ class FailingMockWebSocketService: ViperWebSocket {
     }
 }
 
+/**
+ Always fails by simply completing nil
+ */
 class FailingMockAPIService: ViperNetwork {
 
     static let shared = FailingMockAPIService()
