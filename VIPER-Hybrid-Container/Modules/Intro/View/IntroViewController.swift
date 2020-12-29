@@ -19,6 +19,11 @@ class IntroViewController: UIViewController {
         presenter.didSelectPlayBook()
     }
     
+    @IBAction func showSlotsAction(_ sender: Any) {
+        presenter.didSelectSlots()
+    }
+    
+    
     var presenter: IntroPresentation!
     
     override func viewDidLoad() {

@@ -38,4 +38,10 @@ class IntroRouter: IntroWireframe {
         let sportsBookViewController = SportsBookRouter.assembleModule()
         viewController?.navigationController?.pushViewController(sportsBookViewController, animated: true)
     }
+    
+    func presentSlots() {
+        let slotsViewController = SlotsRouter.assembleModule()
+        viewController?.navigationController?.pushViewController(slotsViewController, animated: true)
+
+    }
 }

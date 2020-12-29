@@ -76,7 +76,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         // only start for liveGames
         
         if (liveMatches.count > 0) {
-            print("Timer will run in \(Constants.Playbook.Values.liveSecondsTimerInterval)")
             fakeUpdatesTimer = Timer(timeInterval: Constants.Playbook.Values.fakeUpdatesTimerInterval, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
             RunLoop.current.add(fakeUpdatesTimer!, forMode: .commonModes)
 
@@ -88,7 +87,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
     }
 
     @objc func fireTimerForLiveUpdates() {
-        print("Timer Run")
         for (index,var match) in liveMatches.enumerated() {
             match.time += 1
             

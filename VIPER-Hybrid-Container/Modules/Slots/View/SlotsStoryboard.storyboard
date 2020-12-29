@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Slots View Controller-->
+        <scene sceneID="4nJ-bl-0Nk">
+            <objects>
+                <viewController storyboardIdentifier="SlotsViewController" id="6vq-oU-Ren" customClass="SlotsViewController" customModule="VIPER_Hybrid_Container" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zd8-KF-87g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7e-3t-o8j">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </skView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z7e-3t-o8j" firstAttribute="leading" secondItem="ps9-DC-LYF" secondAttribute="leading" id="0f9-JA-bZh"/>
+                            <constraint firstItem="Z7e-3t-o8j" firstAttribute="top" secondItem="ps9-DC-LYF" secondAttribute="top" id="6mp-0w-XxY"/>
+                            <constraint firstItem="Z7e-3t-o8j" firstAttribute="trailing" secondItem="ps9-DC-LYF" secondAttribute="trailing" id="Lgl-xV-iOI"/>
+                            <constraint firstItem="Z7e-3t-o8j" firstAttribute="bottom" secondItem="ps9-DC-LYF" secondAttribute="bottom" id="slK-L2-W09"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ps9-DC-LYF"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneKitView" destination="Z7e-3t-o8j" id="FsZ-1Z-lE8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbl-Es-sH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="69.599999999999994" y="196.55172413793105"/>
+        </scene>
+    </scenes>
+</document>

@@ -18,5 +18,9 @@ class IntroPresenter: IntroPresentation {
     func didSelectPlayBook() {
         router.presentSportsBook()
     }
+    
+    func didSelectSlots() {
+        router.presentSlots()
+    }
 }
 

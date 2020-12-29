@@ -62,6 +62,13 @@
 		A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08792593EDB600AF27D1 /* MatchUpdate.swift */; };
 		A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A664556825965B0C00D30078 /* NetworkProtocol.swift */; };
 		A6739E042587A85B00692A3F /* slots in Resources */ = {isa = PBXBuildFile; fileRef = A6739E032587A85B00692A3F /* slots */; settings = {ASSET_TAGS = (slots, ); }; };
+		A677BEB2259A5B57005BF7AA /* SlotsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */; };
+		A677BEB4259A5B68005BF7AA /* SlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */; };
+		A677BEB7259A5C0D005BF7AA /* SlotsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */; };
+		A677BEBA259A5C34005BF7AA /* SlotsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB9259A5C34005BF7AA /* SlotsContract.swift */; };
+		A677BEBD259A5FC9005BF7AA /* SlotsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A677BEBC259A5FC9005BF7AA /* SlotsScene.sks */; };
+		A677BEBF259A5FF2005BF7AA /* SlotsGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEBE259A5FF2005BF7AA /* SlotsGameScene.swift */; };
+		A677BEC2259A77AC005BF7AA /* gameSprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A677BEC1259A77AC005BF7AA /* gameSprites.xcassets */; };
 		A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */; };
 		A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */; };
 		A67E281F2596A8C100E86846 /* SportsBookInteractorFailingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281E2596A8C100E86846 /* SportsBookInteractorFailingTest.swift */; };
@@ -150,6 +157,13 @@
 		A65B08792593EDB600AF27D1 /* MatchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpdate.swift; sourceTree = "<group>"; };
 		A664556825965B0C00D30078 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		A6739E032587A85B00692A3F /* slots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slots; sourceTree = "<group>"; };
+		A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SlotsStoryboard.storyboard; sourceTree = "<group>"; };
+		A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsViewController.swift; sourceTree = "<group>"; };
+		A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsRouter.swift; sourceTree = "<group>"; };
+		A677BEB9259A5C34005BF7AA /* SlotsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsContract.swift; sourceTree = "<group>"; };
+		A677BEBC259A5FC9005BF7AA /* SlotsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SlotsScene.sks; sourceTree = "<group>"; };
+		A677BEBE259A5FF2005BF7AA /* SlotsGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsGameScene.swift; sourceTree = "<group>"; };
+		A677BEC1259A77AC005BF7AA /* gameSprites.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = gameSprites.xcassets; sourceTree = "<group>"; };
 		A67E280C25966F2300E86846 /* VIPER-Hybrid-ContainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VIPER-Hybrid-ContainerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67E281025966F2300E86846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsBookEntitiesTest.swift; sourceTree = "<group>"; };
@@ -330,6 +344,7 @@
 		A657A7BF25859A14008130A9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A677BEAF259A5B2F005BF7AA /* Slots */,
 				A65B08602593D2AE00AF27D1 /* SportsBook */,
 				A65B0851259396D000AF27D1 /* Intro */,
 				A657A7C725859C77008130A9 /* ReactApps */,
@@ -603,6 +618,60 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		A677BEAF259A5B2F005BF7AA /* Slots */ = {
+			isa = PBXGroup;
+			children = (
+				A677BEB8259A5C25005BF7AA /* Contract */,
+				A677BEB5259A5BFB005BF7AA /* Router */,
+				A677BEB0259A5B45005BF7AA /* View */,
+			);
+			path = Slots;
+			sourceTree = "<group>";
+		};
+		A677BEB0259A5B45005BF7AA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A677BEBB259A5EC8005BF7AA /* SlotsGame */,
+				A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */,
+				A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A677BEB5259A5BFB005BF7AA /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		A677BEB8259A5C25005BF7AA /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				A677BEB9259A5C34005BF7AA /* SlotsContract.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		A677BEBB259A5EC8005BF7AA /* SlotsGame */ = {
+			isa = PBXGroup;
+			children = (
+				A677BEC0259A7786005BF7AA /* assets */,
+				A677BEBC259A5FC9005BF7AA /* SlotsScene.sks */,
+				A677BEBE259A5FF2005BF7AA /* SlotsGameScene.swift */,
+			);
+			path = SlotsGame;
+			sourceTree = "<group>";
+		};
+		A677BEC0259A7786005BF7AA /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				A677BEC1259A77AC005BF7AA /* gameSprites.xcassets */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		A67E280D25966F2300E86846 /* VIPER-Hybrid-ContainerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,11 +829,14 @@
 			files = (
 				A657A8032585C002008130A9 /* Localizable.strings in Resources */,
 				A657A81425866945008130A9 /* HybridContentStoryboard.storyboard in Resources */,
+				A677BEC2259A77AC005BF7AA /* gameSprites.xcassets in Resources */,
 				A6739E042587A85B00692A3F /* slots in Resources */,
 				A657A7AB258572C9008130A9 /* LaunchScreen.storyboard in Resources */,
 				A657A7D42585A003008130A9 /* ReactAppTableViewCell.xib in Resources */,
 				A657A83E25866ABA008130A9 /* react in Resources */,
 				A65B086E2593DC0700AF27D1 /* SportsBookStoryboard.storyboard in Resources */,
+				A677BEB2259A5B57005BF7AA /* SlotsStoryboard.storyboard in Resources */,
+				A677BEBD259A5FC9005BF7AA /* SlotsScene.sks in Resources */,
 				A65B08562593984500AF27D1 /* IntroStoryboard.storyboard in Resources */,
 				A65B086C2593D9C400AF27D1 /* SportsBookTableViewCell.xib in Resources */,
 				A657A7D325859FFF008130A9 /* ReactAppsStoryboard.storyboard in Resources */,
@@ -897,21 +969,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A677BEBF259A5FF2005BF7AA /* SlotsGameScene.swift in Sources */,
 				A657A7C625859C27008130A9 /* RootRouter.swift in Sources */,
 				A657A7E92585ABDE008130A9 /* UITableViewCellExtension.swift in Sources */,
 				A657A7DA2585A343008130A9 /* ReactAppsViewController.swift in Sources */,
 				A65B085F25939ABF00AF27D1 /* IntroRouter.swift in Sources */,
 				A657A7A1258572C9008130A9 /* AppDelegate.swift in Sources */,
 				A657A7EB2585B3AF008130A9 /* IndicatableViewExtension.swift in Sources */,
+				A677BEB7259A5C0D005BF7AA /* SlotsRouter.swift in Sources */,
 				A657A7EF2585B5F6008130A9 /* Localization.swift in Sources */,
 				A657A7BE2585938D008130A9 /* APIService.swift in Sources */,
 				A657A7F12585B68F008130A9 /* StringExtension.swift in Sources */,
 				A65B085B25939A6900AF27D1 /* IntroContract.swift in Sources */,
+				A677BEB4259A5B68005BF7AA /* SlotsViewController.swift in Sources */,
 				A657A7D82585A321008130A9 /* ReactAppTableViewCell.swift in Sources */,
 				A657A7E32585AAA3008130A9 /* UITableViewExtension.swift in Sources */,
 				A657A7E12585AA49008130A9 /* ViewProtocols.swift in Sources */,
 				A657A7B525857D40008130A9 /* R.generated.swift in Sources */,
 				A657A7DD2585A3E8008130A9 /* Constants.swift in Sources */,
+				A677BEBA259A5C34005BF7AA /* SlotsContract.swift in Sources */,
 				A64E28992597AF90009F2603 /* SportsBookConstants.swift in Sources */,
 				A65B086A2593D84300AF27D1 /* SportsBookTableViewCell.swift in Sources */,
 				A657A7ED2585B40D008130A9 /* ReactAppsPresenter.swift in Sources */,

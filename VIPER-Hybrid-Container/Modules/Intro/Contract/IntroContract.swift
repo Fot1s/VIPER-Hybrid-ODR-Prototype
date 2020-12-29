@@ -18,6 +18,7 @@ protocol IntroPresentation: class {
     
     func didSelectWebAndODRContent()
     func didSelectPlayBook()
+    func didSelectSlots()
 }
 
 protocol IntroWireframe: class {
@@ -26,6 +27,7 @@ protocol IntroWireframe: class {
     
     func presentReactApps()
     func presentSportsBook()
+    func presentSlots()
 
     static func assembleModule() -> UIViewController
 }

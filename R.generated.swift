@@ -21,12 +21,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
+    /// Resource file `SlotsScene.sks`.
+    static let slotsSceneSks = Rswift.FileResource(bundle: R.hostingBundle, name: "SlotsScene", pathExtension: "sks")
     /// Resource file `react`.
     static let react = Rswift.FileResource(bundle: R.hostingBundle, name: "react", pathExtension: "")
     /// Resource file `slots`.
     static let slots = Rswift.FileResource(bundle: R.hostingBundle, name: "slots", pathExtension: "")
+    
+    /// `bundle.url(forResource: "SlotsScene", withExtension: "sks")`
+    static func slotsSceneSks(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.slotsSceneSks
+      return fileResource.bundle.url(forResource: fileResource)
+    }
     
     /// `bundle.url(forResource: "react", withExtension: "")`
     static func react(_: Void = ()) -> Foundation.URL? {
@@ -48,14 +56,77 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 12 images.
   struct image {
+    /// Image `card1`.
+    static let card1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card1")
+    /// Image `card2`.
+    static let card2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card2")
+    /// Image `card3`.
+    static let card3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card3")
+    /// Image `card4`.
+    static let card4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card4")
+    /// Image `card5`.
+    static let card5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card5")
+    /// Image `card6`.
+    static let card6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card6")
+    /// Image `card7`.
+    static let card7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card7")
+    /// Image `card8`.
+    static let card8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card8")
+    /// Image `card9`.
+    static let card9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card9")
     /// Image `image-launch-screen`.
     static let imageLaunchScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-launch-screen")
     /// Image `image-placeholder`.
     static let imagePlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-placeholder")
     /// Image `intro-react-image`.
     static let introReactImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro-react-image")
+    
+    /// `UIImage(named: "card1", bundle: ..., traitCollection: ...)`
+    static func card1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card2", bundle: ..., traitCollection: ...)`
+    static func card2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card3", bundle: ..., traitCollection: ...)`
+    static func card3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card3, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card4", bundle: ..., traitCollection: ...)`
+    static func card4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card4, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card5", bundle: ..., traitCollection: ...)`
+    static func card5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card5, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card6", bundle: ..., traitCollection: ...)`
+    static func card6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card6, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card7", bundle: ..., traitCollection: ...)`
+    static func card7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card7, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card8", bundle: ..., traitCollection: ...)`
+    static func card8(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card8, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "card9", bundle: ..., traitCollection: ...)`
+    static func card9(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.card9, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "image-launch-screen", bundle: ..., traitCollection: ...)`
     static func imageLaunchScreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -105,7 +176,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `HybridContentStoryboard`.
     static let hybridContentStoryboard = _R.storyboard.hybridContentStoryboard()
@@ -115,6 +186,8 @@ struct R: Rswift.Validatable {
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `ReactAppsStoryboard`.
     static let reactAppsStoryboard = _R.storyboard.reactAppsStoryboard()
+    /// Storyboard `SlotsStoryboard`.
+    static let slotsStoryboard = _R.storyboard.slotsStoryboard()
     /// Storyboard `SportsBookStoryboard`.
     static let sportsBookStoryboard = _R.storyboard.sportsBookStoryboard()
     
@@ -136,6 +209,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "ReactAppsStoryboard", bundle: ...)`
     static func reactAppsStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.reactAppsStoryboard)
+    }
+    
+    /// `UIStoryboard(name: "SlotsStoryboard", bundle: ...)`
+    static func slotsStoryboard(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.slotsStoryboard)
     }
     
     /// `UIStoryboard(name: "SportsBookStoryboard", bundle: ...)`
@@ -265,6 +343,7 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try launchScreen.validate()
+      try slotsStoryboard.validate()
       try introStoryboard.validate()
       try sportsBookStoryboard.validate()
       try hybridContentStoryboard.validate()
@@ -328,6 +407,22 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if _R.storyboard.reactAppsStoryboard().reactAppsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'reactAppsViewController' could not be loaded from storyboard 'ReactAppsStoryboard' as 'ReactAppsViewController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct slotsStoryboard: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "SlotsStoryboard"
+      let slotsViewController = StoryboardViewControllerResource<SlotsViewController>(identifier: "SlotsViewController")
+      
+      func slotsViewController(_: Void = ()) -> SlotsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: slotsViewController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.slotsStoryboard().slotsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'slotsViewController' could not be loaded from storyboard 'SlotsStoryboard' as 'SlotsViewController'.") }
       }
       
       fileprivate init() {}

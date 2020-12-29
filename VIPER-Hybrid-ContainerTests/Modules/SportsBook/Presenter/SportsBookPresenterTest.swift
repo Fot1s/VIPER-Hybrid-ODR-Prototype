@@ -72,6 +72,8 @@ class SportsBookPresenterTest: XCTestCase {
         //test socket updates were started
         XCTAssertTrue(mockInteractor?.socketConnected ?? false)
         
+        //TODO: THIS MIGHT NEED SOME SECONDS TO RUN 
+        //FIX:  MOVE TO SLOW TESTS FILE
         //The maximum time after which both timers in the presentation will have run
         var waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.Playbook.Values.liveSecondsTimerInterval
         
