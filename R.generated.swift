@@ -253,14 +253,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, Base, el
       static let iNTRO_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "INTRO_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
-      /// Base translation: Playbook
-      /// 
-      /// Locales: en, Base, el
-      static let pLAYBOOK_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "PLAYBOOK_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
       /// Base translation: React Applications
       /// 
       /// Locales: en, Base, el
       static let rEACT_APPS_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "REACT_APPS_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
+      /// Base translation: Sportsbook
+      /// 
+      /// Locales: en, Base, el
+      static let pLAYBOOK_NAVIGATION_BAR_TITLE = Rswift.StringResource(key: "PLAYBOOK_NAVIGATION_BAR_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "Base", "el"], comment: nil)
       
       /// Base translation: Hybrid Content
       /// 
@@ -276,18 +276,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("INTRO_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "Intro", comment: "")
       }
       
-      /// Base translation: Playbook
-      /// 
-      /// Locales: en, Base, el
-      static func pLAYBOOK_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
-        return NSLocalizedString("PLAYBOOK_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "Playbook", comment: "")
-      }
-      
       /// Base translation: React Applications
       /// 
       /// Locales: en, Base, el
       static func rEACT_APPS_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
         return NSLocalizedString("REACT_APPS_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "React Applications", comment: "")
+      }
+      
+      /// Base translation: Sportsbook
+      /// 
+      /// Locales: en, Base, el
+      static func pLAYBOOK_NAVIGATION_BAR_TITLE(_: Void = ()) -> String {
+        return NSLocalizedString("PLAYBOOK_NAVIGATION_BAR_TITLE", bundle: R.hostingBundle, value: "Sportsbook", comment: "")
       }
       
       fileprivate init() {}

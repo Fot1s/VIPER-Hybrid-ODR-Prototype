@@ -20,6 +20,7 @@ class SlotsViewController: UIViewController {
             scene.scaleMode = .aspectFill
             sceneKitView.showsFPS = true
             sceneKitView.showsNodeCount = true
+            sceneKitView.showsDrawCount = true
             sceneKitView.ignoresSiblingOrder = true
             sceneKitView.presentScene(scene)
         }
