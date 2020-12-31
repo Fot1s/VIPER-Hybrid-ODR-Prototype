@@ -78,7 +78,7 @@ class SlotColumn {
     
     var topCard:SKSpriteNode?
     
-    func addCardsToScene(scene: SKScene) {
+    func addCardsToScene(_ scene: SKScene) {
         
         let mask = SKSpriteNode(color: SKColor.black, size: CGSize(width: slotWidth, height: slotHeight*CGFloat(numSlots)))
         mask.position = CGPoint(x:position.x + slotWidth/2 ,y: position.y - mask.size.height/2)
