@@ -17,7 +17,7 @@ class SlotsViewController: UIViewController {
     override func viewDidLoad() {
         
         if let scene = SKScene(fileNamed: "SlotsScene") {
-            scene.scaleMode = .aspectFill
+            scene.scaleMode = .fill//.aspectFill
             sceneKitView.showsFPS = true
             sceneKitView.showsNodeCount = true
             sceneKitView.showsDrawCount = true

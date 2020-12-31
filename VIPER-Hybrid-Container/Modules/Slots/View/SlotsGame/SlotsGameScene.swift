@@ -37,34 +37,27 @@ class SlotsGameScene: SKScene {
         print("\(UIScreen.main.scale) \(UIApplication.shared.statusBarFrame.height)")
         print("\(self.xScale) \(self.yScale)")
         print("\(self.frame.size)")
-        var barHeight = UIApplication.shared.statusBarFrame.height * UIScreen.main.scale
+//        let barHeight = UIApplication.shared.statusBarFrame.height
         
-        if (UIDevice.current.userInterfaceIdiom == .pad) {
-            barHeight *= 2
-        }
+//        if (UIDevice.current.userInterfaceIdiom == .pad) {
+//            barHeight *= 2
+//        }
 
-        print("White: \(self.frame.maxY - barHeight - 8)")
+        print("White: \(self.frame.maxY - 8)")
 
         
         let yourline = SKShapeNode()
         let pathToDraw = CGMutablePath()
-        pathToDraw.move(to: CGPoint(x: self.frame.minX, y: self.frame.maxY - barHeight - 8))
-        pathToDraw.addLine(to: CGPoint(x: 100.0, y: self.frame.maxY - barHeight - 8))
+        pathToDraw.move(to: CGPoint(x: self.frame.minX, y: self.frame.maxY))
+        pathToDraw.addLine(to: CGPoint(x: 100.0, y: self.frame.maxY))
         yourline.path = pathToDraw
         yourline.strokeColor = SKColor.white
         addChild(yourline)
 
-        let yourline2 = SKShapeNode()
-        let pathToDraw2 = CGMutablePath()
-        pathToDraw2.move(to: CGPoint(x: self.frame.minX, y: self.frame.maxY - barHeight - 97))
-        pathToDraw2.addLine(to: CGPoint(x: 100.0, y: self.frame.maxY - barHeight - 97))
-        yourline2.path = pathToDraw2
-        yourline2.strokeColor = SKColor.red
-        addChild(yourline2)
 
 
         
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - barHeight - 8), size:CGSize(width:self.frame.width-16,height:self.frame.height - barHeight - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 5)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 3, columnSpacing: 5, numberOfRows: 6)
         
         self.slotMachine?.addCardsToScene(scene: self)
         

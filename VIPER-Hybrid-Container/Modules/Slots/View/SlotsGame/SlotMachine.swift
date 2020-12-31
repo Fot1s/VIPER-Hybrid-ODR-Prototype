@@ -42,6 +42,7 @@ class SlotMachine {
         var slotHeight = slotWidth / Constants.Slots.Game.cellGraphicRatioWidthToHeight
         
         if (slotHeight * CGFloat(numberOfRows) > frame.size.height) {
+            print("fixed height")
             slotHeight = (frame.size.height - 32) / CGFloat(numberOfRows)
         }
         
@@ -60,11 +61,18 @@ class SlotMachine {
 
         }
         
-        print("Green: \(-200)")
+        let yourline2 = SKShapeNode()
+        let pathToDraw2 = CGMutablePath()
+        pathToDraw2.move(to: CGPoint(x: self.frame.minX, y: self.frame.origin.y))
+        pathToDraw2.addLine(to: CGPoint(x: 100.0, y: self.frame.origin.y))
+        yourline2.path = pathToDraw2
+        yourline2.strokeColor = SKColor.red
+        scene.addChild(yourline2)
+
         let yourline3 = SKShapeNode()
         let pathToDraw3 = CGMutablePath()
-        pathToDraw3.move(to: CGPoint(x: self.frame.minX, y: frame.origin.y - frame.size.height + 30)) 
-        pathToDraw3.addLine(to: CGPoint(x: 100.0, y: frame.origin.y - frame.size.height + 30))        //30 in iphone 80 in  ipad?
+        pathToDraw3.move(to: CGPoint(x: self.frame.minX, y: frame.origin.y - frame.size.height))
+        pathToDraw3.addLine(to: CGPoint(x: 100.0, y: frame.origin.y - frame.size.height))        //30 in iphone 80 in  ipad?
         yourline3.path = pathToDraw3
         yourline3.strokeColor = SKColor.green
         scene.addChild(yourline3)
