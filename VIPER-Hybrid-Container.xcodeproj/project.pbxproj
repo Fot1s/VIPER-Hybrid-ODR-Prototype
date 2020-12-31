@@ -76,6 +76,7 @@
 		A6E8A3AE259BBFCF00EC4AEC /* SlotsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3AD259BBF9B00EC4AEC /* SlotsConstants.swift */; };
 		A6E8A3B0259BC18200EC4AEC /* SlotRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */; };
 		A6E8A3B2259BF12100EC4AEC /* SlotMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */; };
+		A6E8A3B4259E271100EC4AEC /* SlotColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3B3259E271100EC4AEC /* SlotColumn.swift */; };
 		CAF4204C08BA1F1298658D96 /* Pods_VIPER_Hybrid_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +181,7 @@
 		A6E8A3AD259BBF9B00EC4AEC /* SlotsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsConstants.swift; sourceTree = "<group>"; };
 		A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotRow.swift; sourceTree = "<group>"; };
 		A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotMachine.swift; sourceTree = "<group>"; };
+		A6E8A3B3259E271100EC4AEC /* SlotColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotColumn.swift; sourceTree = "<group>"; };
 		DE0CA6E86B300817C9517F04 /* Pods-VIPER-Hybrid-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.release.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.release.xcconfig"; sourceTree = "<group>"; };
 		FFBA6A89152AB0DFFFB7634C /* Pods-VIPER-Hybrid-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.debug.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -670,6 +672,7 @@
 				A677BEBE259A5FF2005BF7AA /* SlotsGameScene.swift */,
 				A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */,
 				A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */,
+				A6E8A3B3259E271100EC4AEC /* SlotColumn.swift */,
 				A6E8A3AB259BBF1500EC4AEC /* Slot.swift */,
 			);
 			path = SlotsGame;
@@ -1024,6 +1027,7 @@
 				A649D1E3258675BB008B6C31 /* HybridContentPresenter.swift in Sources */,
 				A65B08772593E1BE00AF27D1 /* SportsBookRouter.swift in Sources */,
 				A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */,
+				A6E8A3B4259E271100EC4AEC /* SlotColumn.swift in Sources */,
 				A657A81025865D97008130A9 /* HybridContentContract.swift in Sources */,
 				A657A7CB25859D06008130A9 /* ReactAppsContract.swift in Sources */,
 				A649D1E525867629008B6C31 /* HybridContentInteractor.swift in Sources */,

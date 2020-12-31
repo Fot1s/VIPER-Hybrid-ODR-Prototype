@@ -13,7 +13,7 @@ extension Constants {
     
     enum Slots {
         enum Game {
-            static let columns = Int(3) ;
+            static let columns = Int(4) ;
             static let columnSpacing = CGFloat(8) ;
         }
     }

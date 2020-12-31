@@ -32,7 +32,9 @@ class Slot {
         self.slotAtIndex = slotAtIndex
     }
     
-    
+    func remCardsFromScene() {
+        visibleCard?.parent?.removeFromParent()
+    }
     
     func addCardsToScene(_ scene: SKScene) {
         
@@ -99,7 +101,7 @@ class Slot {
         
         
         // Determine duration of the card move
-        let actualDuration = 2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
+        let actualDuration = 1 //2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
 
         let frameMidX = self.visibleCard.frame.midX
         let visibleY = self.visibleCard.frame.origin.y - self.visibleCard.frame.size.height/2

@@ -72,6 +72,14 @@ class SlotRow {
             slot.addCardsToScene(scene)
         }
     }
+
+    func remCardsFromScene() {
+        
+        for slot in slotsArray {
+            slot.remCardsFromScene()
+        }
+    }
+
     
     func spinNow(runForTimes:[UInt32], completion: @escaping() -> Void) {
         isRunning = true ;
