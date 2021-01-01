@@ -16,13 +16,21 @@ class SlotsViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        if let scene = SKScene(fileNamed: "SlotsScene") {
-            scene.scaleMode = .fill//.aspectFill
-            sceneKitView.showsFPS = true
-            sceneKitView.showsNodeCount = true
-            sceneKitView.showsDrawCount = true
-            sceneKitView.ignoresSiblingOrder = true
-            sceneKitView.presentScene(scene)
+//        if let scene = SKScene(fileNamed: "SlotsScene") {
+        let scene = SlotsGameScene(size: UIScreen.main.bounds.size)
+        scene.scaleMode = .aspectFill
+        sceneKitView.showsFPS = true
+        sceneKitView.showsNodeCount = true
+        sceneKitView.showsDrawCount = true
+        sceneKitView.ignoresSiblingOrder = true
+        sceneKitView.presentScene(scene)
         }
+    
+//    override var prefersStatusBarHidden: Bool {
+//        return true
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
 }

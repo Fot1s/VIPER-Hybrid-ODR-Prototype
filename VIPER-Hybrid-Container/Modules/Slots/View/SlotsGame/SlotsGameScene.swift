@@ -37,14 +37,12 @@ class SlotsGameScene: SKScene {
         print("\(UIScreen.main.scale) \(UIApplication.shared.statusBarFrame.height)")
         print("\(self.xScale) \(self.yScale)")
         print("\(self.frame.size)")
-//        let barHeight = UIApplication.shared.statusBarFrame.height
-        
-//        if (UIDevice.current.userInterfaceIdiom == .pad) {
-//            barHeight *= 2
-//        }
+        //let barHeight = UIApplication.shared.statusBarFrame.height * 2
 
         print("White: \(self.frame.maxY - 8)")
 
+        print(UIScreen.main.bounds)
+        
         
         let yourline = SKShapeNode()
         let pathToDraw = CGMutablePath()
@@ -57,7 +55,7 @@ class SlotsGameScene: SKScene {
 
 
         
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 3, columnSpacing: 5, numberOfRows: 6)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 5)
         
         self.slotMachine?.addCardsToScene(scene: self)
         
