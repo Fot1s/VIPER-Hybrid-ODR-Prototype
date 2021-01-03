@@ -111,7 +111,7 @@ class Slot {
         self.cardsAdded = true
     }
     
-    func spinWheel(_ count:UInt32, completion: @escaping() -> Void) {
+    func spinWheel(_ count:Int, completion: @escaping() -> Void) {
         
         if (self.slotRunning) {
             print("Already running skip!") //TODO: Could guard this instead of skipping?

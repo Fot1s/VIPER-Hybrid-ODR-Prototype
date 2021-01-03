@@ -131,15 +131,8 @@ class SlotColumn {
             if rollFor == 0 {
                 slotRunning = false
                 
-                print("Cards ended: \(cardIndices)") ;
+                print("Cards ended: \(cardIndices[0...cardIndices.count-2])") ;
 
-                //fix positions here
-                for card in cards {
-//                    print("\(card.position.y + position.y)  \(Int(card.position.y + position.y)/Int(slotHeight))")
-//                    if card.position.y + position.y {
-//
-//                    }
-                }
             }
         }
     }

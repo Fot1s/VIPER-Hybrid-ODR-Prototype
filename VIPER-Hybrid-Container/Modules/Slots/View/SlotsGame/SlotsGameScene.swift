@@ -73,9 +73,9 @@ class SlotsGameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if slotMachine?.isRunning ?? true {
+        if !(slotMachine?.isRunning ?? true)  {
             startGame()
-//        }
+        }
     }
     
     
@@ -86,8 +86,7 @@ class SlotsGameScene: SKScene {
 
         if (gameRunning) {
             delta = currentTime - lastTimeRun
-//            slotColumn?.update(timeDelta: delta)
-//            slotColumn2?.update(timeDelta: delta)
+            slotMachine?.update(timeDelta: delta)
         }
 
         lastTimeRun = currentTime
@@ -97,8 +96,6 @@ class SlotsGameScene: SKScene {
         gameRunning = true
         print("Start Game Called!")
         
-//        slotMachine?.
-        
         slotUp?.spinWheel(10, completion: {
             print("Slot up done!")
         })
@@ -107,46 +104,19 @@ class SlotsGameScene: SKScene {
             print("Slot down done!")
         })
         
-        slotRow?.spinNow(runForTimes: [UInt32(10),UInt32(10),UInt32(10),UInt32(10),UInt32(10)]) {
+        slotRow?.spinNow(runForTimes: [10,10,10,10,10]) {
             print("Slot down done!")
         }
 
-        slotRow2?.spinNow(runForTimes: [UInt32(10),UInt32(10),UInt32(10),UInt32(10),UInt32(10)]) {
+        slotRow2?.spinNow(runForTimes: [10,10,10,10,10]) {
             print("Slot down done!")
         }
         
-//        slotMachine?.spinNow(runForTimes: [20,20,20,20,20]) {
-//            print("Game finished!")
-////            self.gameRunning = false ;
-//        }
-//        slotMachine2?.spinNow(runForTimes: [20,20,20,20,20]) {
-//            print("Game finished!")
-////            self.gameRunning = false ;
-//
-//            self.slotMachine?.remCardsFromScene()
-//            self.slotMachine2?.remCardsFromScene()
-//
-//            self.slotColumn?.addCardsToScene(scene: self)
-//            self.slotColumn2?.addCardsToScene(scene: self)
-//
-//            self.slotColumn?.spinWheel(20, completion: {
-//                print("Column done!")
-//            })
-//            self.slotColumn2?.spinWheel(20, completion: {
-//                print("Column done!")
-//            })
-//
-//        }
-//
-        
-        
-//        slotMachine2?.spinNow(runForTimes: runFor) {
-//            print("Game finished!")
-//            self.gameRunning = false ;
-//        }
-//        slotMachine3?.spinNow(runForTimes: runFor) {
-//            print("Game finished!")
-//            self.gameRunning = false ;
-//        }
+        slotMachine?.spinNow(runForTimes: [10,10,10,10,10]) { [weak self] in
+
+            self?.gameRunning = false
+
+            print("Game finished!")
+        }
     }
 }

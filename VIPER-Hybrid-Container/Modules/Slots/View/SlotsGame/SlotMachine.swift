@@ -18,8 +18,24 @@ class SlotMachine {
     let numberOfRows:Int
     let frame: CGRect
     let columnSpacing:CGFloat
-//    let slotWidth:CGFloat
-//    let slotHeight:CGFloat
+    
+    var isRunning: Bool {
+        get {
+            //if any slot is still running return true
+            var varToReturn = false ;
+            
+            for slotRunning in slotColumnsRunning {
+                varToReturn = varToReturn || slotRunning
+            }
+            
+            return varToReturn
+        }
+        set(newValue) {
+            for i in 0..<numberOfColumns {
+                slotColumnsRunning[i] = newValue
+            }
+        }
+    }
 
     init(frame:CGRect, numberOfColumns:Int, columnSpacing:CGFloat, numberOfRows:Int ) {
         self.frame = frame ;
@@ -76,6 +92,27 @@ class SlotMachine {
         yourline3.path = pathToDraw3
         yourline3.strokeColor = SKColor.green
         scene.addChild(yourline3)
+
+    }
+    
+    func spinNow(runForTimes:[UInt32], completion: @escaping() -> Void) {
+        isRunning = true ;
+        
+        for (index, slotColumn) in slotColumnsArray.enumerated() {
+            slotColumn.spinWheel(runForTimes[index]) {
+                self.slotColumnsRunning[index] = false
+                
+                if !self.isRunning {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    func update(timeDelta:TimeInterval) {
+        for slotColumn in slotColumnsArray {
+            slotColumn.update(timeDelta: timeDelta)
+        }
 
     }
 }

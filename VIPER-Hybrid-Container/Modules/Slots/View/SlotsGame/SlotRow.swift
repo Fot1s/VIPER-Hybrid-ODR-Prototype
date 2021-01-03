@@ -81,7 +81,7 @@ class SlotRow {
     }
 
     
-    func spinNow(runForTimes:[UInt32], completion: @escaping() -> Void) {
+    func spinNow(runForTimes:[Int], completion: @escaping() -> Void) {
         isRunning = true ;
         
         for (index, slot) in slotsArray.enumerated() {
