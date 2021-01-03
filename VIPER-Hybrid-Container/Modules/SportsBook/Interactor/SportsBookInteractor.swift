@@ -33,27 +33,25 @@ class SportsBookInteractor: SportsBookUseCase {
         socketService.connect(withDelegate: self)
     }
     
+    func disconnectFromSocketServer() {
+        socketService.disconnect()
+    }
+
     func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
         
         let encoder = JSONEncoder()
         //encoder.outputFormatting = .prettyPrinted
-
+        
         do {
             let jsonData = try encoder.encode(matchToUpdate)
-
+            
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 socketService.write(message: jsonString)
             }
         } catch {
             print(error.localizedDescription)
         }
-
-    }
-
-    func disconnectFromSocketServer() {
-        socketService.disconnect()
-    }
-
+    } 
 }
 
 
@@ -63,6 +61,7 @@ extension SportsBookInteractor: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print(error?.localizedDescription ?? "Missing Error!")
         output.connectionToSocketServerLost()
     }
     

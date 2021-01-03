@@ -9,14 +9,14 @@
 import Foundation
 import Starscream ;
 
-class WebSocketTestService: ViperWebSocket {
+class WebSocketService: ViperWebSocket {
     
-    static let shared = WebSocketTestService()
+    static let shared = WebSocketService()
     
     var websocket: WebSocket!
 
     private init() {
-        let url = URL(string: "ws://echo.websocket.org")!
+        let url = URL(string: SocketEndpoints.MatchUpdatesSocket.url)!
         let request = URLRequest(url: url)
     
         websocket = WebSocket(request: request)

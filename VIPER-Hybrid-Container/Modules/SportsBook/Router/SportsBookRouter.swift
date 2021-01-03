@@ -26,7 +26,7 @@ class SportsBookRouter: SportsBookWireframe {
 
         interactor.output = presenter
         interactor.apiService = APIService.shared
-        interactor.socketService = WebSocketTestService.shared
+        interactor.socketService = WebSocketService.shared
         
         router.viewController = view
         

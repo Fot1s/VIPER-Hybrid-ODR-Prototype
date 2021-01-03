@@ -44,7 +44,7 @@
 		A657A81225866378008130A9 /* HybridContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A657A81125866378008130A9 /* HybridContentViewController.swift */; };
 		A657A81425866945008130A9 /* HybridContentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A657A81325866945008130A9 /* HybridContentStoryboard.storyboard */; };
 		A657A83E25866ABA008130A9 /* react in Resources */ = {isa = PBXBuildFile; fileRef = A657A83C25866ABA008130A9 /* react */; settings = {ASSET_TAGS = (react, ); }; };
-		A65B08502593906D00AF27D1 /* WebSocketTestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B084F2593906D00AF27D1 /* WebSocketTestService.swift */; };
+		A65B08502593906D00AF27D1 /* WebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B084F2593906D00AF27D1 /* WebSocketService.swift */; };
 		A65B08562593984500AF27D1 /* IntroStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A65B08552593984500AF27D1 /* IntroStoryboard.storyboard */; };
 		A65B08582593985C00AF27D1 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08572593985C00AF27D1 /* IntroViewController.swift */; };
 		A65B085B25939A6900AF27D1 /* IntroContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B0853259396F700AF27D1 /* IntroContract.swift */; };
@@ -144,7 +144,7 @@
 		A657A81125866378008130A9 /* HybridContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridContentViewController.swift; sourceTree = "<group>"; };
 		A657A81325866945008130A9 /* HybridContentStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HybridContentStoryboard.storyboard; sourceTree = "<group>"; };
 		A657A83C25866ABA008130A9 /* react */ = {isa = PBXFileReference; lastKnownFileType = folder; path = react; sourceTree = "<group>"; };
-		A65B084F2593906D00AF27D1 /* WebSocketTestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTestService.swift; sourceTree = "<group>"; };
+		A65B084F2593906D00AF27D1 /* WebSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketService.swift; sourceTree = "<group>"; };
 		A65B0853259396F700AF27D1 /* IntroContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroContract.swift; sourceTree = "<group>"; };
 		A65B08552593984500AF27D1 /* IntroStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = IntroStoryboard.storyboard; sourceTree = "<group>"; };
 		A65B08572593985C00AF27D1 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 			children = (
 				A657A7B7258590AF008130A9 /* APIService.swift */,
 				A657A7B8258590AF008130A9 /* Endpoints.swift */,
-				A65B084F2593906D00AF27D1 /* WebSocketTestService.swift */,
+				A65B084F2593906D00AF27D1 /* WebSocketService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1018,7 +1018,7 @@
 				A65B08582593985C00AF27D1 /* IntroViewController.swift in Sources */,
 				A65B08712593DE9900AF27D1 /* SportsBookPresenter.swift in Sources */,
 				A657A7C525859C21008130A9 /* RootContract.swift in Sources */,
-				A65B08502593906D00AF27D1 /* WebSocketTestService.swift in Sources */,
+				A65B08502593906D00AF27D1 /* WebSocketService.swift in Sources */,
 				A6E8A3B2259BF12100EC4AEC /* SlotMachine.swift in Sources */,
 				A65B08682593D5F200AF27D1 /* SportsBookViewController.swift in Sources */,
 				A657A81225866378008130A9 /* HybridContentViewController.swift in Sources */,
