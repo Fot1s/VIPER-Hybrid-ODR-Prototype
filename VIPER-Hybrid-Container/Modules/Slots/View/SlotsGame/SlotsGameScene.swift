@@ -51,7 +51,7 @@ class SlotsGameScene: SKScene {
         yourline.strokeColor = SKColor.white
         addChild(yourline)
         
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 2)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 2, slotsStartAtIndex:0, spinDirection: .downwards)
         
         self.slotMachine?.addCardsToScene(scene: self)
         
@@ -73,7 +73,7 @@ class SlotsGameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !(slotMachine?.isRunning ?? true)  {
+        if !(slotMachine?.isRunning ?? false)  {
             startGame()
         }
     }
