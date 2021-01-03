@@ -22,11 +22,9 @@ class SlotsGameScene: SKScene {
 //    var slotMachine:SlotRow?
 //    var slotMachine2:SlotRow?
 //
-//    var slotColumn:SlotColumn?
-//    var slotColumn2:SlotColumn?
+    var slotRow:SlotRow?
+    var slotRow2:SlotRow?
 
-    
-    
     var gameRunning = false ;
     
     //game init
@@ -57,14 +55,21 @@ class SlotsGameScene: SKScene {
         
         self.slotMachine?.addCardsToScene(scene: self)
         
-        self.slotUp = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8, y:self.frame.maxY - 216), slotWidth: 50, slotAtIndex: 1)
+        self.slotUp = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8, y:self.frame.maxY - 216), slotWidth: 100, slotAtIndex: 0, spinDirection: .upwards)
 
         self.slotUp?.addCardsToScene(self)
         
-        self.slotDown = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8 + 58, y:self.frame.maxY - 216), slotWidth: 50, slotAtIndex: 1)
+        self.slotDown = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8 + 108, y:self.frame.maxY - 216), slotWidth: 100, slotAtIndex: 0)
         
         self.slotDown?.addCardsToScene(self)
+        
+        self.slotRow = SlotRow(frame: CGRect(origin: CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 316), size:CGSize(width:self.frame.width - 16, height: 0)), numberOfSlots: 5, columnSpacing: 8, slotsStartAtIndex: 0)
+        
+        self.slotRow?.addCardsToScene(scene: self)
 
+        self.slotRow2 = SlotRow(frame: CGRect(origin: CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 416), size:CGSize(width:self.frame.width - 16, height: 0)), numberOfSlots: 5, columnSpacing: 8, slotsStartAtIndex: 0, spinDirection: .upwards)
+        
+        self.slotRow2?.addCardsToScene(scene: self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -92,6 +97,8 @@ class SlotsGameScene: SKScene {
         gameRunning = true
         print("Start Game Called!")
         
+//        slotMachine?.
+        
         slotUp?.spinWheel(10, completion: {
             print("Slot up done!")
         })
@@ -99,7 +106,15 @@ class SlotsGameScene: SKScene {
         slotDown?.spinWheel(10, completion: {
             print("Slot down done!")
         })
+        
+        slotRow?.spinNow(runForTimes: [UInt32(10),UInt32(10),UInt32(10),UInt32(10),UInt32(10)]) {
+            print("Slot down done!")
+        }
 
+        slotRow2?.spinNow(runForTimes: [UInt32(10),UInt32(10),UInt32(10),UInt32(10),UInt32(10)]) {
+            print("Slot down done!")
+        }
+        
 //        slotMachine?.spinNow(runForTimes: [20,20,20,20,20]) {
 //            print("Game finished!")
 ////            self.gameRunning = false ;

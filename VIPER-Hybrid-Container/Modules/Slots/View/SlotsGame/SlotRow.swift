@@ -38,7 +38,7 @@ class SlotRow {
         }
     }
     
-    init(frame:CGRect, numberOfSlots:Int, columnSpacing:CGFloat, slotsStartAtIndex:Int = 0 ) {
+    init(frame:CGRect, numberOfSlots:Int, columnSpacing:CGFloat, slotsStartAtIndex:Int = 0, spinDirection:Slot.SpinDirection = .downwards ) {
         self.frame = frame ;
         self.numberOfSlots = numberOfSlots
         self.columnSpacing = columnSpacing
@@ -61,7 +61,7 @@ class SlotRow {
         slotsRunning = [Bool]()
         
         for i in 0..<numberOfSlots {
-            slotsArray.append(Slot(cardTextures,position: CGPoint(x:frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing),y:frame.origin.y),slotWidth: slotWidth, slotAtIndex: slotsStartAtIndex))
+            slotsArray.append(Slot(cardTextures,position: CGPoint(x:frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing),y:frame.origin.y),slotWidth: slotWidth, slotAtIndex: slotsStartAtIndex, spinDirection: spinDirection))
             slotsRunning.append(false)
         }
     }
