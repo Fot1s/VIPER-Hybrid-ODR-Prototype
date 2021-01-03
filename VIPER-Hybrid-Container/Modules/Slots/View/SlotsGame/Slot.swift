@@ -170,8 +170,8 @@ class Slot {
         let actionDone = SKAction.run({
             self.slotRunning = false
             
-            //jumpVisibleFromOutToVisiblePos changes the index on preperation for next move
-            //if last move fix it one back:
+            // jumpVisibleFromOutToVisiblePos changes the index on preperation for next move
+            // if last move fix it one back:
             
             if (self.spinDirection == .downwards) {
                 self.slotAtIndex -= 1

@@ -51,25 +51,25 @@ class SlotsGameScene: SKScene {
         yourline.strokeColor = SKColor.white
         addChild(yourline)
         
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 2, slotsStartAtIndex:0, spinDirection: .downwards)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 5, slotsStartAtIndex:5, spinDirection: .upwards)
         
         self.slotMachine?.addCardsToScene(scene: self)
         
-        self.slotUp = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8, y:self.frame.maxY - 216), slotWidth: 100, slotAtIndex: 0, spinDirection: .upwards)
-
-        self.slotUp?.addCardsToScene(self)
-        
-        self.slotDown = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8 + 108, y:self.frame.maxY - 216), slotWidth: 100, slotAtIndex: 0)
-        
-        self.slotDown?.addCardsToScene(self)
-        
-        self.slotRow = SlotRow(frame: CGRect(origin: CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 316), size:CGSize(width:self.frame.width - 16, height: 0)), numberOfSlots: 5, columnSpacing: 8, slotsStartAtIndex: 0)
-        
-        self.slotRow?.addCardsToScene(scene: self)
-
-        self.slotRow2 = SlotRow(frame: CGRect(origin: CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 416), size:CGSize(width:self.frame.width - 16, height: 0)), numberOfSlots: 5, columnSpacing: 8, slotsStartAtIndex: 0, spinDirection: .upwards)
-        
-        self.slotRow2?.addCardsToScene(scene: self)
+//        self.slotUp = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8, y:self.frame.maxY - 216), slotWidth: 100, slotAtIndex: 0, spinDirection: .upwards)
+//
+//        self.slotUp?.addCardsToScene(self)
+//
+//        self.slotDown = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8 + 108, y:self.frame.maxY - 216), slotWidth: 100, slotAtIndex: 0)
+//
+//        self.slotDown?.addCardsToScene(self)
+//
+//        self.slotRow = SlotRow(frame: CGRect(origin: CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 316), size:CGSize(width:self.frame.width - 16, height: 0)), numberOfSlots: 5, columnSpacing: 8, slotsStartAtIndex: 0)
+//
+//        self.slotRow?.addCardsToScene(scene: self)
+//
+//        self.slotRow2 = SlotRow(frame: CGRect(origin: CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 416), size:CGSize(width:self.frame.width - 16, height: 0)), numberOfSlots: 5, columnSpacing: 8, slotsStartAtIndex: 0, spinDirection: .upwards)
+//
+//        self.slotRow2?.addCardsToScene(scene: self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
