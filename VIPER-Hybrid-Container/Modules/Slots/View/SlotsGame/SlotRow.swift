@@ -85,7 +85,7 @@ class SlotRow {
         isRunning = true ;
         
         for (index, slot) in slotsArray.enumerated() {
-            slot.spinWheel(runForTimes[index], allCardTextures: cardTextures) {
+            slot.spinWheel(runForTimes[index]) {
                 self.slotsRunning[index] = false
                 
                 if !self.isRunning {

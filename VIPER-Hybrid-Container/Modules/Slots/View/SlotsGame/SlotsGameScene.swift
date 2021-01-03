@@ -15,6 +15,9 @@ class SlotsGameScene: SKScene {
     var cardTextures = [SKTexture]()
 
     var slotMachine:SlotMachine?
+    
+    var slotUp:Slot?
+    var slotDown:Slot?
 
 //    var slotMachine:SlotRow?
 //    var slotMachine2:SlotRow?
@@ -33,16 +36,14 @@ class SlotsGameScene: SKScene {
             cardTextures.append(SKSpriteNode(imageNamed: "card\(i+1)").texture!)
         }
 
-        
-        print("\(UIScreen.main.scale) \(UIApplication.shared.statusBarFrame.height)")
-        print("\(self.xScale) \(self.yScale)")
-        print("\(self.frame.size)")
+//        print("\(UIScreen.main.scale) \(UIApplication.shared.statusBarFrame.height)")
+//        print("\(self.xScale) \(self.yScale)")
+//        print("\(self.frame.size)")
         //let barHeight = UIApplication.shared.statusBarFrame.height * 2
-
-        print("White: \(self.frame.maxY - 8)")
-
-        print(UIScreen.main.bounds)
-        
+//
+//        print("White: \(self.frame.maxY - 8)")
+//
+//        print(UIScreen.main.bounds)
         
         let yourline = SKShapeNode()
         let pathToDraw = CGMutablePath()
@@ -51,27 +52,19 @@ class SlotsGameScene: SKScene {
         yourline.path = pathToDraw
         yourline.strokeColor = SKColor.white
         addChild(yourline)
-
-
-
         
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 5)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 2)
         
         self.slotMachine?.addCardsToScene(scene: self)
         
-//        self.slotColumn = SlotColumn(4, cardTextures: cardTextures, position: CGPoint(x:-100,y:self.frame.maxY - 144), slotWidth: 70, slotHeight: 60)
-//
-//        self.slotColumn2 = SlotColumn(4, cardTextures: cardTextures, position: CGPoint(x:0 ,y:self.frame.maxY - 144), slotWidth: 70, slotHeight: 60)
-//
-//
-//        self.slotMachine = SlotRow(frame: CGRect(origin:CGPoint(x: self.frame.minX,y: self.frame.maxY - 40),size:CGSize(width:self.frame.width,height:50)), numberOfSlots: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing)
-//
-//        self.slotMachine2 = SlotRow(frame: CGRect(origin:CGPoint(x: self.frame.minX,y: self.frame.maxY - 140),size:CGSize(width:self.frame.width,height:50)), numberOfSlots: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, slotsStartAtIndex: 1)
-//
-//        self.slotMachine?.addCardsToScene(scene: self)
-//        self.slotMachine2?.addCardsToScene(scene: self)
+        self.slotUp = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8, y:self.frame.maxY - 216), slotWidth: 50, slotAtIndex: 1)
+
+        self.slotUp?.addCardsToScene(self)
         
+        self.slotDown = Slot(cardTextures, position: CGPoint(x:self.frame.minX+8 + 58, y:self.frame.maxY - 216), slotWidth: 50, slotAtIndex: 1)
         
+        self.slotDown?.addCardsToScene(self)
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -98,6 +91,14 @@ class SlotsGameScene: SKScene {
     func startGame() {
         gameRunning = true
         print("Start Game Called!")
+        
+        slotUp?.spinWheel(10, completion: {
+            print("Slot up done!")
+        })
+
+        slotDown?.spinWheel(10, completion: {
+            print("Slot down done!")
+        })
 
 //        slotMachine?.spinNow(runForTimes: [20,20,20,20,20]) {
 //            print("Game finished!")
