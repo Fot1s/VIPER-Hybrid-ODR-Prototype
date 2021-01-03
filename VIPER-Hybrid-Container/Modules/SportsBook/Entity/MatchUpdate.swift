@@ -2,7 +2,7 @@
 //  MatchUpdate.swift
 //  VIPER-Hybrid-Container
 //
-//  Created by Demitri Delinikolas on 23/12/2020.
+//  Created by Fotis Chatzinikos on 23/12/2020.
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 ////  VIPER_Hybrid_ContainerUITests.swift
 ////  VIPER-Hybrid-ContainerUITests
 ////
-////  Created by Demitri Delinikolas on 26/12/2020.
+////  Created by Fotis Chatzinikos on 26/12/2020.
 ////  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 ////
 //

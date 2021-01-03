@@ -2,7 +2,7 @@
 //  SlotsGameScene.swift
 //  VIPER-Hybrid-Container
 //
-//  Created by Demitri Delinikolas on 28/12/2020.
+//  Created by Fotis Chatzinikos on 28/12/2020.
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
@@ -43,13 +43,13 @@ class SlotsGameScene: SKScene {
 //
 //        print(UIScreen.main.bounds)
         
-        let yourline = SKShapeNode()
-        let pathToDraw = CGMutablePath()
-        pathToDraw.move(to: CGPoint(x: self.frame.minX, y: self.frame.maxY))
-        pathToDraw.addLine(to: CGPoint(x: 100.0, y: self.frame.maxY))
-        yourline.path = pathToDraw
-        yourline.strokeColor = SKColor.white
-        addChild(yourline)
+//        let yourline = SKShapeNode()
+//        let pathToDraw = CGMutablePath()
+//        pathToDraw.move(to: CGPoint(x: self.frame.minX, y: self.frame.maxY))
+//        pathToDraw.addLine(to: CGPoint(x: 100.0, y: self.frame.maxY))
+//        yourline.path = pathToDraw
+//        yourline.strokeColor = SKColor.white
+//        addChild(yourline)
         
         self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: 5, columnSpacing: 5, numberOfRows: 5, slotsStartAtIndex:5, spinDirection: .upwards)
         

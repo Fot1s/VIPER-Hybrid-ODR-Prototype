@@ -2,7 +2,7 @@
 //  SportsBookInteractorTest.swift
 //  VIPER-Hybrid-ContainerTests
 //
-//  Created by Demitri Delinikolas on 25/12/2020.
+//  Created by Fotis Chatzinikos on 25/12/2020.
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
