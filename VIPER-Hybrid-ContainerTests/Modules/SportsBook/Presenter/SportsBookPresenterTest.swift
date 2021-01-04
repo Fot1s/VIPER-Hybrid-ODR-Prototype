@@ -36,7 +36,9 @@ class SportsBookPresenterTest: XCTestCase {
     
     override func tearDown() {
         sut = nil
-//        mockOutput = nil
+        mockView = nil
+        mockInteractor = nil
+        mockRouter = nil
         super.tearDown()
     }
     
@@ -57,54 +59,53 @@ class SportsBookPresenterTest: XCTestCase {
     }
 
     func testMatchesReceivedCorrectly() {
-        sut?.viewDidLoad()
         
+        //The following match update will be send after connection
+        let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
+        mockInteractor?.matchToUpdate = matchToUpdate
+        
+        sut?.viewDidLoad()
+
         //test view stopped loading
         XCTAssertFalse(mockView?.loading ?? true)
-        
+
         //test the matches where received and split correctly into live and future (fake data contains 1 for each)
         XCTAssertTrue(mockView?.live?.count == 1)
         XCTAssertTrue(mockView?.future?.count == 1)
-        
+
         //test no activity error is shown
         XCTAssertFalse(mockView?.activityError ?? true)
-        
+
         //test socket updates were started
         XCTAssertTrue(mockInteractor?.socketConnected ?? false)
-        
-        //TODO: THIS MIGHT NEED SOME SECONDS TO RUN 
+
+        //TODO: THIS MIGHT NEED SOME SECONDS TO RUN
         //FIX:  MOVE TO SLOW TESTS FILE
         //The maximum time after which both timers in the presentation will have run
-        var waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.Playbook.Values.liveSecondsTimerInterval
-        
-        if (Constants.MockSocketServerEmulator.fakeUpdateEvery > waitTimeForTimerToRunAtLeastOneForCodeCoverage)
-        {
-            waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.MockSocketServerEmulator.fakeUpdateEvery
-        }
-        
-        waitTimeForTimerToRunAtLeastOneForCodeCoverage += 0.1
-        
+        let waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.Playbook.Values.liveSecondsTimerInterval + 0.1
+
         print("RunLoopWillRun for extra: \(waitTimeForTimerToRunAtLeastOneForCodeCoverage)")
 
         let stopDate = Date(timeIntervalSinceNow: waitTimeForTimerToRunAtLeastOneForCodeCoverage)
-        
+
         //WAIT UNTIL THE TIMER IS REACHED
         RunLoop.current.run(until:stopDate)
 
         //test match times in view were updated
         XCTAssertTrue(mockView?.timesWereUpdated ?? false)
-        
-        //test that the update was sent
-        XCTAssertNotNil(mockInteractor?.matchToUpdate, "Match to update should not be nil!")
-        
-        //and received correctly:
+
+        //test times were updated in the view as well
+        //initial live time was 100 should be 101 now
+        XCTAssertTrue(mockView?.live![0].time == 101)
+
+        //test that a match update was receivedcorrectly:
         XCTAssertNotNil(mockView?.updatedMatch, "Updated Match should not be nil!")
 
-        //Also check that the update was as expected
+//        //Also check that the update was as expected
         XCTAssertTrue(mockInteractor?.matchToUpdate?.id == mockView?.updatedMatch?.id)
         XCTAssertTrue(mockInteractor?.matchToUpdate?.updateFor == mockView?.updatedMatch?.updateFor)
         XCTAssertTrue(mockInteractor?.matchToUpdate?.value == mockView?.updatedMatch?.value)
-
+//
         //Test connection is clossed when view is dismissed:
         sut?.viewWillDisappear(true)
         //test socket updates were started
@@ -138,7 +139,6 @@ class MockSportsBookInteractor:SportsBookUseCase {
     
     var matchToUpdate:MatchUpdate?
     
-    
     func fetchMatches() {
         guard !returnImmediately else { return }
         
@@ -154,24 +154,18 @@ class MockSportsBookInteractor:SportsBookUseCase {
     
     func connectToSocketServerForUpdates() {
         socketConnected = true
-        
-        
+
         output.connectedToSocketServer()
+        
+        if let matchToUpdate = matchToUpdate {
+            output.updatedMatchReceivedFromSocketServer(updatedMatch: matchToUpdate)
+        }
     }
     
     func disconnectFromSocketServer() {
         socketConnected = false
         output.connectionToSocketServerLost()
     }
-    
-//    func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
-//        
-//        //Might run multiple times, only process the first time
-//        if (self.matchToUpdate == nil) {
-//            self.matchToUpdate = matchToUpdate
-//            output.updatedMatchReceivedFromSocketServer(updatedMatch: matchToUpdate!)
-//        }
-//    }
 }
 
 class MockSportsBookView: SportsBookView {
@@ -205,6 +199,7 @@ class MockSportsBookView: SportsBookView {
     
     func updateLiveMatchesWithNewTimes(_ liveMatches: [Match]) {
         timesWereUpdated = true
+        live = liveMatches
     }
 }
 
