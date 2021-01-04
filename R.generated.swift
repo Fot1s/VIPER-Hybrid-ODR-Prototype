@@ -48,7 +48,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 13 images.
+  /// This `R.image` struct is generated, and contains static references to 24 images.
   struct image {
     /// Image `card1`.
     static let card1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card1")
@@ -68,12 +68,34 @@ struct R: Rswift.Validatable {
     static let card8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card8")
     /// Image `card9`.
     static let card9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card9")
+    /// Image `credits`.
+    static let credits = Rswift.ImageResource(bundle: R.hostingBundle, name: "credits")
     /// Image `image-launch-screen`.
     static let imageLaunchScreen = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-launch-screen")
     /// Image `image-placeholder`.
     static let imagePlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-placeholder")
     /// Image `intro-react-image`.
     static let introReactImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro-react-image")
+    /// Image `number0`.
+    static let number0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number0")
+    /// Image `number1`.
+    static let number1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number1")
+    /// Image `number2`.
+    static let number2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number2")
+    /// Image `number3`.
+    static let number3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number3")
+    /// Image `number4`.
+    static let number4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number4")
+    /// Image `number5`.
+    static let number5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number5")
+    /// Image `number6`.
+    static let number6 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number6")
+    /// Image `number7`.
+    static let number7 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number7")
+    /// Image `number8`.
+    static let number8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number8")
+    /// Image `number9`.
+    static let number9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number9")
     /// Image `spinButton`.
     static let spinButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "spinButton")
     
@@ -122,6 +144,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.card9, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "credits", bundle: ..., traitCollection: ...)`
+    static func credits(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.credits, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "image-launch-screen", bundle: ..., traitCollection: ...)`
     static func imageLaunchScreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.imageLaunchScreen, compatibleWith: traitCollection)
@@ -135,6 +162,56 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "intro-react-image", bundle: ..., traitCollection: ...)`
     static func introReactImage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.introReactImage, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number0", bundle: ..., traitCollection: ...)`
+    static func number0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number0, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number1", bundle: ..., traitCollection: ...)`
+    static func number1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number2", bundle: ..., traitCollection: ...)`
+    static func number2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number3", bundle: ..., traitCollection: ...)`
+    static func number3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number3, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number4", bundle: ..., traitCollection: ...)`
+    static func number4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number4, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number5", bundle: ..., traitCollection: ...)`
+    static func number5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number5, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number6", bundle: ..., traitCollection: ...)`
+    static func number6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number6, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number7", bundle: ..., traitCollection: ...)`
+    static func number7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number7, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number8", bundle: ..., traitCollection: ...)`
+    static func number8(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number8, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "number9", bundle: ..., traitCollection: ...)`
+    static func number9(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.number9, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "spinButton", bundle: ..., traitCollection: ...)`

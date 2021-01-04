@@ -38,11 +38,12 @@ class SlotRow {
         }
     }
     
-    init(frame:CGRect, numberOfSlots:Int, columnSpacing:CGFloat, slotsStartAtIndex:Int = 0, spinDirection:Slot.SpinDirection = .downwards ) {
+    init(frame:CGRect, textures:[SKTexture], numberOfSlots:Int, columnSpacing:CGFloat, slotsStartAtIndex:Int = 0, spinDirection:Slot.SpinDirection = .downwards ) {
         self.frame = frame ;
         self.numberOfSlots = numberOfSlots
         self.columnSpacing = columnSpacing
         self.slotsStartAtIndex = slotsStartAtIndex
+        self.cardTextures = textures
         
         var columnSpaces:CGFloat = 0
         
@@ -52,10 +53,6 @@ class SlotRow {
         
         slotWidth = (self.frame.size.width - columnSpaces) / CGFloat(numberOfSlots)
         
-        cardTextures = [SKTexture]()
-        for i in 0...8 {//inclusive is 9
-            cardTextures.append(SKSpriteNode(imageNamed: "card\(i+1)").texture!)
-        }
       
         slotsArray = [Slot]()
         slotsRunning = [Bool]()
@@ -81,11 +78,11 @@ class SlotRow {
     }
 
     
-    func spinNow(runForTimes:[Int], completion: @escaping() -> Void) {
+    func spinNow(runForTimes:[UInt32], completion: @escaping() -> Void) {
         isRunning = true ;
         
         for (index, slot) in slotsArray.enumerated() {
-            slot.spinWheel(runForTimes[index]) {
+            slot.spinWheel(Int(runForTimes[index])) {
                 self.slotsRunning[index] = false
                 
                 if !self.isRunning {
@@ -94,10 +91,4 @@ class SlotRow {
             }
         }
     }
-    
-//    func update(timeDelta:TimeInterval) {
-//        for slot in slotsArray {
-//            slot.update(timeDelta: timeDelta)
-//        }
-//    }
 }

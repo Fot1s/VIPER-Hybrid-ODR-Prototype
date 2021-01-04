@@ -77,21 +77,21 @@ class SlotMachine {
 
         }
         
-//        let yourline2 = SKShapeNode()
-//        let pathToDraw2 = CGMutablePath()
-//        pathToDraw2.move(to: CGPoint(x: self.frame.minX, y: self.frame.origin.y))
-//        pathToDraw2.addLine(to: CGPoint(x: 100.0, y: self.frame.origin.y))
-//        yourline2.path = pathToDraw2
-//        yourline2.strokeColor = SKColor.red
-//        scene.addChild(yourline2)
-//
-//        let yourline3 = SKShapeNode()
-//        let pathToDraw3 = CGMutablePath()
-//        pathToDraw3.move(to: CGPoint(x: self.frame.minX, y: frame.origin.y - frame.size.height))
-//        pathToDraw3.addLine(to: CGPoint(x: 100.0, y: frame.origin.y - frame.size.height))        
-//        yourline3.path = pathToDraw3
-//        yourline3.strokeColor = SKColor.green
-//        scene.addChild(yourline3)
+        let yourline2 = SKShapeNode()
+        let pathToDraw2 = CGMutablePath()
+        pathToDraw2.move(to: CGPoint(x: self.frame.minX, y: self.frame.origin.y))
+        pathToDraw2.addLine(to: CGPoint(x: self.frame.maxX, y: self.frame.origin.y))
+        yourline2.path = pathToDraw2
+        yourline2.strokeColor = SKColor.red
+        scene.addChild(yourline2)
+
+        let yourline3 = SKShapeNode()
+        let pathToDraw3 = CGMutablePath()
+        pathToDraw3.move(to: CGPoint(x: self.frame.minX, y: frame.origin.y - frame.size.height))
+        pathToDraw3.addLine(to: CGPoint(x: self.frame.maxX, y: frame.origin.y - frame.size.height))
+        yourline3.path = pathToDraw3
+        yourline3.strokeColor = SKColor.green
+        scene.addChild(yourline3)
 
     }
     

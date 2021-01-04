@@ -131,7 +131,7 @@ class Slot {
         self.slotRunning = true
         
         // Determine duration of the card move
-        let actualDuration = 1.5 //2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
+        let actualDuration = 0.25 //2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
 
         let frameMidX = self.visibleCard.frame.midX
         
@@ -173,19 +173,19 @@ class Slot {
             // jumpVisibleFromOutToVisiblePos changes the index on preperation for next move
             // if last move fix it one back:
             
-            if (self.spinDirection == .downwards) {
-                self.slotAtIndex -= 1
-                
-                if self.slotAtIndex <= 0 {
-                    self.slotAtIndex = self.cardTextures.count - 1
-                }
-            } else {
-                self.slotAtIndex += 1
-                
-                if self.slotAtIndex > self.cardTextures.count - 1 {
-                    self.slotAtIndex = 0
-                }
-            }
+//            if (self.spinDirection == .downwards) {
+//                self.slotAtIndex -= 1
+//                
+//                if self.slotAtIndex <= 0 {
+//                    self.slotAtIndex = self.cardTextures.count - 1
+//                }
+//            } else {
+//                self.slotAtIndex += 1
+//                
+//                if self.slotAtIndex > self.cardTextures.count - 1 {
+//                    self.slotAtIndex = 0
+//                }
+//            }
             
             print("Slot:Completion with index: \(self.slotAtIndex)")
             completion()

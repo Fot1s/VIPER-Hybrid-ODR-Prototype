@@ -29,7 +29,7 @@ class SlotColumn {
     
     let spinDirection: Slot.SpinDirection
     
-    var rollFor:UInt32 = 0
+    var rollFor:Int = 0
 
     init(_ numSlots:Int, cardTextures:[SKTexture], position:CGPoint, slotWidth:CGFloat, slotHeight:CGFloat, slotAtIndex:Int = 0, spinDirection:Slot.SpinDirection = .downwards ) {
         self.numSlots = numSlots
@@ -137,6 +137,7 @@ class SlotColumn {
                             card.position.y = topPosY - (bottomPosY-card.position.y)// add the difference to the top to avoid gaps
                         }
                         
+                        cards.append(cards.remove(at: 0))
                         cardIndices.remove(at: 0)
                         cardIndices.append(slotAtIndex)
                         
@@ -154,8 +155,6 @@ class SlotColumn {
                     card.position.y += slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
                     
                     if card.position.y > position.y + slotHeight / 2 {
-                        
-                        print("Upp with Diff: \(card.position.y - (position.y + slotHeight / 2))")
 
                         rollFor -= 1
                         
@@ -165,6 +164,8 @@ class SlotColumn {
                             card.position.y = position.y - CGFloat(numSlots) * slotHeight - slotHeight/2 + (card.position.y - (position.y + slotHeight / 2))// add the difference to the top to avoid gaps
                         }
                         
+                        cards.insert(cards.popLast()!, at: 0)
+
                         _ = cardIndices.popLast()
                         cardIndices.insert(slotAtIndex, at: 0)
                         
@@ -182,7 +183,17 @@ class SlotColumn {
                 }
             }
             
-            if rollFor == 0 {
+            if rollFor <= 0 {
+                
+                var indexChange = 0
+                if (spinDirection == .downwards) {
+                    indexChange = 1
+                }
+                
+                for (index,card) in cards.enumerated() {
+                    card.position = CGPoint(x:position.x + slotWidth/2 ,y: bottomPosY + CGFloat(index + indexChange)*slotHeight)
+                }
+
                 slotRunning = false
                 
                 if (spinDirection == .downwards) {
@@ -212,7 +223,7 @@ class SlotColumn {
             return
         }
         
-        self.rollFor = count
+        self.rollFor = Int(count)
         self.slotRunning = true
         self.completionHandler = completion
     }

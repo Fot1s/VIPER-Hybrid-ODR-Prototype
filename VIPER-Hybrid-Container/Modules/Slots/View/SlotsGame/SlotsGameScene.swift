@@ -14,6 +14,8 @@ class SlotsGameScene: SKScene {
     
     var slotMachine:SlotMachine?
     
+    var creditsSlotRow:SlotRow?
+    
     var gameRunning = false ;
     
     var spinButton:SKSpriteNode?
@@ -21,10 +23,23 @@ class SlotsGameScene: SKScene {
     //game init
     override func didMove(to view: SKView) {
         
+        var numberTextures = [SKTexture]()
+        for i in 0...9 {//inclusive is 10
+            numberTextures.append(SKSpriteNode(imageNamed: "number\(i)").texture!)
+        }
+        
         //header - score
+        let creditsLabel = SKSpriteNode(imageNamed: "credits")
+        //credits.size = CGSize(width:50, height:50)
+        creditsLabel.position = CGPoint(x: self.frame.minX + 8 + creditsLabel.size.width/2, y: self.frame.maxY - 8 - creditsLabel.size.height/2)
+        //credits.name = "SpinButton"
+        self.addChild(creditsLabel)
+
+        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, slotsStartAtIndex: 0, spinDirection: Slot.SpinDirection.downwards)
+        self.creditsSlotRow?.addCardsToScene(scene: self)
         
         //main area
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex:0, spinDirection: .downwards)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: 8, slotsStartAtIndex:0, spinDirection: .upwards)
         
         self.slotMachine?.addCardsToScene(scene: self)
 
@@ -80,6 +95,12 @@ class SlotsGameScene: SKScene {
         
         for _ in 1...(slotMachine?.numberOfColumns ?? 10) {
             runFor.append(10 + arc4random_uniform(10)) // 10 to 20
+        }
+        
+        let creditsFor:[UInt32] = [1,1,1,1,1]
+        
+        creditsSlotRow?.spinNow(runForTimes: creditsFor) {
+
         }
         
         slotMachine?.spinNow(runForTimes: runFor) { [weak self] in
