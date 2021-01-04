@@ -8,9 +8,9 @@
 
 import Foundation
 
-class MockSocketServerEmulator {
+class SocketServerEmulator {
     
-    static let shared = MockSocketServerEmulator()
+    static let shared = SocketServerEmulator()
     
     private init() {
         
@@ -24,7 +24,7 @@ class MockSocketServerEmulator {
     //FIX: on the protocol based solution the following can be faked, we do not even need to run the runloop forward
     func startSendingEmulatedMatchUpdates() {
         if (liveMatches?.count ?? 0 > 0) {
-            fakeUpdatesTimer = Timer(timeInterval: Constants.MockSocketServerEmulator.fakeUpdateEvery, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
+            fakeUpdatesTimer = Timer(timeInterval: Constants.SocketServerEmulator.fakeUpdateEvery, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
         RunLoop.current.add(fakeUpdatesTimer!, forMode: .commonModes)
         } else {
             print("Error! Did you forget to set the liveMatches before calling?")
@@ -46,31 +46,18 @@ class MockSocketServerEmulator {
             
             let match = liveMatches[Int(whichMatchId)]
             
-            var value = 0
+            let updateFor = MatchUpdate.BetType(rawValue: whichBet)
             
-            switch whichBet {//1,2,3
-            case 1:
-                value = match.bet1
-            case 2:
-                value = match.betX
-            case 3:
-                value = match.bet2
-            default:
-                value = 0
-                print("Error: Should not be here")
-            }
+            var value = match.getBetValueForBetType(updateFor!)
             
             //add a random ammount between -5 and 5 to the value:
-            let change = -5 + Int(arc4random_uniform(11)) //0 to 10 minus -5 is our range
             
-            //change might be 0 - skip
-            if (change == 0 ) {
-                //print("skipping for 0 change");
-                return
-            }
-            //        else {
-            //            print("change: \(change)");
-            //        }
+            var change = 0
+            
+            //avoid a change of 0
+            repeat {
+                change = -5 + Int(arc4random_uniform(11)) //0 to 10 minus -5 is our range
+            } while (change == 0)
             
             value += change
             
@@ -79,7 +66,7 @@ class MockSocketServerEmulator {
                 value = 100
             }
             
-            let matchToUpdate = MatchUpdate(id: match.id, updateFor:MatchUpdate.UpdateFor(rawValue:whichBet)!, value:value)
+            let matchToUpdate = MatchUpdate(id: match.id, updateFor:MatchUpdate.BetType(rawValue:whichBet)!, value:value)
             
             fakeUpdateSend(matchToUpdate: matchToUpdate)
         }
@@ -104,7 +91,7 @@ class MockSocketServerEmulator {
 }
 
 extension Constants {
-    enum MockSocketServerEmulator {
+    enum SocketServerEmulator {
         static let fakeUpdateEvery = Double(1) //seconds
     }
 }

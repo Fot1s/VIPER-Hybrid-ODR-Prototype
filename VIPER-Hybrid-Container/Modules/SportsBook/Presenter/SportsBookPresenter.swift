@@ -40,7 +40,7 @@ class SportsBookPresenter: SportsBookPresentation {
         
         #if WITH_SOCKET_UPDATES_EMULATOR
             print("Stoped the emulator from sending any more updates");
-            MockSocketServerEmulator.shared.stopSendingEmulatedMatchUpdates()
+            SocketServerEmulator.shared.stopSendingEmulatedMatchUpdates()
         #endif
     }
 }
@@ -65,7 +65,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
 
         #if WITH_SOCKET_UPDATES_EMULATOR
             print("Running with MockerSocketEmulator! Matches Set")
-            MockSocketServerEmulator.shared.liveMatches = live
+            SocketServerEmulator.shared.liveMatches = live
         #endif
         
         view?.showSportsBookData(self.liveMatches, self.futureMatches)
@@ -88,8 +88,8 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         print("Connection Started!") ;
         
         #if WITH_SOCKET_UPDATES_EMULATOR
-            print("Started emulating match updates with an interval of \(Constants.MockSocketServerEmulator.fakeUpdateEvery) seconds");
-            MockSocketServerEmulator.shared.startSendingEmulatedMatchUpdates()
+            print("Started emulating match updates with an interval of \(Constants.SocketServerEmulator.fakeUpdateEvery) seconds");
+            SocketServerEmulator.shared.startSendingEmulatedMatchUpdates()
         #endif
 
     }
@@ -118,14 +118,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         }) {
             var match = self.liveMatches[oldMatchIndex]
             
-            switch (updatedMatch.updateFor) {
-            case .Home :
-                match.bet1 = updatedMatch.value
-            case .Draw :
-                match.betX = updatedMatch.value
-            case .Away :
-                match.bet2 = updatedMatch.value
-            }
+            match.updateMatchBetFromMatchUpdate(updatedMatch)
             
             self.liveMatches[oldMatchIndex] = match
             view?.updateSportsBookData(withMatch: match, updatedMatch: updatedMatch, andIndex: oldMatchIndex)
