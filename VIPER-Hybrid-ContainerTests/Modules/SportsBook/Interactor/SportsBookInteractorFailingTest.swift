@@ -46,31 +46,32 @@ class SportsBookInteractorFailingTest: XCTestCase {
         
     }
 
-    func testFakeUpdateSendWithEmptyMatchToUpdateFails() {
-        
-        var matchToUpdate:MatchUpdate?
-        
-        sut?.fakeUpdateSend(matchToUpdate: matchToUpdate)
-    
-        //Just to silence the warning
-        matchToUpdate = MatchUpdate()
-        
-        XCTAssertNil(mockOutput!.updatedMatch, "updatedMatch should be false")
-        
-    }
+    //    TODO:
+//    func testFakeUpdateSendWithEmptyMatchToUpdateFails() {
+//
+//        var matchToUpdate:MatchUpdate?
+//
+//        sut?.fakeUpdateSend(matchToUpdate: matchToUpdate)
+//
+//        //Just to silence the warning
+//        matchToUpdate = MatchUpdate()
+//
+//        XCTAssertNil(mockOutput!.updatedMatch, "updatedMatch should be false")
+//
+//    }
 
     //TODO: Clean up the socketserver
     //FIX:  match should not be sent at all not received!
-    func testFakeUpdateSendWithMatchToUpdateFails() {
-        sut?.connectToSocketServerForUpdates()
-
-        let matchToUpdate:MatchUpdate = MatchUpdate()
-        
-        sut?.fakeUpdateSend(matchToUpdate: matchToUpdate)
-        
-        XCTAssertFalse(mockOutput!.updatedMatch!, "updatedMatch should be false")
-        
-    }
+//    func testFakeUpdateSendWithMatchToUpdateFails() {
+//        sut?.connectToSocketServerForUpdates()
+//
+//        let matchToUpdate:MatchUpdate = MatchUpdate()
+//        
+//        sut?.fakeUpdateSend(matchToUpdate: matchToUpdate)
+//        
+//        XCTAssertFalse(mockOutput!.updatedMatch!, "updatedMatch should be false")
+//        
+//    }
 
     
     func testConnectToSocketServerFails() {

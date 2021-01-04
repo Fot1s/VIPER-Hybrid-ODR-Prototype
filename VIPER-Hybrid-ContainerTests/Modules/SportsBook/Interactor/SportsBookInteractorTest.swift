@@ -65,21 +65,11 @@ class SportsBookInteractorTest: XCTestCase {
         XCTAssertNotNil(mockOutput!.socketConnected)
         XCTAssertTrue(mockOutput!.socketConnected!)
         
-        //test broken update
-        var emptyMatchToUpdate:MatchUpdate?
-        
-        sut?.fakeUpdateSend(matchToUpdate:emptyMatchToUpdate)
-        
-        //just to sillence the warning
-        emptyMatchToUpdate = MatchUpdate()
-        
-        XCTAssertNil(mockOutput!.updatedMatch)
-        
-        //test real update
+        //test an update
         let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
         
-        sut?.fakeUpdateSend(matchToUpdate:matchToUpdate)
-        
+        //sut?.fakeUpdateSend(matchToUpdate:matchToUpdate)
+        MockWebSocketService.shared.fakeUpdateSend(matchToUpdate:matchToUpdate)
         XCTAssertNotNil(mockOutput!.updatedMatch)
         
         let updatedMatch = mockOutput!.updatedMatch
@@ -153,6 +143,22 @@ class MockWebSocketService: ViperWebSocket {
     func disconnect() {
         websocket.delegate?.websocketDidDisconnect(socket: websocket, error: nil)
     }
+    
+    func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
+        
+        let encoder = JSONEncoder()
+        
+        do {
+            let jsonData = try encoder.encode(matchToUpdate)
+            
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                write(message: jsonString)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
 }
 
 class MockAPIService: ViperNetwork {

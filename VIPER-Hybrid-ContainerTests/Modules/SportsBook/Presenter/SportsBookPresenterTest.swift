@@ -77,10 +77,12 @@ class SportsBookPresenterTest: XCTestCase {
         //The maximum time after which both timers in the presentation will have run
         var waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.Playbook.Values.liveSecondsTimerInterval
         
-        if (Constants.Playbook.Values.fakeUpdatesTimerInterval > waitTimeForTimerToRunAtLeastOneForCodeCoverage)
+        if (Constants.MockSocketServerEmulator.fakeUpdateEvery > waitTimeForTimerToRunAtLeastOneForCodeCoverage)
         {
-            waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.Playbook.Values.fakeUpdatesTimerInterval
+            waitTimeForTimerToRunAtLeastOneForCodeCoverage = Constants.MockSocketServerEmulator.fakeUpdateEvery
         }
+        
+        waitTimeForTimerToRunAtLeastOneForCodeCoverage += 0.1
         
         print("RunLoopWillRun for extra: \(waitTimeForTimerToRunAtLeastOneForCodeCoverage)")
 
@@ -152,6 +154,8 @@ class MockSportsBookInteractor:SportsBookUseCase {
     
     func connectToSocketServerForUpdates() {
         socketConnected = true
+        
+        
         output.connectedToSocketServer()
     }
     
@@ -160,14 +164,14 @@ class MockSportsBookInteractor:SportsBookUseCase {
         output.connectionToSocketServerLost()
     }
     
-    func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
-        
-        //Might run multiple times, only process the first time
-        if (self.matchToUpdate == nil) {
-            self.matchToUpdate = matchToUpdate
-            output.updatedMatchReceivedFromSocketServer(updatedMatch: matchToUpdate!)
-        }
-    }
+//    func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
+//        
+//        //Might run multiple times, only process the first time
+//        if (self.matchToUpdate == nil) {
+//            self.matchToUpdate = matchToUpdate
+//            output.updatedMatchReceivedFromSocketServer(updatedMatch: matchToUpdate!)
+//        }
+//    }
 }
 
 class MockSportsBookView: SportsBookView {

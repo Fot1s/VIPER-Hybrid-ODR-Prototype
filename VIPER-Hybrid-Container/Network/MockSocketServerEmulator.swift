@@ -20,10 +20,14 @@ class MockSocketServerEmulator {
     
     fileprivate var fakeUpdatesTimer:Timer?
     
+    //TODO:
+    //FIX: on the protocol based solution the following can be faked, we do not even need to run the runloop forward
     func startSendingEmulatedMatchUpdates() {
         if (liveMatches?.count ?? 0 > 0) {
             fakeUpdatesTimer = Timer(timeInterval: Constants.MockSocketServerEmulator.fakeUpdateEvery, target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
         RunLoop.current.add(fakeUpdatesTimer!, forMode: .commonModes)
+        } else {
+            print("Error! Did you forget to set the liveMatches before calling?")
         }
     }
     

@@ -63,6 +63,11 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         self.liveMatches = live
         self.futureMatches = future
 
+        #if WITH_SOCKET_UPDATES_EMULATOR
+            print("Running with MockerSocketEmulator! Matches Set")
+            MockSocketServerEmulator.shared.liveMatches = live
+        #endif
+        
         view?.showSportsBookData(self.liveMatches, self.futureMatches)
         view?.hideActivityIndicator()
         interactor.connectToSocketServerForUpdates()
@@ -76,12 +81,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
             liveSecondsTimer = Timer(timeInterval: Constants.Playbook.Values.liveSecondsTimerInterval, target: self, selector: #selector(fireTimerForLiveUpdates), userInfo: nil, repeats: true)
             RunLoop.current.add(liveSecondsTimer!, forMode: .commonModes)
         }
-        
-        #if WITH_SOCKET_UPDATES_EMULATOR
-            print("Running with MockerSocketEmulator! Matches Set")
-            MockSocketServerEmulator.shared.liveMatches = live
-        #endif
-
     }
     
     
