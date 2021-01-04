@@ -12,18 +12,28 @@ import SpriteKit
 
 class SlotsGameScene: SKScene {
     
-    var cardTextures = [SKTexture]()
-
     var slotMachine:SlotMachine?
     
     var gameRunning = false ;
     
+    var spinButton:SKSpriteNode?
+    
     //game init
     override func didMove(to view: SKView) {
         
-        for i in 0...8 {//inclusive is 9
-            cardTextures.append(SKSpriteNode(imageNamed: "card\(i+1)").texture!)
-        }
+        //header - score
+        
+        //main area
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex:0, spinDirection: .downwards)
+        
+        self.slotMachine?.addCardsToScene(scene: self)
+
+        //footer - spin button
+        spinButton = SKSpriteNode(imageNamed: "spinButton")
+        spinButton?.size = CGSize(width:50, height:50)
+        spinButton?.position = CGPoint(x: self.frame.maxX - 25 - 8, y: self.frame.minY + 25 + 8)
+        spinButton?.name = "SpinButton"
+        self.addChild(spinButton!)
 
 //        let yourline = SKShapeNode()
 //        let pathToDraw = CGMutablePath()
@@ -33,14 +43,18 @@ class SlotsGameScene: SKScene {
 //        yourline.strokeColor = SKColor.white
 //        addChild(yourline)
         
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 16), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex:0, spinDirection: .downwards)
-        
-        self.slotMachine?.addCardsToScene(scene: self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !(slotMachine?.isRunning ?? false)  {
-            startGame()
+        
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            if touchedNode.name == "SpinButton" {
+                if !(slotMachine?.isRunning ?? false)  {
+                    startGame()
+                }
+            }
         }
     }
     
@@ -58,12 +72,23 @@ class SlotsGameScene: SKScene {
     }
     
     func startGame() {
+        spinButton?.removeFromParent()
         gameRunning = true
         print("Start Game Called!")
         
-        slotMachine?.spinNow(runForTimes: [10,10,10,10,10]) { [weak self] in
+        var runFor = [UInt32]()
+        
+        for _ in 1...(slotMachine?.numberOfColumns ?? 10) {
+            runFor.append(10 + arc4random_uniform(10)) // 10 to 20
+        }
+        
+        slotMachine?.spinNow(runForTimes: runFor) { [weak self] in
 
             self?.gameRunning = false
+            
+            if let spinButton = self?.spinButton {
+                self?.addChild(spinButton)
+            }
 
             print("Game finished!")
         }

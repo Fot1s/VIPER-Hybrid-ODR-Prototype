@@ -21,20 +21,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 3 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
-    /// Resource file `SlotsScene.sks`.
-    static let slotsSceneSks = Rswift.FileResource(bundle: R.hostingBundle, name: "SlotsScene", pathExtension: "sks")
     /// Resource file `react`.
     static let react = Rswift.FileResource(bundle: R.hostingBundle, name: "react", pathExtension: "")
     /// Resource file `slots`.
     static let slots = Rswift.FileResource(bundle: R.hostingBundle, name: "slots", pathExtension: "")
-    
-    /// `bundle.url(forResource: "SlotsScene", withExtension: "sks")`
-    static func slotsSceneSks(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.slotsSceneSks
-      return fileResource.bundle.url(forResource: fileResource)
-    }
     
     /// `bundle.url(forResource: "react", withExtension: "")`
     static func react(_: Void = ()) -> Foundation.URL? {
@@ -56,7 +48,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 12 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
     /// Image `card1`.
     static let card1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card1")
@@ -82,6 +74,8 @@ struct R: Rswift.Validatable {
     static let imagePlaceholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-placeholder")
     /// Image `intro-react-image`.
     static let introReactImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "intro-react-image")
+    /// Image `spinButton`.
+    static let spinButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "spinButton")
     
     /// `UIImage(named: "card1", bundle: ..., traitCollection: ...)`
     static func card1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -141,6 +135,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "intro-react-image", bundle: ..., traitCollection: ...)`
     static func introReactImage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.introReactImage, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "spinButton", bundle: ..., traitCollection: ...)`
+    static func spinButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.spinButton, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}

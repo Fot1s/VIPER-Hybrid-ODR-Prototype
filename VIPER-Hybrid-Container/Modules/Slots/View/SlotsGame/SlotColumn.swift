@@ -123,11 +123,11 @@ class SlotColumn {
             for card in cards {
                 
                 if (spinDirection == .downwards) {
-                    card.position.y -= slotHeight * CGFloat(timeDelta) / timeToMoveOneCard
+                    card.position.y -= slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
                     
                     if card.position.y < bottomPosY {
                         
-                        print("Down with Diff: \(bottomPosY-card.position.y)")
+                        //print("Down with Diff: \(bottomPosY-card.position.y)")
                         
                         rollFor -= 1
                         
@@ -148,7 +148,7 @@ class SlotColumn {
                         }
                         
                         
-                        print("Rolls Left: \(rollFor)")
+                        //print("Rolls Left: \(rollFor)")
                     }
                 } else {
                     card.position.y += slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
@@ -176,7 +176,7 @@ class SlotColumn {
                         }
                         
                         
-                        print("Rolls Left: \(rollFor)")
+                        //print("Rolls Left: \(rollFor)")
                     }
 
                 }
@@ -185,16 +185,15 @@ class SlotColumn {
             if rollFor == 0 {
                 slotRunning = false
                 
-                if let handler = completionHandler {
-                    handler()
-                }
-                
                 if (spinDirection == .downwards) {
                     print("Cards ended: \(cardIndices[0...cardIndices.count-2])") ;
                 } else {
                     print("Cards ended: \(cardIndices[1...cardIndices.count-1])") ;
                 }
 
+                if let handler = completionHandler {
+                    handler()
+                }
             }
         }
     }
