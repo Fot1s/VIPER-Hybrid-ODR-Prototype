@@ -116,8 +116,6 @@ class SlotColumn {
         self.cardsAdded = true
     }
     
-    let timeToMoveOneCard:CGFloat = 1.5 //second  // ie in timetomove sec height pixels
-    
     func update(timeDelta:TimeInterval) {
         
         if slotRunning {
@@ -153,7 +151,7 @@ class SlotColumn {
                         print("Rolls Left: \(rollFor)")
                     }
                 } else {
-                    card.position.y += slotHeight * CGFloat(timeDelta) / timeToMoveOneCard
+                    card.position.y += slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
                     
                     if card.position.y > position.y + slotHeight / 2 {
                         

@@ -14,8 +14,10 @@ extension Constants {
     enum Slots {
         enum Game {
             static let cellGraphicRatioWidthToHeight = CGFloat(1.092)
-            static let columns = Int(4) ;
+            static let columns = Int(5) ;
+            static let rows = Int(5) ;
             static let columnSpacing = CGFloat(8) ;
+            static let timePerCard = CGFloat(0.25)
         }
     }
 }
