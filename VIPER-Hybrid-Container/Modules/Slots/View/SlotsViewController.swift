@@ -17,7 +17,15 @@ class SlotsViewController: UIViewController {
     override func viewDidLoad() {
         
 //        if let scene = SKScene(fileNamed: "SlotsScene") {
-        let scene = SlotsGameScene(size: UIScreen.main.bounds.size)
+//        let scene = SlotsGameScene(size: UIScreen.main.bounds.size)
+        
+        let navBarHeight = UIApplication.shared.statusBarFrame.size.height +
+            (navigationController?.navigationBar.frame.height ?? 0.0)
+        
+        var visibleArea = UIScreen.main.bounds.size
+        visibleArea.height -= navBarHeight
+        
+        let scene = SlotsGameScene(size: visibleArea)
         scene.scaleMode = .aspectFit
         sceneKitView.showsFPS = true
         sceneKitView.showsNodeCount = true
