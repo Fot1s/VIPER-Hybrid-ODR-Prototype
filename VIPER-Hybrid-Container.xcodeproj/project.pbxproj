@@ -77,6 +77,7 @@
 		A6E8A3B0259BC18200EC4AEC /* SlotRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */; };
 		A6E8A3B2259BF12100EC4AEC /* SlotMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */; };
 		A6E8A3B4259E271100EC4AEC /* SlotColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3B3259E271100EC4AEC /* SlotColumn.swift */; };
+		A6F2801825A28C9D0089EE1B /* MockSocketServerEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F2801725A28C9D0089EE1B /* MockSocketServerEmulator.swift */; };
 		CAF4204C08BA1F1298658D96 /* Pods_VIPER_Hybrid_Container.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711BD5FE0BAE602D0B65E920 /* Pods_VIPER_Hybrid_Container.framework */; };
 /* End PBXBuildFile section */
 
@@ -182,6 +183,7 @@
 		A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotRow.swift; sourceTree = "<group>"; };
 		A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotMachine.swift; sourceTree = "<group>"; };
 		A6E8A3B3259E271100EC4AEC /* SlotColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotColumn.swift; sourceTree = "<group>"; };
+		A6F2801725A28C9D0089EE1B /* MockSocketServerEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSocketServerEmulator.swift; sourceTree = "<group>"; };
 		DE0CA6E86B300817C9517F04 /* Pods-VIPER-Hybrid-Container.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.release.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.release.xcconfig"; sourceTree = "<group>"; };
 		FFBA6A89152AB0DFFFB7634C /* Pods-VIPER-Hybrid-Container.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIPER-Hybrid-Container.debug.xcconfig"; path = "Target Support Files/Pods-VIPER-Hybrid-Container/Pods-VIPER-Hybrid-Container.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -338,6 +340,7 @@
 				A657A7B7258590AF008130A9 /* APIService.swift */,
 				A657A7B8258590AF008130A9 /* Endpoints.swift */,
 				A65B084F2593906D00AF27D1 /* WebSocketService.swift */,
+				A6F2801725A28C9D0089EE1B /* MockSocketServerEmulator.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -567,8 +570,8 @@
 			isa = PBXGroup;
 			children = (
 				A64E28982597AF90009F2603 /* SportsBookConstants.swift */,
-				A65B08782593EDA100AF27D1 /* Entity */,
 				A65B08612593D2CA00AF27D1 /* Contract */,
+				A65B08782593EDA100AF27D1 /* Entity */,
 				A65B08662593D5C900AF27D1 /* View */,
 				A65B08722593E00F00AF27D1 /* Interactor */,
 				A65B086F2593DE7300AF27D1 /* Presenter */,
@@ -1002,6 +1005,7 @@
 				A657A7E32585AAA3008130A9 /* UITableViewExtension.swift in Sources */,
 				A657A7E12585AA49008130A9 /* ViewProtocols.swift in Sources */,
 				A657A7B525857D40008130A9 /* R.generated.swift in Sources */,
+				A6F2801825A28C9D0089EE1B /* MockSocketServerEmulator.swift in Sources */,
 				A657A7DD2585A3E8008130A9 /* Constants.swift in Sources */,
 				A677BEBA259A5C34005BF7AA /* SlotsContract.swift in Sources */,
 				A64E28992597AF90009F2603 /* SportsBookConstants.swift in Sources */,
@@ -1215,8 +1219,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "VIPER-Hybrid-Container/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.phinnovation.VIPER-Hybrid-Container";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = WITH_SOCKET_UPDATES_EMULATOR;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1230,6 +1236,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "VIPER-Hybrid-Container/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.phinnovation.VIPER-Hybrid-Container";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

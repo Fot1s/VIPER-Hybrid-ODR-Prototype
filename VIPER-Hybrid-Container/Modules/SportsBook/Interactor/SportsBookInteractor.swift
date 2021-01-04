@@ -36,22 +36,6 @@ class SportsBookInteractor: SportsBookUseCase {
     func disconnectFromSocketServer() {
         socketService.disconnect()
     }
-
-    func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
-        
-        let encoder = JSONEncoder()
-        //encoder.outputFormatting = .prettyPrinted
-        
-        do {
-            let jsonData = try encoder.encode(matchToUpdate)
-            
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                socketService.write(message: jsonString)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    } 
 }
 
 

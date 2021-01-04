@@ -35,7 +35,7 @@ protocol SportsBookUseCase: class {
     func fetchMatches()
     func connectToSocketServerForUpdates()
     func disconnectFromSocketServer()
-    func fakeUpdateSend(matchToUpdate: MatchUpdate?) 
+//    func fakeUpdateSend(matchToUpdate: MatchUpdate?) 
 }
 
 protocol SportsBookInteractorOutput: class {
