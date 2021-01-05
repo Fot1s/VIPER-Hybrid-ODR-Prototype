@@ -66,7 +66,7 @@ class SlotMachine {
         slotColumnsRunning = [Bool]()
 
         for i in 0..<numberOfColumns {
-            slotColumnsArray.append(SlotColumn(numberOfRows, cardTextures: cardTextures, position: CGPoint(x:frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y:frame.origin.y), slotWidth: slotWidth, slotHeight: slotHeight, slotAtIndex: slotsStartAtIndex, spinDirection: spinDirection))
+            slotColumnsArray.append(SlotColumn(numberOfRows, cardTextures: cardTextures, position: CGPoint(x:frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y:frame.origin.y), slotWidth: slotWidth, slotHeight: slotHeight, slotAtIndex: slotsStartAtIndex, spinDirection: spinDirection, waitForTime: Double(i) * 0.25))
             slotColumnsRunning.append(false)
         }
     }

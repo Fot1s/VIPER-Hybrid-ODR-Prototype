@@ -35,11 +35,11 @@ class SlotsGameScene: SKScene {
         //credits.name = "SpinButton"
         self.addChild(creditsLabel)
 
-        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, slotsStartAtIndex: 0, spinDirection: Slot.SpinDirection.upwards)
+        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, slotsStartAtIndex: 0, spinDirection: Slot.SpinDirection.downwards)
         self.creditsSlotRow?.addCardsToScene(scene: self)
         
         //main area
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: 8, slotsStartAtIndex:0, spinDirection: .downwards)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex:0, spinDirection: .downwards)
         
         self.slotMachine?.addCardsToScene(scene: self)
 
@@ -98,12 +98,12 @@ class SlotsGameScene: SKScene {
         var runFor = [UInt32]()
         
         for _ in 1...(slotMachine?.numberOfColumns ?? 10) {
-            runFor.append(10 + arc4random_uniform(10)) // 10 to 20
+            runFor.append(20 + arc4random_uniform(10)) // 10 to 20
         }
 
         let oldScoreArray = String(format: "%05d", score).digits
         
-        score += 8
+        score += 256
         
         let scoreArray = String(format: "%05d", score).digits
 
@@ -113,24 +113,25 @@ class SlotsGameScene: SKScene {
             let diff = Int(scoreArray[i]) - Int(oldScoreArray[i])
             
             //downward
+            if (diff >= 0) {
+                creditsFor[i] = UInt32(diff)
+
+                if (creditsFor[i] >= 10) {
+                    creditsFor[i] -= 10
+                }
+            } else {
+                creditsFor[i] = UInt32(10 + Int(diff))
+            }
+         //upward
 //            if (diff >= 0) {
-//                creditsFor[i] = UInt32(diff)
+//                creditsFor[i] = 10 - UInt32(diff)
 //
 //                if (creditsFor[i] >= 10) {
 //                    creditsFor[i] -= 10
 //                }
 //            } else {
-//                creditsFor[i] = UInt32(10 + Int(diff))
+//                creditsFor[i] = UInt32(-diff)
 //            }
-            if (diff >= 0) {
-                creditsFor[i] = 10 - UInt32(diff)
-                
-                if (creditsFor[i] >= 10) {
-                    creditsFor[i] -= 10
-                }
-            } else {
-                creditsFor[i] = UInt32(-diff)
-            }
         }
         
         print(creditsFor)

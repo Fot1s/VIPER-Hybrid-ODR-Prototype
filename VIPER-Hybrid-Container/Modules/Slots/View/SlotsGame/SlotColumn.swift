@@ -30,8 +30,10 @@ class SlotColumn {
     let spinDirection: Slot.SpinDirection
     
     var rollFor:Int = 0
+    var runForTime:TimeInterval = 0
+    var waitForTime: CFTimeInterval
 
-    init(_ numSlots:Int, cardTextures:[SKTexture], position:CGPoint, slotWidth:CGFloat, slotHeight:CGFloat, slotAtIndex:Int = 0, spinDirection:Slot.SpinDirection = .downwards ) {
+    init(_ numSlots:Int, cardTextures:[SKTexture], position:CGPoint, slotWidth:CGFloat, slotHeight:CGFloat, slotAtIndex:Int = 0, spinDirection:Slot.SpinDirection = .downwards, waitForTime: CFTimeInterval) {
         self.numSlots = numSlots
         self.cardTextures = cardTextures
         self.position = position
@@ -39,6 +41,7 @@ class SlotColumn {
         self.slotHeight = slotHeight
         self.slotAtIndex = slotAtIndex
         self.spinDirection = spinDirection
+        self.waitForTime = waitForTime
         
         self.slotRunning = false ;
         self.cardsAdded = false ;
@@ -116,9 +119,16 @@ class SlotColumn {
         self.cardsAdded = true
     }
     
+    
     func update(timeDelta:TimeInterval) {
         
         if slotRunning {
+            
+            runForTime += timeDelta
+            
+            guard runForTime > waitForTime else {
+                return
+            }
  
             for card in cards {
                 
@@ -215,15 +225,18 @@ class SlotColumn {
         
         guard self.cardsAdded else {
             print("Cards must be added to the scene before spinning!");
+            completion()
             return
         }
 
         guard count > 0 else {
             print("Will not start with a count of 0!");
+            completion()
             return
         }
         
         self.rollFor = Int(count)
+        self.runForTime = 0 
         self.slotRunning = true
         self.completionHandler = completion
     }
