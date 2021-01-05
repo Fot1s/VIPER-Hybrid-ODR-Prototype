@@ -17,7 +17,7 @@ extension Constants {
             static let columns = Int(5) ;
             static let rows = Int(5) ;
             static let columnSpacing = CGFloat(8) ;
-            static let timePerCard = CGFloat(0.25)
+            static let timePerCard = CGFloat(0.1)
         }
     }
 }

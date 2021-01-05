@@ -86,6 +86,10 @@ class SlotsGameScene: SKScene {
         lastTimeRun = currentTime
     }
     
+    var score = 0
+
+    var creditsFor:[UInt32] = [0,0,0,0,0]
+
     func startGame() {
         spinButton?.removeFromParent()
         gameRunning = true
@@ -96,8 +100,30 @@ class SlotsGameScene: SKScene {
         for _ in 1...(slotMachine?.numberOfColumns ?? 10) {
             runFor.append(10 + arc4random_uniform(10)) // 10 to 20
         }
+
+        let oldScoreArray = String(format: "%05d", score).digits
         
-        let creditsFor:[UInt32] = [1,1,1,1,1]
+        score += 8
+        
+        let scoreArray = String(format: "%05d", score).digits
+
+        for (i,_) in creditsFor.enumerated() {
+            
+            let diff = Int(scoreArray[i]) - Int(oldScoreArray[i])
+            
+            if (diff >= 0) {
+                creditsFor[i] = UInt32(diff)
+                
+                if (creditsFor[i] >= 10) {
+                    creditsFor[i] -= 10
+                }
+            } else {
+                creditsFor[i] = UInt32(10 + Int(diff))
+            }
+        }
+        
+        print(creditsFor)
+        
         
         creditsSlotRow?.spinNow(runForTimes: creditsFor) {
 
@@ -113,5 +139,11 @@ class SlotsGameScene: SKScene {
 
             print("Game finished!")
         }
+    }
+}
+
+extension String {
+    var digits: [UInt32] {
+        return self.flatMap { UInt32(String($0)) }
     }
 }
