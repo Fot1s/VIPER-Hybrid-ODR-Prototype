@@ -7,22 +7,22 @@
 //
 
 import Foundation
-import Starscream ;
+import Starscream
 
 class WebSocketService: ViperWebSocket {
-    
+
     static let shared = WebSocketService()
-    
+
     var websocket: WebSocket!
 
     private init() {
-        let url = URL(string: SocketEndpoints.MatchUpdatesSocket.url)!
+        let url = URL(string: SocketEndpoints.matchUpdatesSocket.url)!
         let request = URLRequest(url: url)
-    
+
         websocket = WebSocket(request: request)
     }
-    
-    func connect(withDelegate delegate:WebSocketDelegate) {
+
+    func connect(withDelegate delegate: WebSocketDelegate) {
         websocket.delegate = delegate
         websocket.connect()
     }
@@ -30,10 +30,8 @@ class WebSocketService: ViperWebSocket {
     func write(message: String) {
         websocket.write(string: message)
     }
-    
+
     func disconnect() {
         websocket.disconnect()
     }
 }
-
-

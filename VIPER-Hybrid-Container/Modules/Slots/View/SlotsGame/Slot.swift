@@ -9,22 +9,22 @@
 import SpriteKit
 
 class Slot {
-    
+
     enum SpinDirection {
         case downwards
         case upwards
     }
-    
-    let cardTextures:[SKTexture]
 
-    var slotAtIndex:Int
-    
-    var visibleCard:SKSpriteNode
-    var hiddenCard:SKSpriteNode
-    
+    let cardTextures: [SKTexture]
+
+    var slotAtIndex: Int
+
+    var visibleCard: SKSpriteNode
+    var hiddenCard: SKSpriteNode
+
     var slotRunning: Bool
     var cardsAdded: Bool
-    
+
     var position: CGPoint
     var slotWidth: CGFloat
     var slotHeight: CGFloat
@@ -32,71 +32,72 @@ class Slot {
     var hiddenPosY: CGFloat
     var visiblePosY: CGFloat
     var limitPosY: CGFloat
-    
-    var spinDirection:SpinDirection
 
-    init(_ cardTextures:[SKTexture], position:CGPoint, slotWidth:CGFloat, slotAtIndex:Int = 0, spinDirection:SpinDirection = .downwards) {
-        
+    var spinDirection: SpinDirection
+
+    init(_ cardTextures: [SKTexture], position: CGPoint, slotWidth: CGFloat, slotAtIndex: Int = 0,
+         spinDirection: SpinDirection = .downwards) {
+
         self.slotRunning = false
-        self.cardsAdded = false 
-        
+        self.cardsAdded = false
+
         self.cardTextures = cardTextures
         self.position = position
         self.slotWidth = slotWidth
         self.slotHeight = slotWidth / Constants.Slots.Game.cellGraphicRatioWidthToHeight
-        
+
         self.slotAtIndex = slotAtIndex
         self.spinDirection = spinDirection
-        
+
         self.visibleCard = SKSpriteNode(texture: cardTextures[slotAtIndex])
-        
+
         self.visiblePosY = position.y - slotHeight/2
-        
-        self.visibleCard.position = CGPoint(x:position.x + slotWidth/2 ,y: visiblePosY)
+
+        self.visibleCard.position = CGPoint(x: position.x + slotWidth/2, y: visiblePosY)
         self.visibleCard.size = CGSize(width: slotWidth, height: slotHeight)
 
-        if (self.spinDirection == .downwards) {
+        if self.spinDirection == .downwards {
             self.slotAtIndex += 1
 
-            if (self.slotAtIndex >= cardTextures.count) {
+            if self.slotAtIndex >= cardTextures.count {
                 self.slotAtIndex = 0
             }
-            
+
             self.hiddenCard = SKSpriteNode(texture: cardTextures[self.slotAtIndex])
-            
-            self.hiddenCard.position    = CGPoint(x:position.x + slotWidth/2 ,y: position.y + slotHeight/2)
-            
+
+            self.hiddenCard.position    = CGPoint(x: position.x + slotWidth/2, y: position.y + slotHeight/2)
+
             self.hiddenPosY = hiddenCard.position.y
             self.limitPosY = visibleCard.position.y - slotHeight
-            
+
         } else {
             self.slotAtIndex -= 1
-            
-            if (self.slotAtIndex <= 0 ) {
+
+            if self.slotAtIndex <= 0 {
                 self.slotAtIndex = cardTextures.count - 1
             }
 
             self.hiddenCard = SKSpriteNode(texture: cardTextures[self.slotAtIndex])
-            
-            self.hiddenCard.position    = CGPoint(x:position.x + slotWidth/2 ,y: position.y - slotHeight/2 - slotHeight)
-            
+
+            self.hiddenCard.position    = CGPoint(x: position.x + slotWidth/2, y: position.y - slotHeight/2 - slotHeight)
+
             self.hiddenPosY = hiddenCard.position.y
             self.limitPosY = visibleCard.position.y + slotHeight
         }
-        
+
         self.hiddenCard.size = CGSize(width: slotWidth, height: slotHeight)
     }
-    
+
     func remCardsFromScene() {
         //remove all - get the parent and remove - parrent contains all cards and the mask
         visibleCard.parent?.removeFromParent()
     }
-    
+
     func addCardsToScene(_ scene: SKScene) {
-        
+
         //create a mask
         let mask = SKSpriteNode(color: SKColor.black, size: CGSize(width: slotWidth, height: slotHeight))
-        mask.position = CGPoint(x:position.x + slotWidth/2 ,y: position.y - slotHeight/2)
+        mask.position = CGPoint(x: position.x + slotWidth/2, y: position.y - slotHeight/2)
 
         //create a container, assign the mask and add the cards to it
         let container = SKCropNode()
@@ -104,94 +105,92 @@ class Slot {
 
         container.addChild(visibleCard)
         container.addChild(hiddenCard)
-        
+
         //add the container to the scene
         scene.addChild(container)
 
         self.cardsAdded = true
     }
-    
-    func spinWheel(_ count:Int, direction: Slot.SpinDirection ,completion: @escaping() -> Void) {
-        
+
+    func spinWheel(_ count: Int, direction: Slot.SpinDirection, completion: @escaping() -> Void) {
+
         //Switch limit, hidden and visisble positions on direction change
-        if (self.spinDirection != direction) {
+        if self.spinDirection != direction {
             let temp = hiddenPosY
             hiddenPosY = limitPosY
             limitPosY = temp
-            
+
             hiddenCard.position.y = hiddenPosY
-            
+
             var hiddenIndex: Int
-            
-            if (direction == .downwards) {
+
+            if direction == .downwards {
                 self.slotAtIndex += 2
 
-                if (self.slotAtIndex >= cardTextures.count) {
-                    self.slotAtIndex = self.slotAtIndex - cardTextures.count
+                if self.slotAtIndex >= cardTextures.count {
+                    self.slotAtIndex -= cardTextures.count
                 }
 
                 hiddenIndex = self.slotAtIndex
             } else {
                 self.slotAtIndex -= 2
-                
-                if (self.slotAtIndex < 0) {
+
+                if self.slotAtIndex < 0 {
                     self.slotAtIndex = cardTextures.count + self.slotAtIndex
                 }
 
                 hiddenIndex = self.slotAtIndex
             }
-            
+
             self.hiddenCard.texture = self.cardTextures[hiddenIndex]
             self.spinDirection = direction
         }
-        
-        
-        if (self.slotRunning) {
+
+        guard !self.slotRunning else {
             print("Already running skip!") //TODO: Could guard this instead of skipping?
             completion()
             return
         }
-        
+
         guard self.cardsAdded else {
-            print("Cards must be added to the scene before spinning!");
+            print("Cards must be added to the scene before spinning!")
             completion()
             return
         }
 
         guard count > 0 else {
-            print("Will not start with a count of 0!");
+            print("Will not start with a count of 0!")
             completion()
             return
         }
-        
+
         self.slotRunning = true
-        
+
         // Determine duration of the card move
         let actualDuration = Constants.Slots.Game.timePerCreditNumber //2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
 
         let frameMidX = self.visibleCard.frame.midX
-        
+
         // Create the actions
         let moveVisibleOut = SKAction.move(to: CGPoint(x: frameMidX, y: limitPosY), duration: TimeInterval(actualDuration))
 
         let moveHiddenToVisible = SKAction.move(to: CGPoint(x: frameMidX, y: visiblePosY),
                                               duration: TimeInterval(actualDuration))
 
-
         let jumpVisibleFromOutToVisiblePos = SKAction.run({
             self.visibleCard.texture = self.hiddenCard.texture
             self.visibleCard.position.y = self.visiblePosY
 
-            if (self.spinDirection == .downwards) {
+            if self.spinDirection == .downwards {
                 self.slotAtIndex += 1
-                
+
                 if self.slotAtIndex > self.cardTextures.count - 1 {
                     self.slotAtIndex = 0
                 }
                 self.hiddenCard.texture = self.cardTextures[self.slotAtIndex]
             } else {
                 self.slotAtIndex -= 1
-                
+
                 if self.slotAtIndex < 0 {
                     self.slotAtIndex = self.cardTextures.count - 1
                 }
@@ -205,10 +204,10 @@ class Slot {
 
         let actionDone = SKAction.run({
             self.slotRunning = false
-            
+
             // jumpVisibleFromOutToVisiblePos changes the index on preperation for next move
             // if last move fix it one back:
-            
+
 //            if (self.spinDirection == .downwards) {
 //                self.slotAtIndex -= 1
 //                
@@ -222,7 +221,7 @@ class Slot {
 //                    self.slotAtIndex = 0
 //                }
 //            }
-            
+
 //            print("Slot:Completion with index: \(self.slotAtIndex)")
             completion()
         })

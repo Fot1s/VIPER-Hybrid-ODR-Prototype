@@ -11,7 +11,7 @@ class ReactAppsPresenter: ReactAppsPresentation {
     weak var view: ReactAppsView?
     var interactor: ReactAppsUseCase!
     var router: ReactAppsWireframe!
-    
+
     var reactApps: [ReactApp] = [] {
         didSet {
             if reactApps.count > 0 {
@@ -19,25 +19,25 @@ class ReactAppsPresenter: ReactAppsPresentation {
             }
         }
     }
-    
+
     func viewDidLoad() {
         interactor.fetchReactApps()
         view?.showActivityIndicator()
     }
-    
+
     func didSelectReactApp(_ reactApp: ReactApp) {
         router.presentHybridContent(forReactApp: reactApp)
     }
 }
 
 extension ReactAppsPresenter: ReactAppsInteractorOutput {
-    
+
     func reactAppsFetched(_ reactApps: [ReactApp]) {
         self.reactApps = reactApps
         view?.hideActivityIndicator()
     }
-    
-    internal func reactAppsFetchFailed(_ error:String) {
+
+    internal func reactAppsFetchFailed(_ error: String) {
         view?.showActivityError(error)
     }
 }

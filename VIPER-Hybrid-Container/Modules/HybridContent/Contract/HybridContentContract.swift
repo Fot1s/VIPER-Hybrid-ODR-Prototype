@@ -10,7 +10,7 @@ import UIKit
 
 protocol HybridContentView: IndicatableView {
     var presenter: HybridContentPresentation! { get set }
-    
+
     func loadReactAppODRContentData(_ stringTag: String)
 }
 
@@ -23,16 +23,15 @@ protocol HybridContentPresentation: class {
 
 protocol HybridContentUseCase: class {
     weak var output: HybridContentInteractorOutput! { get set }
-    
-    func fetchReactAppODR(_ stringTag:String)
+
+    func fetchReactAppODR(_ stringTag: String)
 }
 
 protocol HybridContentInteractorOutput: class {
     func reactAppODRAvailable(_ stringTag: String)
-    func reactAppODRFetchFailed(_ error:String)
+    func reactAppODRFetchFailed(_ error: String)
 }
 
-
 protocol HybridContentWireframe: class {
-    static func assembleModule(_ reactApp:ReactApp) -> UIViewController
+    static func assembleModule(_ reactApp: ReactApp) -> UIViewController
 }

@@ -10,21 +10,20 @@ import UIKit
 import SpriteKit
 
 class SlotsViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var sceneKitView: SKView!
-    
+
     override func viewDidLoad() {
-        
+
 //        if let scene = SKScene(fileNamed: "SlotsScene") {
 //        let scene = SlotsGameScene(size: UIScreen.main.bounds.size)
-        
+
         let navBarHeight = UIApplication.shared.statusBarFrame.size.height +
             (navigationController?.navigationBar.frame.height ?? 0.0)
-        
+
         var visibleArea = UIScreen.main.bounds.size
         visibleArea.height -= navBarHeight
-        
+
         let scene = SlotsGameScene(size: visibleArea)
         scene.scaleMode = .aspectFit
         sceneKitView.showsFPS = true
@@ -33,15 +32,15 @@ class SlotsViewController: UIViewController {
         sceneKitView.ignoresSiblingOrder = true
         sceneKitView.presentScene(scene)
         }
-    
+
 //    override var prefersStatusBarHidden: Bool {
 //        return true
 //    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
 //        self.navigationController?.isNavigationBarHidden = true
     }
-    
+
 //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 //        sceneKitView.scene?.size = size
 //        sceneKitView.scene?.anchorPoint.y 

@@ -10,20 +10,20 @@ import UIKit
 import WebKit
 
 class HybridContentViewController: UIViewController {
-    
+
     @IBOutlet weak var hybridContentWebView: WKWebView!
 
     var presenter: HybridContentPresentation!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
+
         presenter.viewDidLoad()
     }
-    
+
     fileprivate func setupView() {
-        
+
         navigationItem.title = Localization.HybridContent.navigationBarTitle
 
         hybridContentWebView.navigationDelegate = self
@@ -31,12 +31,12 @@ class HybridContentViewController: UIViewController {
     }
 }
 
-extension HybridContentViewController: WKNavigationDelegate{
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
+extension HybridContentViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         hideActivityIndicator()
     }
-    
+
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         showActivityError(error.localizedDescription)
     }
@@ -44,10 +44,9 @@ extension HybridContentViewController: WKNavigationDelegate{
 
 extension HybridContentViewController: HybridContentView {
     func loadReactAppODRContentData(_ stringTag: String) {
-        
+
         let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: stringTag)!
-        
+
         hybridContentWebView.loadFileURL(url, allowingReadAccessTo: url)
     }
 }
-

@@ -6,7 +6,6 @@
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
-
 import Foundation
 
 struct API {
@@ -20,34 +19,34 @@ protocol Endpoint {
 }
 
 enum Endpoints: Endpoint {
-    
-    case ReactApps
-    case Matches
-    case MatchUpdatesSocket
+
+    case reactApps
+    case matches
+//    case matchUpdatesSocket
 
     public var path: String {
         switch self {
-        case .ReactApps: return "/react-apps/"
-        case .Matches: return "/react-prototype/sportsbook/backend/"
-        case .MatchUpdatesSocket: return ""
+        case .reactApps: return "/react-apps/"
+        case .matches: return "/react-prototype/sportsbook/backend/"
+//        case .matchUpdatesSocket: return ""
         }
     }
-    
+
     public var url: String {
         return "\(API.baseUrl)\(path)"
     }
 }
 
 enum SocketEndpoints: Endpoint {
-    
-    case MatchUpdatesSocket
-    
+
+    case matchUpdatesSocket
+
     public var path: String {
         switch self {
-        case .MatchUpdatesSocket: return ""
+        case .matchUpdatesSocket: return ""
         }
     }
-    
+
     public var url: String {
         return "\(API.baseSocketUrl)\(path)"
     }

@@ -9,23 +9,22 @@
 import UIKit
 
 class SlotsRouter: SlotsWireframe {
-    
+
     weak var viewController: UIViewController?
-    
+
     static func assembleModule() -> UIViewController {
         let view = R.storyboard.slotsStoryboard.slotsViewController()
 //        let presenter = IntroPresenter()
         let router = SlotsRouter()
-        
+
 //        view?.presenter = presenter
-        
+
 //        presenter.view = view
 //        presenter.router = router
-        
+
         router.viewController = view
-        
+
         return view!
     }
-    
-    
+
 }

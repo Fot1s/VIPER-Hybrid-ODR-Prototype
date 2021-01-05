@@ -10,8 +10,7 @@ import Foundation
 import Starscream
 
 class SportsBookInteractor: SportsBookUseCase {
-    
-    
+
     var apiService: ViperNetwork!
     var socketService: ViperWebSocket!
 
@@ -20,7 +19,7 @@ class SportsBookInteractor: SportsBookUseCase {
     func fetchMatches() {
 
         apiService
-            .fetch(endPointURL: Endpoints.Matches.url) { (matches:[Match]?) -> () in
+            .fetch(endPointURL: Endpoints.matches.url) { (matches: [Match]?) -> Void in
                 if let matches = matches {
                     self.output.matchesFetched(matches)
                 } else {
@@ -28,29 +27,28 @@ class SportsBookInteractor: SportsBookUseCase {
                 }
         }
     }
-    
+
     func connectToSocketServerForUpdates() {
         socketService.connect(withDelegate: self)
     }
-    
+
     func disconnectFromSocketServer() {
         socketService.disconnect()
     }
 }
 
-
 extension SportsBookInteractor: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         output.connectedToSocketServer()
     }
-    
+
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print(error?.localizedDescription ?? "Missing Error!")
         output.connectionToSocketServerLost()
     }
-    
+
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        
+
         let jsonDecoder = JSONDecoder()
 
         do {
@@ -59,14 +57,13 @@ extension SportsBookInteractor: WebSocketDelegate {
 
             let updatedMatch = try jsonDecoder.decode(MatchUpdate.self, from: jsonData)
 
-            output.updatedMatchReceivedFromSocketServer(updatedMatch:updatedMatch)
-        }
-        catch {
+            output.updatedMatchReceivedFromSocketServer(updatedMatch: updatedMatch)
+        } catch {
             print(error.localizedDescription)
         }
 
     }
-    
+
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {}
-    
+
 }

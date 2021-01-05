@@ -9,14 +9,14 @@
 import UIKit
 
 extension UITableViewCell: ReusableView {
-    
+
     static var reuseIdentifier: String {
         return String(describing: self)
     }
 }
 
 extension UITableViewCell: NibLoadableView {
-    
+
     static var NibName: String {
         return String(describing: self)
     }

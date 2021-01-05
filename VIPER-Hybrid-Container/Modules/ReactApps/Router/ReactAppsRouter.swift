@@ -9,7 +9,7 @@
 import UIKit
 
 class ReactAppsRouter: ReactAppsWireframe {
-    
+
     weak var viewController: UIViewController?
 
     static func assembleModule() -> UIViewController {
@@ -17,7 +17,7 @@ class ReactAppsRouter: ReactAppsWireframe {
         let presenter = ReactAppsPresenter()
         let interactor = ReactAppsInteractor()
         let router = ReactAppsRouter()
-        
+
         view?.presenter = presenter
 
         presenter.view = view
@@ -26,12 +26,12 @@ class ReactAppsRouter: ReactAppsWireframe {
 
         interactor.output = presenter
         interactor.apiService = APIService.shared
-        
+
         router.viewController = view
-        
+
         return view!
     }
-    
+
     func presentHybridContent(forReactApp reactApp: ReactApp) {
         let hybridContentViewController = HybridContentRouter.assembleModule(reactApp)
         viewController?.navigationController?.pushViewController(hybridContentViewController, animated: true)

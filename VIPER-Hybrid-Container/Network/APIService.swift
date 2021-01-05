@@ -6,21 +6,19 @@
 //  Copyright © 2020 Fotis Chatzinikos. All rights reserved.
 //
 
-
 import Foundation
 import Alamofire
 //import AlamofireObjectMapper
 //import ObjectMapper
 
 class APIService: ViperNetwork {
-    
+
     static let shared = APIService()
-    
+
     private init() {
-        
+
     }
 
-    
     //Generic version of fetch based on Codable and not Mappable
     func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable {
         Alamofire
@@ -30,16 +28,15 @@ class APIService: ViperNetwork {
                 switch response.result {
                 case .success(let responseString):
                     let jsonDecoder = JSONDecoder()
-                    
+
                     do {
                         let jsonData = responseString.data(using: .utf8)!
                         // Decode data to object
                         //print(response.value)
                         let values = try jsonDecoder.decode([T].self, from: jsonData)
-                        
+
                         completion(values)
-                    }
-                    catch {
+                    } catch {
                         print("Error while fetching elements: \(String(describing: error))")
                         completion(nil)
                     }
@@ -47,10 +44,9 @@ class APIService: ViperNetwork {
                     print("Error while fetching elements: \(String(describing: error))")
                     completion(nil)
                 }
-            } )
+            })
     }
 
-    
     //Generic version of fetch no need to have multiple versions as bellow
 //    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Mappable {
 //        Alamofire
@@ -67,7 +63,6 @@ class APIService: ViperNetwork {
 //            })
 //    }
 
-    
 //    func fetchMatches(completion: @escaping ([Match]?) -> Void){
 //        Alamofire
 //            .request(Endpoints.ReactApps.fetchMatches.url, method: .get)

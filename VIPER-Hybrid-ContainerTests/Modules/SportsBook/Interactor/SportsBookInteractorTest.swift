@@ -13,44 +13,44 @@ import Starscream
 @testable import VIPER_Hybrid_Container
 
 class SportsBookInteractorTest: XCTestCase {
-    
+
     var sut: SportsBookInteractor?
     var mockOutput: MockSportsBookInteractorOutput?
-    
+
     override func setUp() {
         super.setUp()
-        
+
         sut = SportsBookInteractor()
         mockOutput = MockSportsBookInteractorOutput()
-        
+
         sut?.apiService = MockAPIService.shared
         sut?.socketService = MockWebSocketService.shared
         sut?.output = mockOutput
         super.setUp()
     }
-    
+
     override func tearDown() {
         sut = nil
         mockOutput = nil
         super.tearDown()
     }
-    
+
     func testFetchMatchesFails() {
         MockAPIService.shared.failOnFetchMatches = true
         sut?.fetchMatches()
-        
+
         XCTAssertNotNil(mockOutput?.matchesFailedWithError, "matchesFailedWithError should not be nil")
     }
-    
+
     func testFetchMatches() {
-        
+
         //fetch matches - MockAPIService will return 1 match
         sut?.fetchMatches()
 
         XCTAssertNotNil(mockOutput?.matches, "matches should not be nil")
         XCTAssertTrue(mockOutput?.matches?.count == 1)
         let match = mockOutput!.matches![0]
-        
+
         XCTAssertTrue(match.id == 1)
         XCTAssertTrue(match.live == 1)
         XCTAssertTrue(match.time == 300)
@@ -63,72 +63,72 @@ class SportsBookInteractorTest: XCTestCase {
         XCTAssertTrue(match.betX == 200)
         XCTAssertTrue(match.bet2 == 300)
     }
-    
+
     func testConnectToSocketServerFails() {
-        
-        MockWebSocketService.shared.failToConnect = true 
+
+        MockWebSocketService.shared.failToConnect = true
         sut?.connectToSocketServerForUpdates()
 
         XCTAssertNotNil(mockOutput?.socketConnected)
         XCTAssertFalse(mockOutput?.socketConnected ?? true)
     }
-    
+
     func testConnectAndDisconnectFromSocketServer() {
         //test connection
         sut?.connectToSocketServerForUpdates()
-        
+
         XCTAssertNotNil(mockOutput?.socketConnected)
         XCTAssertTrue(mockOutput?.socketConnected ?? false)
-        
+
         //test disconnection
         sut?.disconnectFromSocketServer()
-        
+
         XCTAssertFalse(mockOutput?.socketConnected ?? true)
     }
-    
+
     func testConnectToSocketSendAndReceiveAMatchUpdate() {
-        
+
         //connection
         sut?.connectToSocketServerForUpdates()
-        
+
         //test an update
-        let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
-        
-        MockWebSocketService.shared.fakeUpdateSend(matchToUpdate:matchToUpdate)
+        let matchToUpdate = MatchUpdate(id: 1, updateFor: .draw, value: 250)
+
+        MockWebSocketService.shared.fakeUpdateSend(matchToUpdate: matchToUpdate)
         XCTAssertNotNil(mockOutput?.updatedMatch)
-        
+
         let updatedMatch = mockOutput?.updatedMatch
-        
+
         XCTAssertTrue(matchToUpdate.id == updatedMatch?.id)
         XCTAssertTrue(matchToUpdate.updateFor == updatedMatch?.updateFor)
         XCTAssertTrue(matchToUpdate.value == updatedMatch?.value)
     }
-    
+
 }
 
 class MockSportsBookInteractorOutput: SportsBookInteractorOutput {
-    
-    var matches:[Match]?
-    var socketConnected:Bool?
-    var updatedMatch:MatchUpdate?
-    var matchesFailedWithError:String?
-    
+
+    var matches: [Match]?
+    var socketConnected: Bool?
+    var updatedMatch: MatchUpdate?
+    var matchesFailedWithError: String?
+
     func matchesFetched(_ matches: [Match]) {
         self.matches = matches
     }
-    
+
     func matchesFetchFailed(_ error: String) {
         self.matchesFailedWithError = error
     }
-    
+
     func connectedToSocketServer() {
         socketConnected = true
     }
-    
+
     func connectionToSocketServerLost() {
         socketConnected = false
     }
-    
+
     func updatedMatchReceivedFromSocketServer(updatedMatch: MatchUpdate) {
         self.updatedMatch = updatedMatch
     }
@@ -137,26 +137,26 @@ class MockSportsBookInteractorOutput: SportsBookInteractorOutput {
 class MockWebSocketService: ViperWebSocket {
 
     static let shared = MockWebSocketService()
-    
+
     var websocket: WebSocket!
-    
+
     var failToConnect = false
-    
+
     private init() {
         let url = URL(string: "ws://none")!
         let request = URLRequest(url: url)
-        
+
         websocket = WebSocket(request: request)
     }
-    
-    func connect(withDelegate delegate:WebSocketDelegate) {
+
+    func connect(withDelegate delegate: WebSocketDelegate) {
         websocket.delegate = delegate
-        
-        if (failToConnect) {
+
+        if failToConnect {
             websocket.delegate?.websocketDidDisconnect(socket: websocket, error: nil)
         } else {
             websocket.delegate?.websocketDidConnect(socket: websocket)
-            
+
             //Just for test coverage:
             //send an empty Data
             websocket.delegate?.websocketDidReceiveData(socket: websocket, data: Data())
@@ -164,22 +164,22 @@ class MockWebSocketService: ViperWebSocket {
             websocket.delegate?.websocketDidReceiveMessage(socket: websocket, text: "broken")
         }
     }
-    
+
     func write(message: String) {
         websocket.delegate?.websocketDidReceiveMessage(socket: websocket, text: message)
     }
-    
+
     func disconnect() {
         websocket.delegate?.websocketDidDisconnect(socket: websocket, error: nil)
     }
-    
+
     func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
-        
+
         let encoder = JSONEncoder()
-        
+
         do {
             let jsonData = try encoder.encode(matchToUpdate)
-            
+
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 write(message: jsonString)
             }
@@ -195,19 +195,19 @@ class MockAPIService: ViperNetwork {
     static let shared = MockAPIService()
 
     var failOnFetchMatches = false
-    
+
     private init() {
 
     }
 
     //Generic version of fetch no need to have multiple versions as bellow
-    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T:Codable {
-        if (failOnFetchMatches) {
+    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable {
+        if failOnFetchMatches {
             completion(nil)
         } else {
-            let matches:[Match]? = [Match(id:1, live:1, time:300, date:"n/a", home:"home", away:"away", homeGoals:0,awayGoals:0, bet1:100,betX:200,bet2:300)]
+            let matches: [Match]? = [Match(id: 1, live: 1, time: 300, date: "n/a", home: "home", away: "away",
+                                           homeGoals: 0, awayGoals: 0, bet1: 100, betX: 200, bet2: 300)]
             completion(matches as? [T])
         }
     }
 }
-

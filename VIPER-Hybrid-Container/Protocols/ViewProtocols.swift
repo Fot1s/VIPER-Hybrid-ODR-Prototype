@@ -17,8 +17,7 @@ protocol NibLoadableView: class {
 }
 
 protocol IndicatableView: class {
-    func showActivityError(_ error:String)
+    func showActivityError(_ error: String)
     func showActivityIndicator()
     func hideActivityIndicator()
 }
-

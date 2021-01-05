@@ -11,6 +11,7 @@ target 'VIPER-Hybrid-Container' do
   pod 'PKHUD', '~> 4.0'
   pod 'R.swift','~> 3.0'
   pod 'Starscream', '<= 3.0.5'
+  pod 'SwiftLint', '~> 0.28.2'
 
   target 'VIPER-Hybrid-ContainerTests' do
     inherit! :complete

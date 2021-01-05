@@ -8,41 +8,39 @@
 
 import Foundation
 
+struct MatchUpdate: Codable {
 
-
-struct MatchUpdate:Codable {
-
-    enum BetType: Int,Codable {
-        case Home = 1
-        case Draw = 2
-        case Away = 3
+    enum BetType: Int, Codable {
+        case home = 1
+        case draw = 2
+        case away = 3
     }
 
     var id = 0
-    var updateFor = BetType.Draw
+    var updateFor = BetType.draw
     var value = 0
 }
 
 extension Match {
-    
-    mutating func updateMatchBetFromMatchUpdate(_ updatedMatch:MatchUpdate) {
-        switch (updatedMatch.updateFor) {
-        case .Home :
+
+    mutating func updateMatchBetFromMatchUpdate(_ updatedMatch: MatchUpdate) {
+        switch updatedMatch.updateFor {
+        case .home :
             self.bet1 = updatedMatch.value
-        case .Draw :
+        case .draw :
             self.betX = updatedMatch.value
-        case .Away :
+        case .away :
             self.bet2 = updatedMatch.value
         }
     }
-    
-    func getBetValueForBetType(_ update:MatchUpdate.BetType) -> Int {
+
+    func getBetValueForBetType(_ update: MatchUpdate.BetType) -> Int {
         switch update {
-        case .Home :
+        case .home :
             return self.bet1
-        case .Draw :
+        case .draw :
             return self.betX
-        case .Away :
+        case .away :
             return self.bet2
         }
     }

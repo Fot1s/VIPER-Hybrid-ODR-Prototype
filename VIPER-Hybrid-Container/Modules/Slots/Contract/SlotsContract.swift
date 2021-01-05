@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SlotsView :class {
+protocol SlotsView: class {
 //    var presenter: IntroPresentation! { get set }
 }
 
@@ -22,8 +22,8 @@ protocol SlotsView :class {
 //}
 
 protocol SlotsWireframe: class {
-    
+
     weak var viewController: UIViewController? { get set }
-    
+
     static func assembleModule() -> UIViewController
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class SportsBookRouter: SportsBookWireframe {
-    
+
     weak var viewController: UIViewController?
 
     static func assembleModule() -> UIViewController {
@@ -17,7 +17,7 @@ class SportsBookRouter: SportsBookWireframe {
         let presenter = SportsBookPresenter()
         let interactor = SportsBookInteractor()
         let router = SportsBookRouter()
-        
+
         view?.presenter = presenter
 
         presenter.view = view
@@ -27,12 +27,12 @@ class SportsBookRouter: SportsBookWireframe {
         interactor.output = presenter
         interactor.apiService = APIService.shared
         interactor.socketService = WebSocketService.shared
-        
+
         router.viewController = view
-        
+
         return view!
     }
-    
+
 //    func presentHybridContent(forReactApp reactApp: ReactApp) {
 //        let hybridContentViewController = HybridContentRouter.assembleModule(reactApp)
 //        viewController?.navigationController?.pushViewController(hybridContentViewController, animated: true)

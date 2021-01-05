@@ -10,7 +10,7 @@ class IntroPresenter: IntroPresentation {
 
     weak var view: IntroView?
     var router: IntroWireframe!
-    
+
     func didSelectWebAndODRContent() {
         router.presentReactApps()
     }
@@ -18,9 +18,8 @@ class IntroPresenter: IntroPresentation {
     func didSelectPlayBook() {
         router.presentSportsBook()
     }
-    
+
     func didSelectSlots() {
         router.presentSlots()
     }
 }
-

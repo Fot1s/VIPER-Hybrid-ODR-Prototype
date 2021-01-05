@@ -13,7 +13,7 @@ struct ReactApp: Codable {
     var title = ""
     var imageUrl = ""
     var localPath = ""
-    
+
     enum CodingKeys: String, CodingKey {
         case title = "title"
         case imageUrl = "image"
@@ -32,4 +32,3 @@ struct ReactApp: Codable {
 //        localPath    <- map["path"]
 //    }
 //}
-

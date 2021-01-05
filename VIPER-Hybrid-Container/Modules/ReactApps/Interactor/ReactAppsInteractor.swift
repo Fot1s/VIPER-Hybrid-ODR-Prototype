@@ -9,13 +9,13 @@
 import Foundation
 
 class ReactAppsInteractor: ReactAppsUseCase {
-    
+
     var apiService: APIService!
 
     weak var output: ReactAppsInteractorOutput!
 
     func fetchReactApps() {
-        apiService.fetch(endPointURL: Endpoints.ReactApps.url) { (reactApps:[ReactApp]?) -> () in
+        apiService.fetch(endPointURL: Endpoints.reactApps.url) { (reactApps: [ReactApp]?) -> Void in
                 if let reactApps = reactApps {
                     self.output.reactAppsFetched(reactApps)
                 } else {

@@ -10,11 +10,10 @@ import UIKit
 import Kingfisher
 
 class ReactAppTableViewCell: UITableViewCell {
-    
 
     @IBOutlet weak var reactAppImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
+
     func setup(_ reactApp: ReactApp) {
         titleLabel?.text = reactApp.title
         reactAppImageView.kf.setImage(
@@ -26,4 +25,3 @@ class ReactAppTableViewCell: UITableViewCell {
         )
     }
 }
-

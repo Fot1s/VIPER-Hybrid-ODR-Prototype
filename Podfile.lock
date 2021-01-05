@@ -6,6 +6,7 @@ PODS:
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
   - Starscream (3.0.5)
+  - SwiftLint (0.28.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - PKHUD (~> 4.0)
   - R.swift (~> 3.0)
   - Starscream (<= 3.0.5)
+  - SwiftLint (~> 0.28.2)
 
 SPEC REPOS:
   trunk:
@@ -22,6 +24,7 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - Starscream
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -30,7 +33,8 @@ SPEC CHECKSUMS:
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftLint: f1629ae733b64e9cad20052de01d1debd5b640e7
 
-PODFILE CHECKSUM: de6d587e4f489d657ffbae2b601c75cc7d6d2bf0
+PODFILE CHECKSUM: 0dd2842368a7f7cddfaa3975076e77950aa6be83
 
 COCOAPODS: 1.10.0

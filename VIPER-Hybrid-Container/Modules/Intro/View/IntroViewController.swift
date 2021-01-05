@@ -9,33 +9,31 @@
 import UIKit
 
 class IntroViewController: UIViewController {
-    
+
     @IBAction func showWebAndODRContentAction(_ sender: Any) {
         presenter.didSelectWebAndODRContent()
     }
-    
-    
+
     @IBAction func showSportsBookAction(_ sender: Any) {
         presenter.didSelectPlayBook()
     }
-    
+
     @IBAction func showSlotsAction(_ sender: Any) {
         presenter.didSelectSlots()
     }
-    
-    
+
     var presenter: IntroPresentation!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-    
+
     fileprivate func setupView() {
         navigationItem.title = Localization.Intro.navigationBarTitle
     }
 }
 
 extension IntroViewController: IntroView {
-    
+
 }

@@ -8,23 +8,23 @@
 
 import UIKit
 
-protocol IntroView :class {
+protocol IntroView: class {
     var presenter: IntroPresentation! { get set }
 }
 
 protocol IntroPresentation: class {
     weak var view: IntroView? { get set }
     var router: IntroWireframe! { get set }
-    
+
     func didSelectWebAndODRContent()
     func didSelectPlayBook()
     func didSelectSlots()
 }
 
 protocol IntroWireframe: class {
-    
+
     weak var viewController: UIViewController? { get set }
-    
+
     func presentReactApps()
     func presentSportsBook()
     func presentSlots()

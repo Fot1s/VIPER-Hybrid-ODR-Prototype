@@ -21,7 +21,7 @@ struct Match: Codable {
     var bet1 = 0
     var betX = 0
     var bet2 = 0
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case live = "live"
@@ -54,4 +54,3 @@ struct Match: Codable {
 //        bet_2    <- map["bet_2"]
 //    }
 //}
-

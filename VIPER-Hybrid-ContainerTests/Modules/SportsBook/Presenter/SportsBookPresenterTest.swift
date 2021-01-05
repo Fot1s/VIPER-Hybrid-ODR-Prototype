@@ -11,16 +11,16 @@ import XCTest
 @testable import VIPER_Hybrid_Container
 
 class SportsBookPresenterTest: XCTestCase {
-    
+
     var sut: SportsBookPresenter?
-    
+
     var mockView: MockSportsBookView?
     var mockInteractor: MockSportsBookInteractor?
     var mockRouter: MockSportsBookRouter?
-    
+
     override func setUp() {
         super.setUp()
-        
+
         sut = SportsBookPresenter()
         mockView = MockSportsBookView()
         mockRouter = MockSportsBookRouter()
@@ -30,10 +30,10 @@ class SportsBookPresenterTest: XCTestCase {
         sut?.view = mockView
         sut?.interactor = mockInteractor
         sut?.router = mockRouter
-        
+
         super.setUp()
     }
-    
+
     override func tearDown() {
         sut = nil
         mockView = nil
@@ -41,11 +41,11 @@ class SportsBookPresenterTest: XCTestCase {
         mockRouter = nil
         super.tearDown()
     }
-    
+
     func testViewIsLoadingWhileDataNotHere() {
         mockInteractor?.returnImmediately = true
         sut?.viewDidLoad()
-        
+
         XCTAssertTrue(mockView?.loading ?? false)
     }
 
@@ -59,11 +59,11 @@ class SportsBookPresenterTest: XCTestCase {
     }
 
     func testMatchesReceivedCorrectly() {
-        
+
         //The following match update will be send after connection
-        let matchToUpdate = MatchUpdate(id: 1, updateFor: .Draw, value: 250)
+        let matchToUpdate = MatchUpdate(id: 1, updateFor: .draw, value: 250)
         mockInteractor?.matchToUpdate = matchToUpdate
-        
+
         sut?.viewDidLoad()
 
         //test view stopped loading
@@ -89,7 +89,7 @@ class SportsBookPresenterTest: XCTestCase {
         let stopDate = Date(timeIntervalSinceNow: waitTimeForTimerToRunAtLeastOneForCodeCoverage)
 
         //WAIT UNTIL THE TIMER IS REACHED
-        RunLoop.current.run(until:stopDate)
+        RunLoop.current.run(until: stopDate)
 
         //test match times in view were updated
         XCTAssertTrue(mockView?.timesWereUpdated ?? false)
@@ -113,55 +113,56 @@ class SportsBookPresenterTest: XCTestCase {
 
     }
 
-    
 }
 
-class MockSportsBookRouter:SportsBookWireframe {
+class MockSportsBookRouter: SportsBookWireframe {
     var viewController: UIViewController?
-    
+
     static func assembleModule() -> UIViewController {
         return UIViewController()
     }
 }
 
-class MockSportsBookInteractor:SportsBookUseCase {
+class MockSportsBookInteractor: SportsBookUseCase {
     var apiService: ViperNetwork!
-    
+
     var socketService: ViperWebSocket!
-    
+
     var output: SportsBookInteractorOutput!
-    
+
     var socketConnected = false
-    
+
     var returnImmediately = false
-    
+
     var failOnFetchMatches = false
-    
-    var matchToUpdate:MatchUpdate?
-    
+
+    var matchToUpdate: MatchUpdate?
+
     func fetchMatches() {
         guard !returnImmediately else { return }
-        
-        if (failOnFetchMatches) {
+
+        if failOnFetchMatches {
             output.matchesFetchFailed("Error fetching matches!")
         } else {
             output.matchesFetched([
-                Match(id: 1, live: 1, time: 100, date: "n/a", home: "home", away: "away", homeGoals: 1, awayGoals: 0, bet1: 100, betX: 200, bet2: 300),
-                Match(id: 2, live: 0, time: 0, date: "23/02/21", home: "home", away: "away", homeGoals: 0, awayGoals: 0, bet1: 400, betX: 500, bet2: 600),
+                Match(id: 1, live: 1, time: 100, date: "n/a", home: "home", away: "away",
+                      homeGoals: 1, awayGoals: 0, bet1: 100, betX: 200, bet2: 300),
+                Match(id: 2, live: 0, time: 0, date: "23/02/21", home: "home", away: "away",
+                      homeGoals: 0, awayGoals: 0, bet1: 400, betX: 500, bet2: 600)
                 ])
         }
     }
-    
+
     func connectToSocketServerForUpdates() {
         socketConnected = true
 
         output.connectedToSocketServer()
-        
+
         if let matchToUpdate = matchToUpdate {
             output.updatedMatchReceivedFromSocketServer(updatedMatch: matchToUpdate)
         }
     }
-    
+
     func disconnectFromSocketServer() {
         socketConnected = false
         output.connectionToSocketServerLost()
@@ -170,33 +171,32 @@ class MockSportsBookInteractor:SportsBookUseCase {
 
 class MockSportsBookView: SportsBookView {
     var presenter: SportsBookPresentation!
-    
+
     var loading = false
     var activityError = false
-    
-    var live:[Match]?
-    var future:[Match]?
-    
-    var updatedMatch:MatchUpdate?
-    
-    var timesWereUpdated:Bool = false
-    
-    
+
+    var live: [Match]?
+    var future: [Match]?
+
+    var updatedMatch: MatchUpdate?
+
+    var timesWereUpdated: Bool = false
+
     //var asyncExpectation:XCTestExpectation?
 
     func showSportsBookData(_ liveMatches: [Match], _ futureMatches: [Match]) {
         self.live = liveMatches
         self.future = futureMatches
     }
-    
+
     func updateSportsBookData(withMatch match: Match, updatedMatch: MatchUpdate, andIndex index: Int) {
-        
+
         //only process the first possible update here:
-        if (self.updatedMatch == nil) {
+        if self.updatedMatch == nil {
             self.updatedMatch = updatedMatch
         }
     }
-    
+
     func updateLiveMatchesWithNewTimes(_ liveMatches: [Match]) {
         timesWereUpdated = true
         live = liveMatches
@@ -207,12 +207,12 @@ extension MockSportsBookView: IndicatableView {
     func showActivityError(_ error: String) {
         activityError = true
     }
-    
+
     func showActivityIndicator() {
-        loading = true ;
+        loading = true
     }
-    
+
     func hideActivityIndicator() {
-        loading = false ;
+        loading = false
     }
 }

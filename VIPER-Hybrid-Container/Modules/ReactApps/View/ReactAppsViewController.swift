@@ -9,9 +9,9 @@
 import UIKit
 
 class ReactAppsViewController: UIViewController {
-    
+
     @IBOutlet weak var reactAppsTableView: UITableView!
-    
+
     var presenter: ReactAppsPresentation!
 
     var reactApps: [ReactApp] = [] {
@@ -20,7 +20,6 @@ class ReactAppsViewController: UIViewController {
         }
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -28,9 +27,9 @@ class ReactAppsViewController: UIViewController {
     }
 
     fileprivate func setupView() {
-        
+
         navigationItem.title = Localization.ReactApps.navigationBarTitle
-        
+
         reactAppsTableView.dataSource = self
         reactAppsTableView.delegate = self
         reactAppsTableView.rowHeight = UITableViewAutomaticDimension
@@ -40,32 +39,32 @@ class ReactAppsViewController: UIViewController {
 }
 
 extension ReactAppsViewController: ReactAppsView {
-    
+
     func showReactAppsData(_ reactApps: [ReactApp]) {
         self.reactApps = reactApps
     }
 }
 
 extension ReactAppsViewController: UITableViewDataSource, UITableViewDelegate {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return reactApps.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ReactAppTableViewCell
         let reactApp = reactApps[indexPath.section]
 
         cell.selectionStyle = .none
         cell.setup(reactApp)
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
     }
@@ -73,17 +72,16 @@ extension ReactAppsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 8
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didSelectReactApp(reactApps[indexPath.section])
     }
 }
-

@@ -9,22 +9,22 @@
 import UIKit
 
 class HybridContentRouter: HybridContentWireframe {
-    
-    static func assembleModule(_ reactApp:ReactApp) -> UIViewController {
+
+    static func assembleModule(_ reactApp: ReactApp) -> UIViewController {
         let view = R.storyboard.hybridContentStoryboard.hybridContentViewController()
-        
+
         let presenter = HybridContentPresenter()
         let interactor = HybridContentInteractor()
-        
+
         presenter.reactApp = reactApp
-        
+
         view?.presenter = presenter
-        
+
         presenter.view = view
         presenter.interactor = interactor
 
         interactor.output = presenter
-        
+
         return view!
     }
 }

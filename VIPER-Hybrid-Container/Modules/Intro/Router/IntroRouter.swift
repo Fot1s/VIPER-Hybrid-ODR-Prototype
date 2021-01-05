@@ -9,36 +9,36 @@
 import UIKit
 
 class IntroRouter: IntroWireframe {
-    
+
     weak var viewController: UIViewController?
 
     static func assembleModule() -> UIViewController {
         let view = R.storyboard.introStoryboard.introViewController()
         let presenter = IntroPresenter()
         let router = IntroRouter()
-        
+
         let navigation = UINavigationController(rootViewController: view!)
-        
+
         view?.presenter = presenter
 
-        presenter.view = view 
+        presenter.view = view
         presenter.router = router
 
         router.viewController = view
-        
+
         return navigation
     }
-    
+
     func presentReactApps() {
         let reactAppsViewController = ReactAppsRouter.assembleModule()
         viewController?.navigationController?.pushViewController(reactAppsViewController, animated: true)
     }
-    
+
     func presentSportsBook() {
         let sportsBookViewController = SportsBookRouter.assembleModule()
         viewController?.navigationController?.pushViewController(sportsBookViewController, animated: true)
     }
-    
+
     func presentSlots() {
         let slotsViewController = SlotsRouter.assembleModule()
         viewController?.navigationController?.pushViewController(slotsViewController, animated: true)

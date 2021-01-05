@@ -1,0 +1,32 @@
+included:
+  - VIPER-Hybrid-Container
+  - VIPER-Hybrid-ContainerTests
+excluded:
+  - Pods
+
+identifier_name:
+  min_length: 2
+
+nesting:
+  type_level:
+    warning: 3
+    error: 6
+  statement_level:
+    warning: 5
+    error: 10
+
+line_length:
+  warning: 140
+  ignores_function_declarations: false
+  ignores_comments: false
+  ignores_interpolated_strings: true
+  ignores_urls: true
+
+function_body_length:
+  warning: 68
+
+cyclomatic_complexity:
+  warning: 15
+
+disabled_rules:
+  - todo

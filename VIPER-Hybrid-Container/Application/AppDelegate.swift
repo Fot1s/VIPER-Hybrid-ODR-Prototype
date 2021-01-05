@@ -10,16 +10,17 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder {
-    
+
     var window: UIWindow?
 }
 
 extension AppDelegate: UIApplicationDelegate {
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+
         window = UIWindow(frame: UIScreen.main.bounds)
         RootRouter().presentIntroScreen(in: window!)
         return true
     }
 }
-

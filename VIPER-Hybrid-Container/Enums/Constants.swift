@@ -13,5 +13,4 @@ enum Constants {
     enum Images {
         static let imagePlaceholder = "image-placeholder"
     }
-    
 }

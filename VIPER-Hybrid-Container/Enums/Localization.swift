@@ -9,15 +9,15 @@
 import Foundation
 
 enum Localization {
-    
+
     enum ReactApps {
         static let navigationBarTitle = "REACT_APPS_NAVIGATION_BAR_TITLE".localized()
     }
-    
+
     enum HybridContent {
         static let navigationBarTitle = "HYBRID_CONTENT_NAVIGATION_BAR_TITLE".localized()
     }
-    
+
     enum Intro {
         static let navigationBarTitle = "INTRO_NAVIGATION_BAR_TITLE".localized()
     }
@@ -27,4 +27,3 @@ enum Localization {
     }
 
 }
-

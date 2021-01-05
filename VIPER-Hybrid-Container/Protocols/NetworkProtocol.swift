@@ -9,15 +9,14 @@
 import Foundation
 import Starscream
 
-protocol ViperNetwork { 
+protocol ViperNetwork {
     func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable
 }
 
 protocol ViperWebSocket {
-    func connect(withDelegate delegate:WebSocketDelegate)
-    
+    func connect(withDelegate delegate: WebSocketDelegate)
+
     func write(message: String)
-    
+
     func disconnect()
 }
-

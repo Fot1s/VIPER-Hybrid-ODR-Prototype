@@ -13,7 +13,7 @@ class HybridContentPresenter: HybridContentPresentation {
     weak var view: HybridContentView?
     var interactor: HybridContentUseCase!
 
-    var reactApp:ReactApp?
+    var reactApp: ReactApp?
 
     func viewDidLoad() {
         if let reactApp = reactApp {
@@ -25,12 +25,11 @@ class HybridContentPresenter: HybridContentPresentation {
     }
 }
 
-
 extension HybridContentPresenter: HybridContentInteractorOutput {
     func reactAppODRAvailable(_ stringTag: String) {
         view?.loadReactAppODRContentData(stringTag)
     }
-    
+
     func reactAppODRFetchFailed(_ error: String) {
         view?.showActivityError(error)
     }
