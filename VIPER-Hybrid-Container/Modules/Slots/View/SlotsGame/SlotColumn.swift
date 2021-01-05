@@ -99,7 +99,7 @@ class SlotColumn {
             }
         }
         
-        print("Cards inited: \(cardIndices) with Next \(slotAtIndex)") ;
+        //print("Cards inited: \(cardIndices) with Next \(slotAtIndex)") ;
     }
     
     
@@ -206,32 +206,43 @@ class SlotColumn {
 
                 slotRunning = false
                 
-                if (spinDirection == .downwards) {
-                    print("Cards ended: \(cardIndices[0...cardIndices.count-2])") ;
-                } else {
-                    print("Cards ended: \(cardIndices[1...cardIndices.count-1])") ;
-                }
-
                 if let handler = completionHandler {
-                    handler()
+                    if (spinDirection == .downwards) {
+                        handler(Array(cardIndices[0...cardIndices.count-2]))
+                    } else {
+//                        print("Cards ended: \(cardIndices[1...cardIndices.count-1])") ;
+                        handler(Array(cardIndices[1...cardIndices.count-1]))
+                    }
                 }
             }
         }
     }
     
-    var completionHandler: (() -> Void)?
+    var completionHandler: (([Int]) -> Void)?
     
-    func spinWheel(_ count:UInt32, completion: @escaping() -> Void) {
+    func spinWheel(_ count:UInt32, completion: @escaping([Int]) -> Void) {
         
         guard self.cardsAdded else {
             print("Cards must be added to the scene before spinning!");
-            completion()
+            
+            if (spinDirection == .downwards) {
+                completion(Array(cardIndices[0...cardIndices.count-2]))
+            } else {
+                completion(Array(cardIndices[1...cardIndices.count-1]))
+            }
+
             return
         }
 
         guard count > 0 else {
             print("Will not start with a count of 0!");
-            completion()
+
+            if (spinDirection == .downwards) {
+                completion(Array(cardIndices[0...cardIndices.count-2]))
+            } else {
+                completion(Array(cardIndices[1...cardIndices.count-1]))
+            }
+
             return
         }
         

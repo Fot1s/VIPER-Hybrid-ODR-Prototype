@@ -111,20 +111,56 @@ class Slot {
         self.cardsAdded = true
     }
     
-    func spinWheel(_ count:Int, completion: @escaping() -> Void) {
+    func spinWheel(_ count:Int, direction: Slot.SpinDirection ,completion: @escaping() -> Void) {
+        
+        //Switch limit, hidden and visisble positions on direction change
+        if (self.spinDirection != direction) {
+            let temp = hiddenPosY
+            hiddenPosY = limitPosY
+            limitPosY = temp
+            
+            hiddenCard.position.y = hiddenPosY
+            
+            var hiddenIndex: Int
+            
+            if (direction == .downwards) {
+                self.slotAtIndex += 2
+
+                if (self.slotAtIndex >= cardTextures.count) {
+                    self.slotAtIndex = self.slotAtIndex - cardTextures.count
+                }
+
+                hiddenIndex = self.slotAtIndex
+            } else {
+                self.slotAtIndex -= 2
+                
+                if (self.slotAtIndex < 0) {
+                    self.slotAtIndex = cardTextures.count + self.slotAtIndex
+                }
+
+                hiddenIndex = self.slotAtIndex
+            }
+            
+            self.hiddenCard.texture = self.cardTextures[hiddenIndex]
+            self.spinDirection = direction
+        }
+        
         
         if (self.slotRunning) {
             print("Already running skip!") //TODO: Could guard this instead of skipping?
+            completion()
             return
         }
         
         guard self.cardsAdded else {
             print("Cards must be added to the scene before spinning!");
+            completion()
             return
         }
 
         guard count > 0 else {
             print("Will not start with a count of 0!");
+            completion()
             return
         }
         
@@ -187,7 +223,7 @@ class Slot {
 //                }
 //            }
             
-            print("Slot:Completion with index: \(self.slotAtIndex)")
+//            print("Slot:Completion with index: \(self.slotAtIndex)")
             completion()
         })
 

@@ -20,6 +20,9 @@ class SlotsGameScene: SKScene {
     
     var spinButton:SKSpriteNode?
     
+    var score = 100
+
+    
     //game init
     override func didMove(to view: SKView) {
         
@@ -35,11 +38,11 @@ class SlotsGameScene: SKScene {
         //credits.name = "SpinButton"
         self.addChild(creditsLabel)
 
-        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, slotsStartAtIndex: 0, spinDirection: Slot.SpinDirection.downwards)
+        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, initialNumber: score, spinDirection: Slot.SpinDirection.downwards)
         self.creditsSlotRow?.addCardsToScene(scene: self)
         
         //main area
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex:0, spinDirection: .downwards)
+        self.slotMachine = SlotMachine(scene: self, frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex:0, spinDirection: .downwards)
         
         self.slotMachine?.addCardsToScene(scene: self)
 
@@ -57,6 +60,39 @@ class SlotsGameScene: SKScene {
 //        yourline.path = pathToDraw
 //        yourline.strokeColor = SKColor.white
 //        addChild(yourline)
+        
+
+
+        
+        //FIX:
+        //TODO: Move the overlay into a an apropriate method
+//overlay tests
+//        let overlay = SKSpriteNode(color: UIColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5), size: CGSize(width:self.frame.width,height:self.frame.height/3))
+//
+//        overlay.position = CGPoint(x: self.frame.midX - self.frame.width, y: self.frame.midY)
+//
+//        let label = SKLabelNode(text: "Multi\n    Win!")
+//        label.numberOfLines = 2
+//        label.fontSize = 72
+//        label.fontName = label.fontName! + "-Bold"
+//        label.position = CGPoint(x: 0, y: -label.frame.size.height/2)
+//        overlay.addChild(label)
+//
+//        self.addChild(overlay)
+//
+//        let bringIn = SKAction.move(to: CGPoint(x: self.frame.midX, y: overlay.position.y), duration: TimeInterval(0.5))
+//
+//        let waitForABit = SKAction.wait(forDuration: 0.5)
+//
+//        let throwOut = SKAction.move(to: CGPoint(x: self.frame.midX + overlay.frame.size.width, y: overlay.position.y), duration: TimeInterval(0.5))
+//
+//        let resetToInitialPos = SKAction.run({
+//            overlay.position = CGPoint(x: self.frame.midX - self.frame.width, y: self.frame.midY)
+//        })
+//
+//        let sequence = SKAction.sequence([bringIn,waitForABit,throwOut, resetToInitialPos])
+//
+//        overlay.run(SKAction.sequence([sequence,sequence,sequence]))
         
     }
     
@@ -86,12 +122,17 @@ class SlotsGameScene: SKScene {
         lastTimeRun = currentTime
     }
     
-    var score = 0
-
-    var creditsFor:[UInt32] = [0,0,0,0,0]
 
     func startGame() {
+        
         spinButton?.removeFromParent()
+
+        //if next move goes bellow 0 (credits) stop and
+        //TODO: Add game over screen / recharge
+        if (score - 50 < 0) {
+            return
+        }
+
         gameRunning = true
         print("Start Game Called!")
         
@@ -101,61 +142,39 @@ class SlotsGameScene: SKScene {
             runFor.append(20 + arc4random_uniform(10)) // 10 to 20
         }
 
-        let oldScoreArray = String(format: "%05d", score).digits
-        
-        score += 256
-        
-        let scoreArray = String(format: "%05d", score).digits
+        self.score -= 50 ;
 
-        for (i,_) in creditsFor.enumerated() {
+        creditsSlotRow?.spinTo(score) {
             
-            
-            let diff = Int(scoreArray[i]) - Int(oldScoreArray[i])
-            
-            //downward
-            if (diff >= 0) {
-                creditsFor[i] = UInt32(diff)
+        }
+        
+        slotMachine?.spinNow(runForTimes: runFor) { [weak self] score in
 
-                if (creditsFor[i] >= 10) {
-                    creditsFor[i] -= 10
+//            if let safeSelf = self {
+//            }
+            self?.gameRunning = false
+
+            //if no update to the score enable the spin button now
+            //else after the score stops incrementing
+            if (score > 0) {
+                self?.score += score
+                self?.creditsSlotRow?.spinTo((self?.score)!){
+                    if let spinButton = self?.spinButton {
+                        self?.addChild(spinButton)
+                    }
                 }
             } else {
-                creditsFor[i] = UInt32(10 + Int(diff))
+                if let spinButton = self?.spinButton {
+                    self?.addChild(spinButton)
+                }
+
             }
-         //upward
-//            if (diff >= 0) {
-//                creditsFor[i] = 10 - UInt32(diff)
-//
-//                if (creditsFor[i] >= 10) {
-//                    creditsFor[i] -= 10
-//                }
-//            } else {
-//                creditsFor[i] = UInt32(-diff)
-//            }
-        }
-        
-        print(creditsFor)
-        
-        
-        creditsSlotRow?.spinNow(runForTimes: creditsFor) {
-
-        }
-        
-        slotMachine?.spinNow(runForTimes: runFor) { [weak self] in
-
-            self?.gameRunning = false
-            
-            if let spinButton = self?.spinButton {
-                self?.addChild(spinButton)
-            }
-
-            print("Game finished!")
         }
     }
 }
 
 extension String {
-    var digits: [UInt32] {
-        return self.flatMap { UInt32(String($0)) }
+    var digits: [Int] {
+        return self.flatMap { Int(String($0)) }
     }
 }
