@@ -18,6 +18,7 @@ extension Constants {
             static let rows = Int(5) ;
             static let columnSpacing = CGFloat(8) ;
             static let timePerCard = CGFloat(0.1)
+            static let timePerCreditNumber = CGFloat(0.25)
         }
     }
 }

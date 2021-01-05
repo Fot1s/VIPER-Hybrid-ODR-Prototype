@@ -35,11 +35,11 @@ class SlotsGameScene: SKScene {
         //credits.name = "SpinButton"
         self.addChild(creditsLabel)
 
-        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, slotsStartAtIndex: 0, spinDirection: Slot.SpinDirection.downwards)
+        self.creditsSlotRow = SlotRow(frame: CGRect(origin:CGPoint(x: 8 + creditsLabel.size.width, y: self.frame.maxY - 8 - creditsLabel.size.height/2), size:CGSize(width: 23*5, height: creditsLabel.size.height)), textures: numberTextures, numberOfSlots: 5, columnSpacing: 0, slotsStartAtIndex: 0, spinDirection: Slot.SpinDirection.upwards)
         self.creditsSlotRow?.addCardsToScene(scene: self)
         
         //main area
-        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: 8, slotsStartAtIndex:0, spinDirection: .upwards)
+        self.slotMachine = SlotMachine(frame: CGRect(origin:CGPoint( x:self.frame.minX+8,y:self.frame.maxY - 8 - 58), size:CGSize(width:self.frame.width-16,height:self.frame.height - 16 - 58 - 58)), numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing, numberOfRows: 8, slotsStartAtIndex:0, spinDirection: .downwards)
         
         self.slotMachine?.addCardsToScene(scene: self)
 
@@ -109,16 +109,27 @@ class SlotsGameScene: SKScene {
 
         for (i,_) in creditsFor.enumerated() {
             
+            
             let diff = Int(scoreArray[i]) - Int(oldScoreArray[i])
             
+            //downward
+//            if (diff >= 0) {
+//                creditsFor[i] = UInt32(diff)
+//
+//                if (creditsFor[i] >= 10) {
+//                    creditsFor[i] -= 10
+//                }
+//            } else {
+//                creditsFor[i] = UInt32(10 + Int(diff))
+//            }
             if (diff >= 0) {
-                creditsFor[i] = UInt32(diff)
+                creditsFor[i] = 10 - UInt32(diff)
                 
                 if (creditsFor[i] >= 10) {
                     creditsFor[i] -= 10
                 }
             } else {
-                creditsFor[i] = UInt32(10 + Int(diff))
+                creditsFor[i] = UInt32(-diff)
             }
         }
         

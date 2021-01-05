@@ -131,7 +131,7 @@ class Slot {
         self.slotRunning = true
         
         // Determine duration of the card move
-        let actualDuration = 0.25 //2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
+        let actualDuration = Constants.Slots.Game.timePerCreditNumber //2.0 / 25 //arc4random_uniform(2) + 2 //(2->4)
 
         let frameMidX = self.visibleCard.frame.midX
         
@@ -156,7 +156,7 @@ class Slot {
             } else {
                 self.slotAtIndex -= 1
                 
-                if self.slotAtIndex <= 0 {
+                if self.slotAtIndex < 0 {
                     self.slotAtIndex = self.cardTextures.count - 1
                 }
                 self.hiddenCard.texture = self.cardTextures[self.slotAtIndex]
