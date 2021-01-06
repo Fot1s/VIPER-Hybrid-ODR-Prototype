@@ -18,9 +18,11 @@ class SlotsGameScene: SKScene {
 
     var spinButton: SKSpriteNode?
     var spinAllButton: SKSpriteNode?
+    var noMoreCreditsOverlay: SKSpriteNode?
 
-    //TODO: Credits can go up to 99999 at the moment before issues - fixable if needed from easy to hard: more digits, auto smaller font and increase in digits, scientific anotation, ++
-    
+    //TODO: Credits can go up to 99999 at the moment before issues
+    //- fixable if needed from easy to hard: more digits, auto smaller font and increase in digits, scientific anotation, ++
+
     var score = 100
 
     //game init
@@ -80,35 +82,23 @@ class SlotsGameScene: SKScene {
         //FIX:
         //TODO: Move the overlay into a an apropriate method
 //overlay tests
-//        let overlay = SKSpriteNode(color: UIColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5),
-//                                        size: CGSize(width:self.frame.width,height:self.frame.height/3))
-//
-//        overlay.position = CGPoint(x: self.frame.midX - self.frame.width, y: self.frame.midY)
-//
-//        let label = SKLabelNode(text: "Multi\n    Win!")
-//        label.numberOfLines = 2
-//        label.fontSize = 72
-//        label.fontName = label.fontName! + "-Bold"
-//        label.position = CGPoint(x: 0, y: -label.frame.size.height/2)
-//        overlay.addChild(label)
-//
-//        self.addChild(overlay)
-//
-//        let bringIn = SKAction.move(to: CGPoint(x: self.frame.midX, y: overlay.position.y), duration: TimeInterval(0.5))
-//
-//        let waitForABit = SKAction.wait(forDuration: 0.5)
-//
-//        let throwOut = SKAction.move(to: CGPoint(x: self.frame.midX + overlay.frame.size.width, y: overlay.position.y),
-//                                        duration: TimeInterval(0.5))
-//
-//        let resetToInitialPos = SKAction.run({
-//            overlay.position = CGPoint(x: self.frame.midX - self.frame.width, y: self.frame.midY)
-//        })
-//
-//        let sequence = SKAction.sequence([bringIn,waitForABit,throwOut, resetToInitialPos])
-//
-//        overlay.run(SKAction.sequence([sequence,sequence,sequence]))
 
+        let label = SKLabelNode(text: "No More\n  Credits!")
+        label.numberOfLines = 2
+        label.color = UIColor.white
+        label.fontSize = 64
+        label.fontName = label.fontName! + "-Bold"
+        label.position = CGPoint(x: 0, y: -label.frame.size.height/2)
+
+        noMoreCreditsOverlay = SKSpriteNode(color: UIColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5),
+                                            size: CGSize(width: self.frame.width, height: label.frame.size.height + 100))
+
+        noMoreCreditsOverlay?.position = CGPoint(x: self.frame.midX - self.frame.width, y: self.frame.midY)
+        noMoreCreditsOverlay?.zPosition = 1000
+
+        noMoreCreditsOverlay?.addChild(label)
+
+        //self.addChild(overlay)
     }
 
     var spinAll = false
@@ -199,11 +189,16 @@ class SlotsGameScene: SKScene {
                         return
                     }
 
-                    if let spinButton = self?.spinButton {
-                        self?.addChild(spinButton)
-                    }
-                    if let spinAllButton = self?.spinAllButton, spinAllButton.parent == nil {
-                        self?.addChild(spinAllButton)
+                    if self!.score - 50 >= 0 {
+                        if let spinButton = self?.spinButton {
+                            self?.addChild(spinButton)
+                        }
+                        if let spinAllButton = self?.spinAllButton, spinAllButton.parent == nil {
+                            self?.addChild(spinAllButton)
+                        }
+
+                    } else {
+                        self?.showNoMoreCredits()
                     }
                 }
             } else {
@@ -215,13 +210,39 @@ class SlotsGameScene: SKScene {
                     return
                 }
 
-                if let spinButton = self?.spinButton {
-                    self?.addChild(spinButton)
-                }
-                if let spinAllButton = self?.spinAllButton, spinAllButton.parent == nil {
-                    self?.addChild(spinAllButton)
+                if self!.score - 50 >= 0 {
+                    if let spinButton = self?.spinButton {
+                        self?.addChild(spinButton)
+                    }
+                    if let spinAllButton = self?.spinAllButton, spinAllButton.parent == nil {
+                        self?.addChild(spinAllButton)
+                    }
+                } else {
+                    self?.showNoMoreCredits()
                 }
             }
+        }
+    }
+
+    func showNoMoreCredits() {
+
+        spinAllButton?.removeFromParent()
+
+        if let creditsOverlay = self.noMoreCreditsOverlay {
+            self.addChild(creditsOverlay)
+            let bringIn = SKAction.move(to: CGPoint(x: self.frame.midX, y: creditsOverlay.position.y), duration: TimeInterval(0.5))
+
+//            let waitForABit = SKAction.wait(forDuration: 2.0)
+
+//            let throwOut = SKAction.move(to: CGPoint(x: self.frame.midX + creditsOverlay.frame.size.width, y: creditsOverlay.position.y),
+//                                         duration: TimeInterval(0.5))
+//
+//            let resetToInitialPos = SKAction.run({
+//                self.noMoreCreditsOverlay?.position = CGPoint(x: self.frame.midX - self.frame.width, y: self.frame.midY)
+//                self.noMoreCreditsOverlay?.removeFromParent()
+//            })
+
+            creditsOverlay.run(SKAction.sequence([bringIn])) // , waitForABit, throwOut, resetToInitialPos
         }
     }
 }

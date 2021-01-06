@@ -54,7 +54,7 @@ class SlotMachine {
         self.columnSpacing = columnSpacing
         self.scene = scene
 
-        self.resultIndexMatrix = Array(repeating: Array(), count: numberOfRows)
+        self.resultIndexMatrix = Array(repeating: Array(), count: numberOfColumns)
 
         var columnSpaces: CGFloat = 0
 
@@ -72,7 +72,7 @@ class SlotMachine {
 
         if slotHeight * CGFloat(numberOfRows) > frame.size.height {
             print("fixed height")
-            slotHeight = (frame.size.height - 32) / CGFloat(numberOfRows)
+            slotHeight = frame.size.height / CGFloat(numberOfRows)
         }
 
         self.slotColumnsArray = [SlotColumn]()
@@ -83,7 +83,7 @@ class SlotMachine {
             slotColumnsArray.append(
                 SlotColumn(numberOfRows, cardTextures: cardTextures,
                            position: CGPoint(x: frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y: frame.origin.y),
-                           slotWidth: slotWidth, slotHeight: slotHeight, slotAtIndex: slotsStartAtIndex,
+                           slotWidth: slotWidth, slotHeight: slotHeight, slotAtIndex: slotsStartAtIndex + i,
                            spinDirection: spinDirection, waitForTime: Double(i) * 0.25))
             slotColumnsRunning.append(false)
 
