@@ -94,7 +94,9 @@ class SlotsGameAndScene: SKScene {
         label.numberOfLines = 2
         label.color = UIColor.white
         label.fontSize = 64
-        label.fontName = label.fontName! + "-Bold"
+        //If we need a font we need to try a system font or load a custom one
+        //SKLabelNode: "HelveticaNeue-UltraLight-Bold" font not found.
+        //label.fontName = label.fontName! + "-Bold"
         label.position = CGPoint(x: 0, y: -label.frame.size.height/2)
 
         noMoreCreditsOverlay = SKSpriteNode(color: UIColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5),
