@@ -17,7 +17,10 @@ class SlotsGameScene: SKScene {
     var gameRunning = false
 
     var spinButton: SKSpriteNode?
+    var spinAllButton: SKSpriteNode?
 
+    //TODO: Credits can go up to 99999 at the moment before issues - fixable if needed from easy to hard: more digits, auto smaller font and increase in digits, scientific anotation, ++
+    
     var score = 100
 
     //game init
@@ -36,10 +39,11 @@ class SlotsGameScene: SKScene {
         //credits.name = "SpinButton"
         self.addChild(creditsLabel)
 
-        self.creditsSlotRow = SlotRow(frame: CGRect(origin: CGPoint(x: 8 + creditsLabel.size.width,
-                                                                   y: self.frame.maxY - 8 - creditsLabel.size.height/2),
+        self.creditsSlotRow = SlotRow(frame: CGRect(origin: CGPoint(x: self.frame.maxX - 8 - 23*5,
+                                                                   y: self.frame.maxY - 8),
                                                     size: CGSize(width: 23*5, height: creditsLabel.size.height)),
                                       textures: numberTextures, numberOfSlots: 5, columnSpacing: 0,
+                                      widthToHightRatio: 0.4792,
                                       initialNumber: score, spinDirection: Slot.SpinDirection.downwards)
         self.creditsSlotRow?.addCardsToScene(scene: self)
 
@@ -58,6 +62,12 @@ class SlotsGameScene: SKScene {
         spinButton?.position = CGPoint(x: self.frame.maxX - 25 - 8, y: self.frame.minY + 25 + 8)
         spinButton?.name = "SpinButton"
         self.addChild(spinButton!)
+
+        spinAllButton = SKSpriteNode(imageNamed: "spinButton")
+        spinAllButton?.size = CGSize(width: -50, height: -50)
+        spinAllButton?.position = CGPoint(x: self.frame.minX + 25 + 8, y: self.frame.minY + 25 + 8)
+        spinAllButton?.name = "SpinButtonAll"
+        self.addChild(spinAllButton!)
 
 //        let yourline = SKShapeNode()
 //        let pathToDraw = CGMutablePath()
@@ -101,6 +111,8 @@ class SlotsGameScene: SKScene {
 
     }
 
+    var spinAll = false
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         for touch in touches {
@@ -108,7 +120,22 @@ class SlotsGameScene: SKScene {
             let touchedNode = atPoint(location)
             if touchedNode.name == "SpinButton" {
                 if !(slotMachine?.isRunning ?? false) {
+                    spinAll = false
+                    spinButton?.removeFromParent()
+                    spinAllButton?.removeFromParent()
+
                     startGame()
+                }
+            } else if touchedNode.name == "SpinButtonAll" {
+                if spinAll {
+                    spinAll = false
+                    spinAllButton?.removeFromParent()
+                } else {
+                    if !(slotMachine?.isRunning ?? false) {
+                        spinAll = true
+                        spinButton?.removeFromParent()
+                        startGame()
+                    }
                 }
             }
         }
@@ -129,8 +156,6 @@ class SlotsGameScene: SKScene {
 
     func startGame() {
 
-        spinButton?.removeFromParent()
-
         //if next move goes bellow 0 (credits) stop and
         //TODO: Add game over screen / recharge
         if score - 50 < 0 {
@@ -143,7 +168,7 @@ class SlotsGameScene: SKScene {
         var runFor = [UInt32]()
 
         for _ in 1...(slotMachine?.numberOfColumns ?? 10) {
-            runFor.append(20 + arc4random_uniform(10)) // 10 to 20
+            runFor.append(17 + arc4random_uniform(10)) // 10 to 20
         }
 
         self.score -= 50
@@ -152,26 +177,50 @@ class SlotsGameScene: SKScene {
 
         }
 
-        slotMachine?.spinNow(runForTimes: runFor) { [weak self] score in
+        slotMachine?.spinNow(runForTimes: runFor) { [weak self] scoreToAdd in
 
 //            if let safeSelf = self {
 //            }
             self?.gameRunning = false
 
+            //TODO: On credits end hide the button and show end screen
+
             //if no update to the score enable the spin button now
             //else after the score stops incrementing
-            if score > 0 {
-                self?.score += score
+            if scoreToAdd > 0 {
+                self?.score += scoreToAdd
                 self?.creditsSlotRow?.spinTo((self?.score)!) {
+
+                    if self?.spinAll == true && (self!.score - 50) >= 0 {
+
+                        DispatchQueue.main.async {
+                            self?.startGame()
+                        }
+                        return
+                    }
+
                     if let spinButton = self?.spinButton {
                         self?.addChild(spinButton)
                     }
+                    if let spinAllButton = self?.spinAllButton, spinAllButton.parent == nil {
+                        self?.addChild(spinAllButton)
+                    }
                 }
             } else {
+                if self?.spinAll == true && (self!.score - 50) >= 0 {
+
+                    DispatchQueue.main.async {
+                        self?.startGame()
+                    }
+                    return
+                }
+
                 if let spinButton = self?.spinButton {
                     self?.addChild(spinButton)
                 }
-
+                if let spinAllButton = self?.spinAllButton, spinAllButton.parent == nil {
+                    self?.addChild(spinAllButton)
+                }
             }
         }
     }

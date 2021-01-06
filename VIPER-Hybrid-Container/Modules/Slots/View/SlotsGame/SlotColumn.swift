@@ -233,7 +233,7 @@ class SlotColumn {
         }
 
         guard count > 0 else {
-            print("Will not start with a count of 0!")
+            //print("No need to spin with a count of zero")
 
             if spinDirection == .downwards {
                 completion(Array(cardIndices[0...cardIndices.count-2]))

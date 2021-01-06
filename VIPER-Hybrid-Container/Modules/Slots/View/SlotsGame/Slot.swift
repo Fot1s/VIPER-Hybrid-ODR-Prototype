@@ -35,7 +35,7 @@ class Slot {
 
     var spinDirection: SpinDirection
 
-    init(_ cardTextures: [SKTexture], position: CGPoint, slotWidth: CGFloat, slotAtIndex: Int = 0,
+    init(_ cardTextures: [SKTexture], position: CGPoint, slotWidth: CGFloat, widthToHightRatio: CGFloat? = nil, slotAtIndex: Int = 0,
          spinDirection: SpinDirection = .downwards) {
 
         self.slotRunning = false
@@ -44,7 +44,12 @@ class Slot {
         self.cardTextures = cardTextures
         self.position = position
         self.slotWidth = slotWidth
-        self.slotHeight = slotWidth / Constants.Slots.Game.cellGraphicRatioWidthToHeight
+
+        if let widthToHightRatio = widthToHightRatio {
+            self.slotHeight = slotWidth / widthToHightRatio
+        } else {
+            self.slotHeight = slotWidth / Constants.Slots.Game.cellGraphicRatioWidthToHeight
+        }
 
         self.slotAtIndex = slotAtIndex
         self.spinDirection = spinDirection

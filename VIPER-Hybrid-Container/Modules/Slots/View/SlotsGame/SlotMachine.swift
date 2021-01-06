@@ -101,43 +101,28 @@ class SlotMachine {
         for slotCol in self.slotColumnsArray {
             slotCol.addCardsToScene(scene)
         }
-
-        let yourline2 = SKShapeNode()
-        let pathToDraw2 = CGMutablePath()
-        pathToDraw2.move(to: CGPoint(x: self.frame.minX, y: self.frame.origin.y))
-        pathToDraw2.addLine(to: CGPoint(x: self.frame.maxX, y: self.frame.origin.y))
-        yourline2.path = pathToDraw2
-        yourline2.strokeColor = SKColor.red
-        scene.addChild(yourline2)
-
-        let yourline3 = SKShapeNode()
-        let pathToDraw3 = CGMutablePath()
-        pathToDraw3.move(to: CGPoint(x: self.frame.minX, y: frame.origin.y - frame.size.height))
-        pathToDraw3.addLine(to: CGPoint(x: self.frame.maxX, y: frame.origin.y - frame.size.height))
-        yourline3.path = pathToDraw3
-        yourline3.strokeColor = SKColor.green
-        scene.addChild(yourline3)
-
     }
 
     func spinNow(runForTimes: [UInt32], completion: @escaping(Int) -> Void) {
         isRunning = true
 
         for (index, slotColumn) in slotColumnsArray.enumerated() {
-            slotColumn.spinWheel(runForTimes[index]) { resultIndices in
+            slotColumn.spinWheel(runForTimes[index]) { [weak self] resultIndices in
 
-                self.slotColumnsRunning[index] = false
-                self.resultIndexMatrix[index] = resultIndices
+                if let `self` = self {
+                    self.slotColumnsRunning[index] = false
+                    self.resultIndexMatrix[index] = resultIndices
 
-                if !self.isRunning {
+                    if !self.isRunning {
 
-                    var score: Int = 0
+                        var score: Int = 0
 
-                    self.searchForWins(&score, &self.resultIndexMatrix)
+                        self.searchForWins(&score, &self.resultIndexMatrix)
 
-                    print("Score: \(score)")
+                        print("Score: \(score)")
 
-                    completion(score)
+                        completion(score)
+                    }
                 }
             }
         }

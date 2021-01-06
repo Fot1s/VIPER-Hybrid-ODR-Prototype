@@ -40,7 +40,7 @@ class SlotRow {
         }
     }
 
-    init(frame: CGRect, textures: [SKTexture], numberOfSlots: Int, columnSpacing: CGFloat,
+    init(frame: CGRect, textures: [SKTexture], numberOfSlots: Int, columnSpacing: CGFloat, widthToHightRatio: CGFloat? = nil,
          initialNumber: Int = 0, spinDirection: Slot.SpinDirection = .downwards ) {
         self.frame = frame
         self.numberOfSlots = numberOfSlots
@@ -64,12 +64,27 @@ class SlotRow {
         for i in 0..<numberOfSlots {
             slotsArray.append(Slot(cardTextures,
                                    position: CGPoint(x: frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y: frame.origin.y),
-                                   slotWidth: slotWidth, slotAtIndex: scoreDigits[i], spinDirection: spinDirection))
+                                   slotWidth: slotWidth, widthToHightRatio: widthToHightRatio, slotAtIndex: scoreDigits[i],
+                                   spinDirection: spinDirection))
             slotsRunning.append(false)
         }
     }
 
     func addCardsToScene(scene: SKScene) {
+//        let yourline2 = SKShapeNode()
+//        let pathToDraw2 = CGMutablePath()
+//        pathToDraw2.move(to: CGPoint(x: frame.origin.x, y: frame.origin.y))
+//        pathToDraw2.addLine(to: CGPoint(x: 200, y: frame.origin.y))
+//        yourline2.path = pathToDraw2
+//        yourline2.strokeColor = SKColor.white
+//        scene.addChild(yourline2)
+//        let yourline3 = SKShapeNode()
+//        let pathToDraw3 = CGMutablePath()
+//        pathToDraw3.move(to: CGPoint(x: frame.origin.x, y: frame.origin.y - frame.size.height))
+//        pathToDraw3.addLine(to: CGPoint(x: 200, y: frame.origin.y - frame.size.height))
+//        yourline3.path = pathToDraw3
+//        yourline3.strokeColor = SKColor.white
+//        scene.addChild(yourline3)
 
         for slot in slotsArray {
             slot.addCardsToScene(scene)
