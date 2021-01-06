@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,14 +21,14 @@
                             <rect key="frame" x="2" y="2" width="331" height="64.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24/12/20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCr-ex-bK4" userLabel="Date/Time">
-                                    <rect key="frame" x="8" y="8" width="107.5" height="20"/>
+                                    <rect key="frame" x="2" y="8" width="107.5" height="20"/>
                                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.65320897102355957" green="0.68924558162689209" blue="0.72671645879745483" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsq-pu-0yB">
-                                    <rect key="frame" x="124" y="36.5" width="167" height="20"/>
+                                    <rect key="frame" x="110.5" y="36.5" width="180.5" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -50,7 +53,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7M-70-3yh">
-                                    <rect key="frame" x="124" y="8" width="167" height="20.5"/>
+                                    <rect key="frame" x="110.5" y="8" width="180.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -58,10 +61,10 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="ZtY-3A-4iR" firstAttribute="leading" secondItem="h7M-70-3yh" secondAttribute="trailing" constant="8" id="4zw-aG-tra"/>
-                                <constraint firstItem="dCr-ex-bK4" firstAttribute="leading" secondItem="uws-eD-6fJ" secondAttribute="leading" constant="8" id="5pI-gn-HmU"/>
+                                <constraint firstItem="dCr-ex-bK4" firstAttribute="leading" secondItem="uws-eD-6fJ" secondAttribute="leading" constant="2" id="5pI-gn-HmU"/>
                                 <constraint firstAttribute="trailing" secondItem="IP4-Ig-dMW" secondAttribute="trailing" constant="8" id="7yE-ca-ym4"/>
                                 <constraint firstItem="dCr-ex-bK4" firstAttribute="top" secondItem="uws-eD-6fJ" secondAttribute="top" constant="8" id="AlL-cV-tUt"/>
-                                <constraint firstItem="h7M-70-3yh" firstAttribute="leading" secondItem="dCr-ex-bK4" secondAttribute="trailing" constant="8" id="Gx5-Pm-GP6"/>
+                                <constraint firstItem="h7M-70-3yh" firstAttribute="leading" secondItem="dCr-ex-bK4" secondAttribute="trailing" constant="1" id="Gx5-Pm-GP6"/>
                                 <constraint firstItem="IP4-Ig-dMW" firstAttribute="top" secondItem="ZtY-3A-4iR" secondAttribute="bottom" constant="8" id="GyB-Fb-gmm"/>
                                 <constraint firstAttribute="trailing" secondItem="ZtY-3A-4iR" secondAttribute="trailing" constant="8" id="J1V-Uq-d2e"/>
                                 <constraint firstItem="tsq-pu-0yB" firstAttribute="width" secondItem="h7M-70-3yh" secondAttribute="width" id="aVX-Um-Z4W"/>
@@ -180,7 +183,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.65320897099999997" green="0.68924558160000005" blue="0.72671645880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="eZr-cy-xkB" firstAttribute="leading" secondItem="jkj-LM-e5t" secondAttribute="leading" constant="2" id="5Kr-pM-Q1n"/>
                         <constraint firstAttribute="trailing" secondItem="uws-eD-6fJ" secondAttribute="trailing" constant="2" id="Dl8-uG-JgY"/>
