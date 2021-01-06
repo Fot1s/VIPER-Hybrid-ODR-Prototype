@@ -48,7 +48,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 24 images.
+  /// This `R.image` struct is generated, and contains static references to 26 images.
   struct image {
     /// Image `card1`.
     static let card1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "card1")
@@ -96,8 +96,12 @@ struct R: Rswift.Validatable {
     static let number8 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number8")
     /// Image `number9`.
     static let number9 = Rswift.ImageResource(bundle: R.hostingBundle, name: "number9")
+    /// Image `spinAllButton`.
+    static let spinAllButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "spinAllButton")
     /// Image `spinButton`.
     static let spinButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "spinButton")
+    /// Image `spinCancelButton`.
+    static let spinCancelButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "spinCancelButton")
     
     /// `UIImage(named: "card1", bundle: ..., traitCollection: ...)`
     static func card1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -214,9 +218,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.number9, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "spinAllButton", bundle: ..., traitCollection: ...)`
+    static func spinAllButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.spinAllButton, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "spinButton", bundle: ..., traitCollection: ...)`
     static func spinButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.spinButton, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "spinCancelButton", bundle: ..., traitCollection: ...)`
+    static func spinCancelButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.spinCancelButton, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}

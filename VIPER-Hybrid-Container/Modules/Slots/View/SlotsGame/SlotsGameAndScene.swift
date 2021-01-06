@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class SlotsGameScene: SKScene {
+class SlotsGameAndScene: SKScene {
 
     var slotMachine: SlotMachine?
 
@@ -18,6 +18,7 @@ class SlotsGameScene: SKScene {
 
     var spinButton: SKSpriteNode?
     var spinAllButton: SKSpriteNode?
+    var spinCancelButton: SKSpriteNode?
     var noMoreCreditsOverlay: SKSpriteNode?
 
     //TODO: Credits can go up to 99999 at the moment before issues
@@ -65,10 +66,16 @@ class SlotsGameScene: SKScene {
         spinButton?.name = "SpinButton"
         self.addChild(spinButton!)
 
-        spinAllButton = SKSpriteNode(imageNamed: "spinButton")
-        spinAllButton?.size = CGSize(width: -50, height: -50)
+        spinAllButton = SKSpriteNode(imageNamed: "spinAllButton")
+        spinAllButton?.size = CGSize(width: 50, height: 50)
         spinAllButton?.position = CGPoint(x: self.frame.minX + 25 + 8, y: self.frame.minY + 25 + 8)
         spinAllButton?.name = "SpinButtonAll"
+
+        spinCancelButton = SKSpriteNode(imageNamed: "spinCancelButton")
+        spinCancelButton?.size = CGSize(width: 50, height: 50)
+        spinCancelButton?.position = CGPoint(x: self.frame.minX + 25 + 8, y: self.frame.minY + 25 + 8)
+        spinCancelButton?.name = "SpinButtonAll"
+
         self.addChild(spinAllButton!)
 
 //        let yourline = SKShapeNode()
@@ -119,11 +126,13 @@ class SlotsGameScene: SKScene {
             } else if touchedNode.name == "SpinButtonAll" {
                 if spinAll {
                     spinAll = false
-                    spinAllButton?.removeFromParent()
+                    spinCancelButton?.removeFromParent()
                 } else {
                     if !(slotMachine?.isRunning ?? false) {
                         spinAll = true
+                        spinAllButton?.removeFromParent()
                         spinButton?.removeFromParent()
+                        self.addChild(spinCancelButton!)
                         startGame()
                     }
                 }
@@ -172,8 +181,6 @@ class SlotsGameScene: SKScene {
 //            if let safeSelf = self {
 //            }
             self?.gameRunning = false
-
-            //TODO: On credits end hide the button and show end screen
 
             //if no update to the score enable the spin button now
             //else after the score stops incrementing
@@ -227,6 +234,7 @@ class SlotsGameScene: SKScene {
     func showNoMoreCredits() {
 
         spinAllButton?.removeFromParent()
+        spinCancelButton?.removeFromParent()
 
         if let creditsOverlay = self.noMoreCreditsOverlay {
             self.addChild(creditsOverlay)

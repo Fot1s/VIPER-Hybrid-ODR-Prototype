@@ -24,7 +24,7 @@ class SlotsViewController: UIViewController {
         var visibleArea = UIScreen.main.bounds.size
         visibleArea.height -= navBarHeight
 
-        let scene = SlotsGameScene(size: visibleArea)
+        let scene = SlotsGameAndScene(size: visibleArea)
         scene.scaleMode = .aspectFit
         sceneKitView.showsFPS = true
         sceneKitView.showsNodeCount = true
