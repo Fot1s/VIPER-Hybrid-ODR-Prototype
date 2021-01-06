@@ -19,7 +19,7 @@ class APIService: ViperNetwork {
 
     }
 
-    //Generic version of fetch based on Codable and not Mappable
+    //Generic version of fetch based on Codable and not Mappable, no need for multiple fetch variations
     func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable {
         Alamofire
             .request(endPointURL, method: .get)
@@ -46,22 +46,6 @@ class APIService: ViperNetwork {
                 }
             })
     }
-
-    //Generic version of fetch no need to have multiple versions as bellow
-//    func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Mappable {
-//        Alamofire
-//            .request(endPointURL, method: .get)
-//            .validate()
-//            .responseArray(completionHandler: { (response: DataResponse<[T]>) in
-//                switch response.result {
-//                case .success(let elements):
-//                    completion(elements )
-//                case .failure(let error):
-//                    print("Error while fetching elements: \(String(describing: error))")
-//                    completion(nil)
-//                }
-//            })
-//    }
 
 //    func fetchMatches(completion: @escaping ([Match]?) -> Void){
 //        Alamofire

@@ -332,8 +332,8 @@
 		A657A7B6258590AF008130A9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				A657A7B7258590AF008130A9 /* APIService.swift */,
 				A657A7B8258590AF008130A9 /* Endpoints.swift */,
+				A657A7B7258590AF008130A9 /* APIService.swift */,
 				A65B084F2593906D00AF27D1 /* WebSocketService.swift */,
 				A6F2801725A28C9D0089EE1B /* SocketServerEmulator.swift */,
 			);
@@ -665,7 +665,7 @@
 		A677BEBB259A5EC8005BF7AA /* SlotsGame */ = {
 			isa = PBXGroup;
 			children = (
-				A677BEC0259A7786005BF7AA /* assets */,
+				A677BEC0259A7786005BF7AA /* Resources */,
 				A6E8A3AD259BBF9B00EC4AEC /* SlotsConstants.swift */,
 				A677BEBE259A5FF2005BF7AA /* SlotsGameAndScene.swift */,
 				A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */,
@@ -676,12 +676,12 @@
 			path = SlotsGame;
 			sourceTree = "<group>";
 		};
-		A677BEC0259A7786005BF7AA /* assets */ = {
+		A677BEC0259A7786005BF7AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				A677BEC1259A77AC005BF7AA /* gameSprites.xcassets */,
 			);
-			path = assets;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A67E280D25966F2300E86846 /* VIPER-Hybrid-ContainerTests */ = {

@@ -200,7 +200,6 @@ class MockAPIService: ViperNetwork {
 
     }
 
-    //Generic version of fetch no need to have multiple versions as bellow
     func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable {
         if failOnFetchMatches {
             completion(nil)
