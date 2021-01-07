@@ -97,7 +97,7 @@ class SlotsGameAndScene: SKScene {
         var runFor = [UInt32]()
 
         for _ in 1...(slotMachine.numberOfColumns) {
-            runFor.append(Constants.Slots.Game.rollForAMinimumOf + arc4random_uniform(Constants.Slots.Game.addToMinimumRollARandomWithMax)) // 10 to 20
+            runFor.append(Constants.Slots.Game.rollForAMinimumOf + arc4random_uniform(Constants.Slots.Game.addToMinimumRollARandomWithMax))
         }
 
         //each time the game is started the user loses creditsPerGame

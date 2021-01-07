@@ -26,7 +26,7 @@ function_body_length:
   warning: 68
 
 cyclomatic_complexity:
-  warning: 15
+  warning: 10
 
 disabled_rules:
   - todo
