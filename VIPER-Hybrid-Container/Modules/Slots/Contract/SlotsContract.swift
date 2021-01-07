@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SlotsView: class {
+protocol SlotsView: RotatableView {
 //    var presenter: IntroPresentation! { get set }
 }
 
