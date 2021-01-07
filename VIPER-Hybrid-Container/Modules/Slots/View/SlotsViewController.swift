@@ -26,9 +26,9 @@ class SlotsViewController: UIViewController {
 
         let scene = SlotsGameAndScene(size: visibleArea)
         scene.scaleMode = .aspectFit
-        sceneKitView.showsFPS = true
-        sceneKitView.showsNodeCount = true
-        sceneKitView.showsDrawCount = true
+//        sceneKitView.showsFPS = true
+//        sceneKitView.showsNodeCount = true
+//        sceneKitView.showsDrawCount = true
         sceneKitView.ignoresSiblingOrder = true
         sceneKitView.presentScene(scene)
         }
@@ -37,12 +37,7 @@ class SlotsViewController: UIViewController {
 //        return true
 //    }
 
-    override func viewWillAppear(_ animated: Bool) {
+//    override func viewWillAppear(_ animated: Bool) {
 //        self.navigationController?.isNavigationBarHidden = true
-    }
-
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        sceneKitView.scene?.size = size
-//        sceneKitView.scene?.anchorPoint.y 
 //    }
 }
