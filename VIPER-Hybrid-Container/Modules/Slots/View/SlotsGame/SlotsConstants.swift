@@ -17,7 +17,7 @@ extension Constants {
             static let cellGraphicRatioWidthToHeight = CGFloat(1.092)
 
             static let columns: Int = 5
-            static let rows: Int = 3
+            static let rows: Int = 5
             static let columnSpacing: CGFloat = 8
 
             //time that takes for a card to move to the next slot

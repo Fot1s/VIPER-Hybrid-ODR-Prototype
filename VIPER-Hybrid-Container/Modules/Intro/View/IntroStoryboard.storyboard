@@ -17,23 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aLt-tD-Q9f">
-                                <rect key="frame" x="16" y="80" width="343" height="571"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aLt-tD-Q9f">
+                                <rect key="frame" x="8" y="72" width="359" height="587"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ue-XT-IAI">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="179.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="190.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro-react-image" translatesAutoresizingMaskIntoConstraints="NO" id="bRs-7t-9hI">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="179.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="190.5"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9H-oO-2xE">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="179.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="190.5"/>
                                                 <connections>
                                                     <action selector="showWebAndODRContentAction:" destination="3fb-lr-krf" eventType="touchUpInside" id="Uhh-Na-wBv"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Web + ODR Content" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umk-Bc-Ec0">
-                                                <rect key="frame" x="0.0" y="140" width="343" height="40"/>
+                                                <rect key="frame" x="0.0" y="151" width="359" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="u0H-hd-gwS"/>
@@ -59,13 +59,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nzG-ZU-znm">
-                                        <rect key="frame" x="0.0" y="195.5" width="343" height="180"/>
+                                        <rect key="frame" x="0.0" y="198.5" width="359" height="190"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D2H-Lw-aWg">
-                                                <rect key="frame" x="0.0" y="-0.5" width="343" height="180.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sports-book-image" translatesAutoresizingMaskIntoConstraints="NO" id="D2H-Lw-aWg">
+                                                <rect key="frame" x="0.0" y="-0.5" width="359" height="190.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show SportsBook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Oz-bP-fcq">
-                                                <rect key="frame" x="0.0" y="140" width="343" height="40"/>
+                                                <rect key="frame" x="0.0" y="150" width="359" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="9v3-DY-Lkl"/>
@@ -75,7 +75,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsY-2W-Trv">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="180"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="190"/>
                                                 <connections>
                                                     <action selector="showSportsBookAction:" destination="3fb-lr-krf" eventType="touchUpInside" id="1Nq-T6-j0p"/>
                                                 </connections>
@@ -97,13 +97,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niZ-fM-NQD">
-                                        <rect key="frame" x="0.0" y="391.5" width="343" height="179.5"/>
+                                        <rect key="frame" x="0.0" y="396.5" width="359" height="190.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="feC-45-B8B">
-                                                <rect key="frame" x="0.0" y="-0.5" width="343" height="180"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slots-image" translatesAutoresizingMaskIntoConstraints="NO" id="feC-45-B8B" userLabel="slots-image">
+                                                <rect key="frame" x="0.0" y="-0.5" width="359" height="191"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show SpriteKit Slots" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEL-zl-Zq1">
-                                                <rect key="frame" x="0.0" y="139.5" width="343" height="40"/>
+                                                <rect key="frame" x="0.0" y="150.5" width="359" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="AzO-vL-a39"/>
@@ -113,7 +113,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKa-Bf-zAj">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="179.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="190.5"/>
                                                 <connections>
                                                     <action selector="showSlotsAction:" destination="3fb-lr-krf" eventType="touchUpInside" id="2MH-3g-0QK"/>
                                                 </connections>
@@ -139,10 +139,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fPp-Ys-Uxg" firstAttribute="bottom" secondItem="aLt-tD-Q9f" secondAttribute="bottom" constant="16" id="JvT-4s-CI6"/>
-                            <constraint firstItem="fPp-Ys-Uxg" firstAttribute="trailing" secondItem="aLt-tD-Q9f" secondAttribute="trailing" constant="16" id="aFC-fe-BLI"/>
-                            <constraint firstItem="aLt-tD-Q9f" firstAttribute="leading" secondItem="fPp-Ys-Uxg" secondAttribute="leading" constant="16" id="cmq-7z-u1R"/>
-                            <constraint firstItem="aLt-tD-Q9f" firstAttribute="top" secondItem="fPp-Ys-Uxg" secondAttribute="top" constant="16" id="gy1-Ir-hcf"/>
+                            <constraint firstItem="fPp-Ys-Uxg" firstAttribute="bottom" secondItem="aLt-tD-Q9f" secondAttribute="bottom" constant="8" id="JvT-4s-CI6"/>
+                            <constraint firstItem="fPp-Ys-Uxg" firstAttribute="trailing" secondItem="aLt-tD-Q9f" secondAttribute="trailing" constant="8" id="aFC-fe-BLI"/>
+                            <constraint firstItem="aLt-tD-Q9f" firstAttribute="leading" secondItem="fPp-Ys-Uxg" secondAttribute="leading" constant="8" id="cmq-7z-u1R"/>
+                            <constraint firstItem="aLt-tD-Q9f" firstAttribute="top" secondItem="fPp-Ys-Uxg" secondAttribute="top" constant="8" id="gy1-Ir-hcf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fPp-Ys-Uxg"/>
                     </view>
@@ -156,5 +156,7 @@
     </scenes>
     <resources>
         <image name="intro-react-image" width="382" height="300"/>
+        <image name="slots-image" width="382" height="300"/>
+        <image name="sports-book-image" width="382" height="300"/>
     </resources>
 </document>
