@@ -23,7 +23,6 @@ class Slot {
     var hiddenCard: SKSpriteNode
 
     var slotRunning: Bool
-    var cardsAdded: Bool
 
     var position: CGPoint
     var slotWidth: CGFloat
@@ -35,11 +34,11 @@ class Slot {
 
     var spinDirection: SpinDirection
 
-    init(_ cardTextures: [SKTexture], position: CGPoint, slotWidth: CGFloat, widthToHightRatio: CGFloat? = nil, slotAtIndex: Int = 0,
+    init(position: CGPoint, cardTextures: [SKTexture], scene: SKScene,
+         slotWidth: CGFloat, widthToHightRatio: CGFloat? = nil, slotAtIndex: Int = 0,
          spinDirection: SpinDirection = .downwards) {
 
         self.slotRunning = false
-        self.cardsAdded = false
 
         self.cardTextures = cardTextures
         self.position = position
@@ -91,14 +90,6 @@ class Slot {
         }
 
         self.hiddenCard.size = CGSize(width: slotWidth, height: slotHeight)
-    }
-
-    func remCardsFromScene() {
-        //remove all - get the parent and remove - parrent contains all cards and the mask
-        visibleCard.parent?.removeFromParent()
-    }
-
-    func addCardsToScene(_ scene: SKScene) {
 
         //create a mask
         let mask = SKSpriteNode(color: SKColor.black, size: CGSize(width: slotWidth, height: slotHeight))
@@ -113,8 +104,6 @@ class Slot {
 
         //add the container to the scene
         scene.addChild(container)
-
-        self.cardsAdded = true
     }
 
     func spinWheel(_ count: Int, direction: Slot.SpinDirection, completion: @escaping() -> Void) {
@@ -153,12 +142,6 @@ class Slot {
 
         guard !self.slotRunning else {
             print("Already running skip!") //TODO: Could guard this instead of skipping?
-            completion()
-            return
-        }
-
-        guard self.cardsAdded else {
-            print("Cards must be added to the scene before spinning!")
             completion()
             return
         }
@@ -210,24 +193,6 @@ class Slot {
         let actionDone = SKAction.run({
             self.slotRunning = false
 
-            // jumpVisibleFromOutToVisiblePos changes the index on preperation for next move
-            // if last move fix it one back:
-
-//            if (self.spinDirection == .downwards) {
-//                self.slotAtIndex -= 1
-//                
-//                if self.slotAtIndex <= 0 {
-//                    self.slotAtIndex = self.cardTextures.count - 1
-//                }
-//            } else {
-//                self.slotAtIndex += 1
-//                
-//                if self.slotAtIndex > self.cardTextures.count - 1 {
-//                    self.slotAtIndex = 0
-//                }
-//            }
-
-//            print("Slot:Completion with index: \(self.slotAtIndex)")
             completion()
         })
 

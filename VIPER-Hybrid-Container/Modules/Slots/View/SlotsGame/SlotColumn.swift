@@ -21,7 +21,6 @@ class SlotColumn {
     var slotAtIndex: Int
 
     var slotRunning: Bool
-    var cardsAdded: Bool
 
     let topPosY: CGFloat
     let bottomPosY: CGFloat
@@ -32,7 +31,7 @@ class SlotColumn {
     var runForTime: TimeInterval = 0
     var waitForTime: CFTimeInterval
 
-    init(_ numSlots: Int, cardTextures: [SKTexture], position: CGPoint, slotWidth: CGFloat, slotHeight: CGFloat,
+    init(position: CGPoint, cardTextures: [SKTexture], scene: SKScene, numSlots: Int, slotWidth: CGFloat, slotHeight: CGFloat,
          slotAtIndex: Int = 0, spinDirection: Slot.SpinDirection = .downwards, waitForTime: CFTimeInterval) {
         self.numSlots = numSlots
         self.cardTextures = cardTextures
@@ -44,17 +43,17 @@ class SlotColumn {
         self.waitForTime = waitForTime
 
         self.slotRunning = false
-        self.cardsAdded = false
 
         self.topPosY = position.y + slotHeight/2
         self.bottomPosY = position.y - CGFloat(numSlots) * slotHeight - slotHeight/2
 
         self.cards = [SKSpriteNode]()
         self.cardIndices = [Int]()
-        initCards()
+
+        initCards(scene: scene)
     }
 
-    func initCards() {
+    func initCards(scene: SKScene) {
         var card: SKSpriteNode
 
         var upWardsFixMinus1 = 0
@@ -99,11 +98,6 @@ class SlotColumn {
             }
         }
 
-        //print("Cards inited: \(cardIndices) with Next \(slotAtIndex)") ;
-    }
-
-    func addCardsToScene(_ scene: SKScene) {
-
         let mask = SKSpriteNode(color: SKColor.black, size: CGSize(width: slotWidth, height: slotHeight*CGFloat(numSlots)))
         mask.position = CGPoint(x: position.x + slotWidth/2, y: position.y - mask.size.height/2)
 
@@ -115,7 +109,6 @@ class SlotColumn {
         }
 
         scene.addChild(container)
-        self.cardsAdded = true
     }
 
     func update(timeDelta: TimeInterval) {
@@ -219,18 +212,6 @@ class SlotColumn {
     var completionHandler: (([Int]) -> Void)?
 
     func spinWheel(_ count: UInt32, completion: @escaping([Int]) -> Void) {
-
-        guard self.cardsAdded else {
-            print("Cards must be added to the scene before spinning!")
-
-            if spinDirection == .downwards {
-                completion(Array(cardIndices[0...cardIndices.count-2]))
-            } else {
-                completion(Array(cardIndices[1...cardIndices.count-1]))
-            }
-
-            return
-        }
 
         guard count > 0 else {
             //print("No need to spin with a count of zero")

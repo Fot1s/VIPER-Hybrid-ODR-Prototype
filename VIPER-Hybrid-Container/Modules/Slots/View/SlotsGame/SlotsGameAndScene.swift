@@ -45,19 +45,17 @@ class SlotsGameAndScene: SKScene {
         self.creditsSlotRow = SlotRow(frame: CGRect(origin: CGPoint(x: self.frame.maxX - 8 - 23*5,
                                                                    y: self.frame.maxY - 8),
                                                     size: CGSize(width: 23*5, height: creditsLabel.size.height)),
-                                      textures: numberTextures, numberOfSlots: 5, columnSpacing: 0,
+                                      textures: numberTextures, scene: self,
+                                      numberOfSlots: 5, columnSpacing: 0,
                                       widthToHightRatio: 0.4792,
                                       initialNumber: score, spinDirection: Slot.SpinDirection.downwards)
-        self.creditsSlotRow?.addCardsToScene(scene: self)
 
         //main area
-        self.slotMachine = SlotMachine(scene: self,
-                                       frame: CGRect(origin: CGPoint( x: self.frame.minX+8, y: self.frame.maxY - 8 - 58),
+        self.slotMachine = SlotMachine(frame: CGRect(origin: CGPoint( x: self.frame.minX+8, y: self.frame.maxY - 8 - 58),
                                                      size: CGSize(width: self.frame.width-16, height: self.frame.height - 16 - 58 - 58)),
+                                       scene: self,
                                        numberOfColumns: Constants.Slots.Game.columns, columnSpacing: Constants.Slots.Game.columnSpacing,
                                        numberOfRows: Constants.Slots.Game.rows, slotsStartAtIndex: 0, spinDirection: .downwards)
-
-        self.slotMachine?.addCardsToScene(scene: self)
 
         //footer - spin button
         spinButton = SKSpriteNode(imageNamed: "spinButton")

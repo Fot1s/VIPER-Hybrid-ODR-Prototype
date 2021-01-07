@@ -46,7 +46,7 @@ class SlotMachine {
         }
     }
 
-    init(scene: SKScene, frame: CGRect, numberOfColumns: Int, columnSpacing: CGFloat, numberOfRows: Int,
+    init(frame: CGRect, scene: SKScene, numberOfColumns: Int, columnSpacing: CGFloat, numberOfRows: Int,
          slotsStartAtIndex: Int = 0, spinDirection: Slot.SpinDirection = .downwards ) {
         self.frame = frame
         self.numberOfColumns = numberOfColumns
@@ -81,9 +81,9 @@ class SlotMachine {
 
         for i in 0..<numberOfColumns {
             slotColumnsArray.append(
-                SlotColumn(numberOfRows, cardTextures: cardTextures,
-                           position: CGPoint(x: frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y: frame.origin.y),
-                           slotWidth: slotWidth, slotHeight: slotHeight, slotAtIndex: slotsStartAtIndex + i,
+                SlotColumn(position: CGPoint(x: frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y: frame.origin.y),
+                           cardTextures: cardTextures, scene: scene,
+                           numSlots: numberOfRows, slotWidth: slotWidth, slotHeight: slotHeight, slotAtIndex: slotsStartAtIndex + i,
                            spinDirection: spinDirection, waitForTime: Double(i) * 0.25))
             slotColumnsRunning.append(false)
 
@@ -94,12 +94,6 @@ class SlotMachine {
             } else {
                 scoreCard.append(scoreCard[i-1] * 5)
             }
-        }
-    }
-
-    func addCardsToScene(scene: SKScene) {
-        for slotCol in self.slotColumnsArray {
-            slotCol.addCardsToScene(scene)
         }
     }
 
@@ -141,9 +135,7 @@ class SlotMachine {
             for rowIndex in 0..<matrix[columnIndex].count
                 where matrix[columnIndex][rowIndex] != -1 {
 
-//                if matrix[columnIndex][rowIndex] != -1 {
                     findWins(&score, columnIndex, rowIndex, &matrix, 0)
-//                }
             }
         }
     }
@@ -154,7 +146,6 @@ class SlotMachine {
             matrix[columnIndex][rowIndex] = -1
         } else {
             if found > 0 {
-//                print("Found! \(columnIndex) \(rowIndex) \(found)")
 
                 addFoundRectangle(columnIndex, rowIndex, found)
 
@@ -170,8 +161,6 @@ class SlotMachine {
     func addFoundRectangle(_ columnIndex: Int, _ rowIndex: Int, _ found: Int) {
 
         let startColumn = columnIndex - found
-
-        //CGPoint(x:frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y:frame.origin.y)
 
         let shapeNode = SKShapeNode(rect: CGRect(x: frame.origin.x + CGFloat(startColumn) * (slotWidth+columnSpacing),
                                                  y: frame.origin.y - CGFloat(numberOfRows - rowIndex) * slotHeight,
