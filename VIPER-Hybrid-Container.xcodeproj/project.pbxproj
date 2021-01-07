@@ -669,8 +669,8 @@
 				A6E8A3AD259BBF9B00EC4AEC /* SlotsConstants.swift */,
 				A677BEBE259A5FF2005BF7AA /* SlotsGameAndScene.swift */,
 				A6E8A3B1259BF12100EC4AEC /* SlotMachine.swift */,
-				A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */,
 				A6E8A3B3259E271100EC4AEC /* SlotColumn.swift */,
+				A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */,
 				A6E8A3AB259BBF1500EC4AEC /* Slot.swift */,
 			);
 			path = SlotsGame;
