@@ -15,14 +15,10 @@ class SportsBookViewController: UIViewController {
     var presenter: SportsBookPresentation!
 
     var liveMatches: [Match] = []
-//{
-//        didSet {
-////moved bellow for finer control, updateSportsBookData will reload only single rows
-////            matchesTableView.reloadData()
-//        }
-//    }
 
     var futureMatches: [Match] = []
+
+    var savedOrientationRawValue: Int = UIDeviceOrientation.unknown.rawValue
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +29,30 @@ class SportsBookViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.viewWillDisappear(animated)
+
+        //This is needed because after setting the orientation in viewWillAppear to
+        //UIInterfaceOrientationMask.portrait.rawValue, forKey: "orientation")
+        //while the phone is in landscape, bellow the value of UIDevice.current.orientation
+        //is reported as portraitUpsideDown instead of landScapeLeft/Right
+        if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft ||
+            UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
+
+            UIDevice.current.setValue(UIDevice.current.orientation.rawValue, forKey: "orientation")
+            UINavigationController.attemptRotationToDeviceOrientation()
+        } else if savedOrientationRawValue != UIDeviceOrientation.portrait.rawValue {
+
+            UIDevice.current.setValue(savedOrientationRawValue, forKey: "orientation")
+            UINavigationController.attemptRotationToDeviceOrientation()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        savedOrientationRawValue = UIDevice.current.orientation.rawValue
+
+        UIDevice.current.setValue(UIInterfaceOrientationMask.portrait.rawValue, forKey: "orientation")
+        UINavigationController.attemptRotationToDeviceOrientation()
     }
 
     fileprivate func setupView() {
@@ -98,6 +118,12 @@ extension SportsBookViewController: SportsBookView {
     }
 }
 
+extension SportsBookViewController: RotatableView {
+    func allowedOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+}
+
 extension SportsBookViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -132,24 +158,4 @@ extension SportsBookViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
-
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return .leastNormalMagnitude
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return .leastNormalMagnitude //8
-//    }
-
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return UIView()
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        return UIView()
-//    }
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter.didSelectMatch(matches[indexPath.section])
-//    }
 }

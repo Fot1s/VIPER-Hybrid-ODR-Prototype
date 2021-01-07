@@ -23,4 +23,27 @@ extension AppDelegate: UIApplicationDelegate {
         RootRouter().presentIntroScreen(in: window!)
         return true
     }
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+
+        if let rotatableView = topViewController(for: self.window?.rootViewController) as? RotatableView {
+            return rotatableView.allowedOrientations()
+        } else {
+            return UIInterfaceOrientationMask.all
+        }
+    }
+
+    func topViewController(for rootViewController: UIViewController?) -> UIViewController? {
+        guard let rootVC = rootViewController else { return nil }
+
+        if let tabBarController = rootVC as? UITabBarController {
+            return topViewController(for: tabBarController.selectedViewController)
+        } else if let navController = rootVC as? UINavigationController {
+            return topViewController(for: navController.visibleViewController)
+        } else if let rootPresentedVC = rootVC.presentedViewController {
+            return topViewController(for: rootPresentedVC)
+        }
+
+        return rootViewController
+    }
 }

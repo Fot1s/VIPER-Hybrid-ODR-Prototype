@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SportsBookView: IndicatableView {
+protocol SportsBookView: IndicatableView, RotatableView {
     var presenter: SportsBookPresentation! { get set }
 
     func showSportsBookData(_ liveMatches: [Match], _ futureMatches: [Match])
