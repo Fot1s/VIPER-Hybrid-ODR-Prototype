@@ -9,24 +9,41 @@
 import SpriteKit
 
 class SlotMachine {
+    //the card textures to use
     var cardTextures: [SKTexture]
 
-    var slotColumnsArray: [SlotColumn]
-    var slotColumnsRunning: [Bool]
+    let frame: CGRect
 
+    //number of columns, rows and the spacing between columns for the SlotMachine
     let numberOfColumns: Int
     let numberOfRows: Int
-    let frame: CGRect
     let columnSpacing: CGFloat
 
+    //keep all slotColumns here
+    var slotColumnsArray: [SlotColumn]
+
+    //which column is running
+    var slotColumnsRunning: [Bool]
+
+    //a matrix of all column result indices
     var resultIndexMatrix: [[Int]]
 
+    //slot width and height
     let slotWidth: CGFloat
     var slotHeight: CGFloat
 
+    //the sprite kit scene we will addd our sprites to
     let scene: SKScene
 
-    var scoreCard: [Int]
+    //keeps the value of each win,
+    //as we are loooking for pairs, triples, quads and so on every index has an associated score
+    //0   points for a single cell
+    //100 points for a pair
+    //previous*5 for the next wins ie: 500 for a triple, 2500 for a quad, 12500 for 5 in a row, ++
+    var scoreBoard: [Int]
+
+    //A computed property that returns true if any Column in the slotColumnsArray is still running
+    //on set it sets all individual columns as running
 
     var isRunning: Bool {
         get {
@@ -54,21 +71,32 @@ class SlotMachine {
         self.columnSpacing = columnSpacing
         self.scene = scene
 
+        //initialize the resultIndexMatrix
         self.resultIndexMatrix = Array(repeating: Array(), count: numberOfColumns)
 
-        var columnSpaces: CGFloat = 0
-
+        //load the card textures
         cardTextures = [SKTexture]()
         for i in 0...8 {//inclusive is 9
             cardTextures.append(SKSpriteNode(imageNamed: "card\(i+1)").texture!)
         }
 
+        var columnSpaces: CGFloat = 0
+
+        //calculate how much space is needed between columns
         if numberOfColumns > 1 {
             columnSpaces = CGFloat(numberOfColumns-1) * columnSpacing
         }
 
+        //calculate slotWidth depending on the frame width and the numberOfColumns
         slotWidth = (self.frame.size.width - columnSpaces) / CGFloat(numberOfColumns)
+
+        //calculate the slotHeight
         slotHeight = slotWidth / Constants.Slots.Game.cellGraphicRatioWidthToHeight
+
+        //if the slots in the column do not fit into the available height,
+        //recalculate the slotHeight so every slot is visible
+        //this way slots are squeezed - we could instead of making every slot smaller in height
+        //recalculate width AND height making the whole SlotMachine smaller than the initial frame given
 
         if slotHeight * CGFloat(numberOfRows) > frame.size.height {
             print("fixed height")
@@ -77,8 +105,10 @@ class SlotMachine {
 
         self.slotColumnsArray = [SlotColumn]()
         self.slotColumnsRunning = [Bool]()
-        self.scoreCard = [Int]()
+        self.scoreBoard = [Int]()
 
+        //initialize all columns, and its running status to false,
+        //initialize the score board as well
         for i in 0..<numberOfColumns {
             slotColumnsArray.append(
                 SlotColumn(position: CGPoint(x: frame.origin.x + CGFloat(i) * (slotWidth+columnSpacing), y: frame.origin.y),
@@ -88,33 +118,43 @@ class SlotMachine {
             slotColumnsRunning.append(false)
 
             if i == 0 {
-                scoreCard.append(0)
+                scoreBoard.append(0)
             } else if i == 1 {
-                scoreCard.append(100)
+                scoreBoard.append(100)
             } else {
-                scoreCard.append(scoreCard[i-1] * 5)
+                scoreBoard.append(scoreBoard[i-1] * 5)
             }
         }
     }
 
+    //start spining the slotMachine
     func spinNow(runForTimes: [UInt32], completion: @escaping(Int) -> Void) {
         isRunning = true
 
+        //for all columns start spining and wait for the completion handler
         for (index, slotColumn) in slotColumnsArray.enumerated() {
+
+            //spin column at index
             slotColumn.spinWheel(runForTimes[index]) { [weak self] resultIndices in
 
+                //on spin done
                 if let `self` = self {
+
+                    //mark the column as done running
                     self.slotColumnsRunning[index] = false
+
+                    //assign the results column to the correct index of the results matrix
                     self.resultIndexMatrix[index] = resultIndices
 
+                    //when all columns finished running
                     if !self.isRunning {
 
                         var score: Int = 0
 
+                        //find all wins and increent the score variable
                         self.searchForWins(&score, &self.resultIndexMatrix)
 
-                        print("Score: \(score)")
-
+                        //pass the score to the parent / calling component
                         completion(score)
                     }
                 }
@@ -149,7 +189,7 @@ class SlotMachine {
 
                 addFoundRectangle(columnIndex, rowIndex, found)
 
-                score += self.scoreCard[found]
+                score += self.scoreBoard[found]
             }
             matrix[columnIndex][rowIndex] = -1
         }

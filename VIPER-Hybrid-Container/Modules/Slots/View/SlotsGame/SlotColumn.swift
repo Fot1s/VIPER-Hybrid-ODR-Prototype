@@ -9,26 +9,43 @@
 import SpriteKit
 
 class SlotColumn {
+
+    //the column textures
     let cardTextures: [SKTexture]
+
+    //position of the column and number of slots
     let position: CGPoint
-    let slotWidth: CGFloat
-    let slotHeight: CGFloat
     let numSlots: Int
 
+    //slot width and height
+    let slotWidth: CGFloat
+    let slotHeight: CGFloat
+
+    //the index of every card in the column
     var cardIndices: [Int]
 
     var cards: [SKSpriteNode]
+
+    //used to track the current/next card switches
     var slotAtIndex: Int
 
-    var slotRunning: Bool
+    //is the column currently running
+    var isRunning: Bool
 
+    //limits
     let topPosY: CGFloat
     let bottomPosY: CGFloat
 
     let spinDirection: Slot.SpinDirection
 
+    //how many times to roll
     var rollFor: Int = 0
+
+    //how long the game has run after start was called on this column
+    //used in conjuction with waitForTime bellow to start the column after some wait time
     var runForTime: TimeInterval = 0
+
+    //the time to wait before starting the column
     var waitForTime: CFTimeInterval
 
     init(position: CGPoint, cardTextures: [SKTexture], scene: SKScene, numSlots: Int, slotWidth: CGFloat, slotHeight: CGFloat,
@@ -42,7 +59,7 @@ class SlotColumn {
         self.spinDirection = spinDirection
         self.waitForTime = waitForTime
 
-        self.slotRunning = false
+        self.isRunning = false
 
         self.topPosY = position.y + slotHeight/2
         self.bottomPosY = position.y - CGFloat(numSlots) * slotHeight - slotHeight/2
@@ -56,6 +73,7 @@ class SlotColumn {
     func initCards(scene: SKScene) {
         var card: SKSpriteNode
 
+        //when going upwards we decrement one so the first card will be hidden
         var upWardsFixMinus1 = 0
 
         //we need numSlots + 1 cards ie: 0 to numSlots inclusive
@@ -87,7 +105,7 @@ class SlotColumn {
             }
         }
 
-        //reset the slot index if we are moving upwards
+        //if we are moving upwards we need to reset the slot index to the next visible card
         if spinDirection == .upwards {
             slotAtIndex -= (numSlots + 2)  //num slots goes back to initial, -1 for hidden, -1 for next
 
@@ -113,121 +131,144 @@ class SlotColumn {
 
     func update(timeDelta: TimeInterval) {
 
-        if slotRunning {
+        //skip updates if column is not running
+        if !isRunning {
+            return
+        }
 
-            runForTime += timeDelta
+        runForTime += timeDelta
 
-            guard runForTime > waitForTime else {
-                return
+        //skip updates if the wait time has not passed yet
+        if runForTime <= waitForTime {
+            return
+        }
+
+        //update card positions decrement rollFor when a card is switched
+        updateCardPositions(timeDelta: timeDelta)
+
+        //when done
+        if rollFor <= 0 {
+
+            //as in init a small fix depending on direction
+            var indexChange = 0
+            if spinDirection == .downwards {
+                indexChange = 1
             }
 
-            for card in cards {
-
-                if spinDirection == .downwards {
-                    card.position.y -= slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
-
-                    if card.position.y < bottomPosY {
-
-                        //print("Down with Diff: \(bottomPosY-card.position.y)")
-
-                        rollFor -= 1
-
-                        if rollFor == 0 {
-                            card.position.y = topPosY
-                        } else {
-                            card.position.y = topPosY - (bottomPosY-card.position.y)// add the difference to the top to avoid gaps
-                        }
-
-                        cards.append(cards.remove(at: 0))
-                        cardIndices.remove(at: 0)
-                        cardIndices.append(slotAtIndex)
-
-                        card.texture = cardTextures[slotAtIndex]
-
-                        slotAtIndex += 1
-                        if slotAtIndex >= cardTextures.count {
-                            slotAtIndex = 0
-                        }
-
-                        //print("Rolls Left: \(rollFor)")
-                    }
-                } else {
-                    card.position.y += slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
-
-                    if card.position.y > position.y + slotHeight / 2 {
-
-                        rollFor -= 1
-
-                        if rollFor == 0 {
-                            card.position.y = position.y - CGFloat(numSlots) * slotHeight - slotHeight/2
-                        } else {
-                            card.position.y = position.y - CGFloat(numSlots) * slotHeight
-                                - slotHeight/2 + (card.position.y - (position.y + slotHeight / 2))
-                            // add the difference to the top to avoid gaps
-                        }
-
-                        cards.insert(cards.popLast()!, at: 0)
-
-                        _ = cardIndices.popLast()
-                        cardIndices.insert(slotAtIndex, at: 0)
-
-                        card.texture = cardTextures[slotAtIndex]
-
-                        slotAtIndex -= 1
-                        if slotAtIndex < 0 {
-                            slotAtIndex = cardTextures.count - 1
-                        }
-
-                        //print("Rolls Left: \(rollFor)")
-                    }
-
-                }
+            //we just finished, move all cards to their 'correct' positions, removing any trailing space due to timing
+            //for more info check bellow in updateCardPositions
+            for (index, card) in cards.enumerated() {
+                card.position = CGPoint(x: position.x + slotWidth/2, y: bottomPosY + CGFloat(index + indexChange)*slotHeight)
             }
 
-            if rollFor <= 0 {
+            //stops the updates from being handled
+            isRunning = false
 
-                var indexChange = 0
-                if spinDirection == .downwards {
-                    indexChange = 1
+            //we are done return the resulting indices to the parent
+            if let handler = completionHandler {
+                callTheCompletionHandler(handler)
+            }
+        }
+    }
+
+    //calls the completion handler closure with the correct results based on spin direction
+    func callTheCompletionHandler(_ handler: ([Int]) -> Void) {
+
+        //depending on direction return the correct/visible card indices
+        if spinDirection == .downwards {
+
+            //last card is the hidden one here
+            handler(Array(cardIndices[0...cardIndices.count-2]))
+        } else {
+
+            //first card is hidden one here
+            handler(Array(cardIndices[1...cardIndices.count-1]))
+        }
+    }
+
+    //updates the card positions and decrements the rollFor variable
+    func updateCardPositions(timeDelta: TimeInterval) {
+
+        //for every card in the column
+        for card in cards {
+
+            if spinDirection == .downwards {
+
+                //move the card downwards
+                card.position.y -= slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
+
+                //if outside the bottom limit
+                if card.position.y < bottomPosY {
+
+                    //decrement the roll count
+                    rollFor -= 1
+
+                    //move the card to its proper place, adding the overshoot amount of movement to avoid gaps
+                    card.position.y = topPosY - (bottomPosY-card.position.y)
+
+                    //roll the indices, remove the first and add the next card index to the end (we are moving downwards)
+                    cardIndices.remove(at: 0)
+                    cardIndices.append(slotAtIndex)
+
+                    //roll the cards
+                    cards.append(cards.remove(at: 0))
+
+                    card.texture = cardTextures[slotAtIndex]
+
+                    slotAtIndex += 1
+                    if slotAtIndex >= cardTextures.count {
+                        slotAtIndex = 0
+                    }
                 }
+            } else {
 
-                for (index, card) in cards.enumerated() {
-                    card.position = CGPoint(x: position.x + slotWidth/2, y: bottomPosY + CGFloat(index + indexChange)*slotHeight)
-                }
+                //move the card upwards
+                card.position.y += slotHeight * CGFloat(timeDelta) / Constants.Slots.Game.timePerCard
 
-                slotRunning = false
+                //if outside the top limit
+                if card.position.y > position.y + slotHeight / 2 {
 
-                if let handler = completionHandler {
-                    if spinDirection == .downwards {
-                        handler(Array(cardIndices[0...cardIndices.count-2]))
-                    } else {
-//                        print("Cards ended: \(cardIndices[1...cardIndices.count-1])") ;
-                        handler(Array(cardIndices[1...cardIndices.count-1]))
+                    //decrement the roll count
+                    rollFor -= 1
+
+                    //move the card to its proper place, adding the overshoot amount of movement to avoid gaps
+                    card.position.y = position.y - CGFloat(numSlots) * slotHeight - slotHeight/2 +
+                                      (card.position.y - (position.y + slotHeight / 2))
+
+                    //roll the indices, remove the last and add the next card index to the front (we are moving upwards)
+                    _ = cardIndices.popLast()
+                    cardIndices.insert(slotAtIndex, at: 0)
+
+                    //roll the cards
+                    cards.insert(cards.popLast()!, at: 0)
+
+                    card.texture = cardTextures[slotAtIndex]
+
+                    slotAtIndex -= 1
+                    if slotAtIndex < 0 {
+                        slotAtIndex = cardTextures.count - 1
                     }
                 }
             }
         }
     }
 
+    //we save the completion passed at spinWheel bellow in order to call it from update when the column ends running
     var completionHandler: (([Int]) -> Void)?
 
+    //called to start the column spinning
     func spinWheel(_ count: UInt32, completion: @escaping([Int]) -> Void) {
 
+        //do not spin if the count is 0, just call the completion handler as we are already done and return
         guard count > 0 else {
-            //print("No need to spin with a count of zero")
 
-            if spinDirection == .downwards {
-                completion(Array(cardIndices[0...cardIndices.count-2]))
-            } else {
-                completion(Array(cardIndices[1...cardIndices.count-1]))
-            }
-
+            callTheCompletionHandler(completion)
             return
         }
 
         self.rollFor = Int(count)
         self.runForTime = 0
-        self.slotRunning = true
+        self.isRunning = true
         self.completionHandler = completion
     }
 }
