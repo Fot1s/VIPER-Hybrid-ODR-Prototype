@@ -91,22 +91,17 @@ class SlotsGameAndScene: SKScene {
     //Called for the spin bytton after the user taps on one of them to start the SlotMachine
     func startGame() {
 
-        //if next move goes bellow 0 (credits) stop and
-        //TODO: Add game over screen / recharge
-        if score - 50 < 0 {
-            return
-        }
-
+        //start the game
         gameRunning = true
 
         var runFor = [UInt32]()
 
         for _ in 1...(slotMachine.numberOfColumns) {
-            runFor.append(17 + arc4random_uniform(10)) // 10 to 20
+            runFor.append(Constants.Slots.Game.rollForAMinimumOf + arc4random_uniform(Constants.Slots.Game.addToMinimumRollARandomWithMax)) // 10 to 20
         }
 
-        //each time the game is started the user loses 50 credits
-        self.score -= 50
+        //each time the game is started the user loses creditsPerGame
+        self.score -= Constants.Slots.Game.creditsPerGame
 
         //spin to the new credits
         creditsSlotRow.spinTo(score) {
@@ -125,24 +120,26 @@ class SlotsGameAndScene: SKScene {
                 self.score += scoreToAdd
                 self.creditsSlotRow?.spinTo(self.score) {
 
-                    //if in spin all mode and have more credits continue
-                    if self.spinAll == true && self.score - 50 >= 0 {
+                    //if have more credits
+                    if self.score - Constants.Slots.Game.creditsPerGame >= 0 {
 
-                        //dispatch a new game start here, to avoid recursion/stack issues
-                        DispatchQueue.main.async {
-                            self.startGame()
-                        }
-                        return
-                    } else {
+                        if self.spinAll {
 
-                        //Single spin or end of credits
-                        if self.score - 50 >= 0 {
+                            //if in spin all mode dispatch a new game start here
+                            //start could be called directly here, but could leed to possible recursion/stack issues
+                            DispatchQueue.main.async {
+                                self.startGame()
+                            }
+                        } else {
+
+                            //Single spin add the spin buttons
                             self.addChild(self.spinButton)
                             self.addChild(self.spinAllButton)
-                        } else {
-                            self.showNoMoreCredits()
                         }
+                    } else {
 
+                        //show the End Game card
+                        self.showNoMoreCredits()
                     }
                 }
             }
