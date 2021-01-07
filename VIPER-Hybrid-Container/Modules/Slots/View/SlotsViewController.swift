@@ -52,9 +52,8 @@ class SlotsViewController: UIViewController {
 
             UIDevice.current.setValue(UIDevice.current.orientation.rawValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
-        } else if savedOrientation != UIDeviceOrientation.portrait {
-
-            UIDevice.current.setValue(savedOrientation.rawValue, forKey: "orientation")
+        } else {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
         }
     }
