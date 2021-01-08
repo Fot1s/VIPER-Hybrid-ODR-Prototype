@@ -18,7 +18,7 @@ class SocketServerEmulator {
 
     var liveMatches: [Match]?
 
-    fileprivate var fakeUpdatesTimer: Timer?
+    private var fakeUpdatesTimer: Timer?
 
     func startSendingEmulatedMatchUpdates() {
         if (liveMatches?.count ?? 0) > 0 {
@@ -36,7 +36,7 @@ class SocketServerEmulator {
         }
     }
 
-    @objc fileprivate func fireTimerForFakeUpdates() {
+    @objc private func fireTimerForFakeUpdates() {
 
         if let liveMatches = liveMatches {
             let whichMatchId = arc4random_uniform(UInt32(liveMatches.count))
@@ -71,7 +71,7 @@ class SocketServerEmulator {
         }
     }
 
-    fileprivate func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
+    private func fakeUpdateSend(matchToUpdate: MatchUpdate?) {
 
         let encoder = JSONEncoder()
         //encoder.outputFormatting = .prettyPrinted

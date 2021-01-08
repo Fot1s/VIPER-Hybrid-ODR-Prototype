@@ -55,7 +55,7 @@ class SportsBookViewController: UIViewController {
         UINavigationController.attemptRotationToDeviceOrientation()
     }
 
-    fileprivate func setupView() {
+    private func setupView() {
 
         navigationItem.title = Localization.Playbook.navigationBarTitle
 

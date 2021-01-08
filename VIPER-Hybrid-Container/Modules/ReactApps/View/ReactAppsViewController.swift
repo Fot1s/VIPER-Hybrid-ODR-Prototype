@@ -26,7 +26,7 @@ class ReactAppsViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
-    fileprivate func setupView() {
+    private func setupView() {
 
         navigationItem.title = Localization.ReactApps.navigationBarTitle
 

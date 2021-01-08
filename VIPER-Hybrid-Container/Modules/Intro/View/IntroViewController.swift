@@ -46,7 +46,7 @@ class IntroViewController: UIViewController {
         changeViewDirectionAndImageContentModes()
     }
 
-    fileprivate func setupView() {
+    private func setupView() {
         navigationItem.title = Localization.Intro.navigationBarTitle
     }
 
