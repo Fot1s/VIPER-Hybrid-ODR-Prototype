@@ -21,7 +21,7 @@ class SocketServerEmulator {
     fileprivate var fakeUpdatesTimer: Timer?
 
     func startSendingEmulatedMatchUpdates() {
-        if liveMatches?.count ?? 0 > 0 {
+        if (liveMatches?.count ?? 0) > 0 {
             fakeUpdatesTimer = Timer(timeInterval: Constants.SocketServerEmulator.fakeUpdateEvery,
                                      target: self, selector: #selector(fireTimerForFakeUpdates), userInfo: nil, repeats: true)
         RunLoop.current.add(fakeUpdatesTimer!, forMode: .commonModes)

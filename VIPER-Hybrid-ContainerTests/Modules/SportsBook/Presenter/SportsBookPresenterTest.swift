@@ -170,6 +170,10 @@ class MockSportsBookInteractor: SportsBookUseCase {
 }
 
 class MockSportsBookView: SportsBookView {
+    func allowedOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.all
+    }
+
     var presenter: SportsBookPresentation!
 
     var loading = false
