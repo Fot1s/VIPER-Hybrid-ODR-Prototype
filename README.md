@@ -4,7 +4,9 @@ What started as a quick exercise / research into ODR (On Demand Delivery) for HT
 
 ![Screens of the app](images/VIPER-Hybrid-App-preview.png)
 
-Later on more functionality was added:
+Quickly became a Case Study into using Swift, SwiftLint, Testing, SpriteKit, ++
+
+The app now contains three sections: 
 
 ![Screens of the app](images/intro-screen.png)
 
