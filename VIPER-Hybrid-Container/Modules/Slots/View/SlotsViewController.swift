@@ -60,13 +60,16 @@ class SlotsViewController: UIViewController {
 
 }
 
+//TODO:  orientation and mask is inversed bellow, As the correct ones gave the inverse results maybe a bug in xCode 9 or the emulator
+//FIX:   check in later xCode and possibly fix?
+
 extension SlotsViewController: SlotsView {
     func allowedOrientations() -> UIInterfaceOrientationMask {
         switch savedOrientation {
         case UIDeviceOrientation.landscapeLeft:
-            return UIInterfaceOrientationMask.landscapeLeft
-        case UIDeviceOrientation.landscapeRight:
             return UIInterfaceOrientationMask.landscapeRight
+        case UIDeviceOrientation.landscapeRight:
+            return UIInterfaceOrientationMask.landscapeLeft
         default :
             return UIInterfaceOrientationMask.portrait
         }
