@@ -124,6 +124,8 @@ class MockSportsBookRouter: SportsBookWireframe {
 }
 
 class MockSportsBookInteractor: SportsBookUseCase {
+    var storeService: StoreService!
+
     var apiService: ViperNetwork!
 
     var socketService: ViperWebSocket!

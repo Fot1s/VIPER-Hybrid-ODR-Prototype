@@ -30,3 +30,5 @@ cyclomatic_complexity:
 
 disabled_rules:
   - todo
+  - trailing_whitespace
+  - force_cast

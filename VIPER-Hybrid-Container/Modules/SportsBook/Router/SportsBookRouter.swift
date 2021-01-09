@@ -27,6 +27,11 @@ class SportsBookRouter: SportsBookWireframe {
         interactor.output = presenter
         interactor.apiService = APIService.shared
         interactor.socketService = WebSocketService.shared
+        
+        //TODO: FIX: This will go after we add Data + Store Managers
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            interactor.storeService = StoreService(container: appDelegate.persistentContainer)
+        }
 
         router.viewController = view
 
