@@ -62,9 +62,10 @@
 		A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65B08792593EDB600AF27D1 /* MatchUpdate.swift */; };
 		A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A664556825965B0C00D30078 /* NetworkProtocol.swift */; };
 		A6739E042587A85B00692A3F /* slots in Resources */ = {isa = PBXBuildFile; fileRef = A6739E032587A85B00692A3F /* slots */; settings = {ASSET_TAGS = (slots, ); }; };
-		A6778F2925AA61440057AE8A /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F2825AA61440057AE8A /* StoreService.swift */; };
 		A6778F2A25AA64540057AE8A /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6A855E425AA4AC000408C8E /* CoreDataModel.xcdatamodeld */; };
 		A6778F2B25AA64540057AE8A /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6A855E425AA4AC000408C8E /* CoreDataModel.xcdatamodeld */; };
+		A6778F3125AA69390057AE8A /* StoreProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F3025AA69380057AE8A /* StoreProtocols.swift */; };
+		A6778F3525AA69560057AE8A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F3425AA69560057AE8A /* CoreDataService.swift */; };
 		A677BEB2259A5B57005BF7AA /* SlotsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */; };
 		A677BEB4259A5B68005BF7AA /* SlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */; };
 		A677BEB7259A5C0D005BF7AA /* SlotsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */; };
@@ -165,7 +166,8 @@
 		A65B08792593EDB600AF27D1 /* MatchUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpdate.swift; sourceTree = "<group>"; };
 		A664556825965B0C00D30078 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		A6739E032587A85B00692A3F /* slots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slots; sourceTree = "<group>"; };
-		A6778F2825AA61440057AE8A /* StoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
+		A6778F3025AA69380057AE8A /* StoreProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProtocols.swift; sourceTree = "<group>"; };
+		A6778F3425AA69560057AE8A /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SlotsStoryboard.storyboard; sourceTree = "<group>"; };
 		A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsViewController.swift; sourceTree = "<group>"; };
 		A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsRouter.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 			children = (
 				A657A7E02585AA49008130A9 /* ViewProtocols.swift */,
 				A664556825965B0C00D30078 /* NetworkProtocol.swift */,
+				A6778F3025AA69380057AE8A /* StoreProtocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -637,7 +640,7 @@
 		A6778F2725AA61440057AE8A /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				A6778F2825AA61440057AE8A /* StoreService.swift */,
+				A6778F3425AA69560057AE8A /* CoreDataService.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1001,6 +1004,7 @@
 				A657A7E92585ABDE008130A9 /* UITableViewCellExtension.swift in Sources */,
 				A657A7DA2585A343008130A9 /* ReactAppsViewController.swift in Sources */,
 				A65B085F25939ABF00AF27D1 /* IntroRouter.swift in Sources */,
+				A6778F3125AA69390057AE8A /* StoreProtocols.swift in Sources */,
 				A657A7A1258572C9008130A9 /* AppDelegate.swift in Sources */,
 				A657A7EB2585B3AF008130A9 /* IndicatableViewExtension.swift in Sources */,
 				A677BEB7259A5C0D005BF7AA /* SlotsRouter.swift in Sources */,
@@ -1011,6 +1015,7 @@
 				A6E8A3B0259BC18200EC4AEC /* SlotRow.swift in Sources */,
 				A65B085B25939A6900AF27D1 /* IntroContract.swift in Sources */,
 				A677BEB4259A5B68005BF7AA /* SlotsViewController.swift in Sources */,
+				A6778F3525AA69560057AE8A /* CoreDataService.swift in Sources */,
 				A657A7D82585A321008130A9 /* ReactAppTableViewCell.swift in Sources */,
 				A657A7E32585AAA3008130A9 /* UITableViewExtension.swift in Sources */,
 				A657A7E12585AA49008130A9 /* ViewProtocols.swift in Sources */,
@@ -1039,7 +1044,6 @@
 				A65B08652593D35500AF27D1 /* Match.swift in Sources */,
 				A6E8A3AE259BBFCF00EC4AEC /* SlotsConstants.swift in Sources */,
 				A649D1E3258675BB008B6C31 /* HybridContentPresenter.swift in Sources */,
-				A6778F2925AA61440057AE8A /* StoreService.swift in Sources */,
 				A65B08772593E1BE00AF27D1 /* SportsBookRouter.swift in Sources */,
 				A65B087A2593EDB600AF27D1 /* MatchUpdate.swift in Sources */,
 				A6E8A3B4259E271100EC4AEC /* SlotColumn.swift in Sources */,

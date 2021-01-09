@@ -12,7 +12,7 @@ import CoreData
 
 class SportsBookInteractor: SportsBookUseCase {
 
-    var storeService: StoreService!
+    var storeService: ViperStore!
     var apiService: ViperNetwork!
     var socketService: ViperWebSocket!
 
@@ -23,7 +23,7 @@ class SportsBookInteractor: SportsBookUseCase {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MatchMO")
         
         do {
-            let matchesMO = try storeService.getContext().fetch(fetchRequest)
+            let matchesMO = try storeService.viewContext.fetch(fetchRequest)
             
             if matchesMO.count > 0 {
                 print("Database Matches: \(matchesMO)  return cached data now")
@@ -37,7 +37,8 @@ class SportsBookInteractor: SportsBookUseCase {
                     match = Match(id: matchMO.value(forKey: "id") as! Int, live: matchMO.value(forKey: "live") as! Int,
                                   time: matchMO.value(forKey: "time") as! Int, date: matchMO.value(forKey: "date") as! String,
                                   home: matchMO.value(forKey: "home") as! String, away: matchMO.value(forKey: "away") as! String,
-                                  homeGoals: matchMO.value(forKey: "homeGoals") as! Int, awayGoals: matchMO.value(forKey: "awayGoals") as! Int,
+                                  homeGoals: matchMO.value(forKey: "homeGoals") as! Int,
+                                  awayGoals: matchMO.value(forKey: "awayGoals") as! Int,
                                   bet1: matchMO.value(forKey: "bet1") as! Int, betX: matchMO.value(forKey: "betX") as! Int,
                                   bet2: matchMO.value(forKey: "bet2") as! Int)
                     matches.append(match)
@@ -61,7 +62,7 @@ class SportsBookInteractor: SportsBookUseCase {
 
                     //save test here
                     for match in matches {
-                        let newMatch = NSEntityDescription.insertNewObject(forEntityName: "MatchMO", into: self.storeService.getContext())
+                        let newMatch = NSEntityDescription.insertNewObject(forEntityName: "MatchMO", into: self.storeService.viewContext)
                         newMatch.setValue(match.id, forKey: "id")
                         newMatch.setValue(match.date, forKey: "date")
                         newMatch.setValue(match.live, forKey: "live")
@@ -75,7 +76,7 @@ class SportsBookInteractor: SportsBookUseCase {
                         newMatch.setValue(match.bet2, forKey: "bet2")
                     }
                     do {
-                        try self.storeService.getContext().save()
+                        try self.storeService.viewContext.save()
                         print("Success")
                     } catch {
                         print("Error saving: \(error)")

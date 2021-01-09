@@ -25,11 +25,7 @@ class SportsBookInteractorTest: XCTestCase {
 
         sut?.apiService = MockAPIService.shared
         sut?.socketService = MockWebSocketService.shared
-        
-        //TODO: FIX: This will go after we add Data + Store Managers
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            sut?.storeService = StoreService(container: appDelegate.persistentContainer)
-        }
+        sut?.storeService = CoreDataService.shared
 
         sut?.output = mockOutput
         super.setUp()
