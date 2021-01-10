@@ -2,7 +2,7 @@
 //  MockSocketServerEmulator.swift
 //  VIPER-Hybrid-Container
 //
-//  Created by Demitri Delinikolas on 04/01/2021.
+//  Created by Fotis Chatzinikos on 04/01/2021.
 //  Copyright © 2021 Fotis Chatzinikos. All rights reserved.
 //
 

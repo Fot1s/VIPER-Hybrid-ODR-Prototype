@@ -2,7 +2,7 @@
 //  MatchMO+CoreDataClass.swift
 //  
 //
-//  Created by Demitri Delinikolas on 10/01/2021.
+//  Created by Fotis Chatzinikos on 10/01/2021.
 //
 //
 
