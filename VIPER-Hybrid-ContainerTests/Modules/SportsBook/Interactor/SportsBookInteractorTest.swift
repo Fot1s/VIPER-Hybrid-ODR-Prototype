@@ -159,7 +159,10 @@ class MockSportsBookInteractorOutput: SportsBookInteractorOutput {
 }
 
 class MockCoreDataService: ViperStore {
-    
+  
+    enum MyError: Error {
+        case runtimeError(String)
+    }
     static let shared = MockCoreDataService()
     
     var failOnFetchMatches = false
@@ -188,6 +191,9 @@ class MockCoreDataService: ViperStore {
     }
     
     func upsert<Entity>(entities: [Entity], completion: @escaping (Error?) -> Void) where Entity: ManagedObjectConvertible {
+        //just for code coverage
+
+        completion(MyError.runtimeError("Test"))
     }
 }
 

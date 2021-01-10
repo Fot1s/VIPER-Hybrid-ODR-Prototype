@@ -22,49 +22,44 @@ class SportsBookInteractor: SportsBookUseCase {
 
         storeService.get(with: nil, sortDescriptors: nil, fetchLimit: nil) { [weak self] (matches: [Match]?, error: Error?) in
             
-            guard let `self` = self else {
-                print("returning, self was deallocated")
-                return
-            }
-            
-            if let matches = matches {
+            if let `self` = self {
                 
-                if matches.count > 0 {
+                if let matches = matches {
                     
-                    print("Saved matches found returning")
-                    //saved data return and do not call network
-                    self.output.matchesFetched(matches)
-                    return
-                } else {
-                    
-                    //no matches //first call // fetch from net
-                    self.apiService
-                        .fetch(endPointURL: Endpoints.matches.url) { [weak self] (matches: [Match]?) -> Void in
-                            
-                            guard let `self` = self else {
-                                print("returning, self was deallocated")
-                                return
-                            }
-                            
-                            if let matches = matches {
+                    if matches.count > 0 {
+                        
+                        print("Saved matches found returning")
+                        //saved data return and do not call network
+                        self.output.matchesFetched(matches)
+                        return
+                    } else {
+                        
+                        //no matches //first call // fetch from net
+                        self.apiService
+                            .fetch(endPointURL: Endpoints.matches.url) { [weak self] (matches: [Match]?) -> Void in
                                 
-                                self.storeService.upsert(entities: matches) { error in
-                                    if let error = error {
-                                        print("Error saving / updating data! \(error)")
+                                if let `self` = self {
+                                    if let matches = matches {
+                                        
+                                        self.storeService.upsert(entities: matches) { error in
+                                            if let error = error {
+                                                print("Error saving / updating data! \(error)")
+                                            }
+                                        }
+                                        
+                                        self.output.matchesFetched(matches)
+                                    } else {
+                                        self.output.matchesFetchFailed("Error getting Matches from Server!")
                                     }
+                                    
                                 }
-
-                                self.output.matchesFetched(matches)
-                            } else {
-                                self.output.matchesFetchFailed("Error getting Matches from Server!")
-                            }
+                        }
                     }
+                    
+                } else {
+                    self.output.matchesFetchFailed(error?.localizedDescription ?? "Error getting Matches from Core Data!")
                 }
-                
-            } else {
-                self.output.matchesFetchFailed(error?.localizedDescription ?? "Error getting Matches from Core Data!")
             }
-            
         }
     }
 
