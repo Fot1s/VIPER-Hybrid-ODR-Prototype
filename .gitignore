@@ -90,6 +90,7 @@ fastlane/test_output
 iOSInjectionProject/
 
 # Psd and png icon files
+*.psd
 /.gitignore.swp
 /article_icon.psd
 /icon-1024.png
