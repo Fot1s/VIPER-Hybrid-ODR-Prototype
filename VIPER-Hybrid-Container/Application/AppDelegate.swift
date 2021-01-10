@@ -22,6 +22,11 @@ extension AppDelegate: UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         RootRouter().presentIntroScreen(in: window!)
+        
+        //TODO: FIX:
+        //Should not be here but in terminate in a real app
+        CoreDataService.shared.delete(Match.self)
+        
         return true
     }
 
@@ -32,6 +37,15 @@ extension AppDelegate: UIApplicationDelegate {
         } else {
             return UIInterfaceOrientationMask.all
         }
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        //Does not work in emulator, delete on start for now
+        //TODO: //FIX:
+        //CoreDataService.shared.delete(Match.self)
     }
 
     func topViewController(for rootViewController: UIViewController?) -> UIViewController? {

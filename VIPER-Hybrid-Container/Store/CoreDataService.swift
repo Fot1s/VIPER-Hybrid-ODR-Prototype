@@ -47,4 +47,62 @@ final class CoreDataService: ViperStore {
     func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         self.persistentContainer.performBackgroundTask(block)
     }
+    
+    func delete<Entity: ManagedObjectConvertible> (_ type: Entity.Type) {
+        performBackgroundTask { context in
+            do {
+                let fetchRequest = Entity.ManagedObject.fetchRequest()
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                try context.execute(deleteRequest)
+                try context.save()
+                print("Deleted data!")
+            } catch {
+                print("Error deleting data!")
+            }
+        }
+    }
+    
+    func get<Entity: ManagedObjectConvertible>
+        (with predicate: NSPredicate?,
+         sortDescriptors: [NSSortDescriptor]?,
+         fetchLimit: Int?,
+         completion: @escaping ([Entity]?, Error?) -> Void) {
+        
+        performForegroundTask { context in
+            do {
+                let fetchRequest = Entity.ManagedObject.fetchRequest()
+                fetchRequest.predicate = predicate
+                fetchRequest.sortDescriptors = sortDescriptors
+                if let fetchLimit = fetchLimit {
+                    fetchRequest.fetchLimit = fetchLimit
+                }
+                let results = try context.fetch(fetchRequest) as? [Entity.ManagedObject]
+                
+                //FIX: TODO: Was compactMap but does not compile in Swift 4
+                let items: [Entity] = results?.flatMap { $0.toEntity() as? Entity } ?? []
+                completion(items, nil)
+            } catch {
+                //let fetchError = CoreDataWorkerError.cannotFetch("Cannot fetch error: \(error))")
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func upsert<Entity: ManagedObjectConvertible>
+        (entities: [Entity],
+         completion: @escaping (Error?) -> Void) {
+        
+        performBackgroundTask { context in
+            //FIX: TODO: Was compactMap but does not compile in Swift 4
+            _ = entities.flatMap({ (entity) -> Entity.ManagedObject? in
+                return entity.toManagedObject(in: context)
+            })
+            do {
+                try context.save()
+                completion(nil)
+            } catch {
+                completion(error)
+            }
+        }
+    }
 }
