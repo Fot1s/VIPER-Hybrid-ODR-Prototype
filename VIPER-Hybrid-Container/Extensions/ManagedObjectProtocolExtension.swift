@@ -31,19 +31,6 @@ extension ManagedObjectProtocol where Self: NSManagedObject {
         return Self(context: context)
     }
     
-//    static func delete(from context: NSManagedObjectContext, _ entity: String) {
-//
-//        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-//        
-//        do {
-//            try context.execute(deleteRequest)
-//            try context.save()
-//        } catch {
-//            print ("There was an error")
-//        }
-//    }
-    
     static func fetch(from context: NSManagedObjectContext, with predicate: NSPredicate?,
                       sortDescriptors: [NSSortDescriptor]?, fetchLimit: Int?) -> [Self]? {
         

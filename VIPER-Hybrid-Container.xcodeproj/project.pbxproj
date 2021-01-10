@@ -68,7 +68,8 @@
 		A6778F3525AA69560057AE8A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F3425AA69560057AE8A /* CoreDataService.swift */; };
 		A6778F4325AA78170057AE8A /* MatchMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F4125AA78170057AE8A /* MatchMO+CoreDataProperties.swift */; };
 		A6778F4425AA78170057AE8A /* MatchMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F4225AA78170057AE8A /* MatchMO+CoreDataClass.swift */; };
-		A6778F4825AA9C930057AE8A /* ManagedObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F4725AA9C930057AE8A /* ManagedObjectProtocol.swift */; };
+		A6778F4825AA9C930057AE8A /* ManagedObjectProtocolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F4725AA9C930057AE8A /* ManagedObjectProtocolExtension.swift */; };
+		A6778F4A25AAAE5F0057AE8A /* ViperStoreExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6778F4925AAAE5F0057AE8A /* ViperStoreExtension.swift */; };
 		A677BEB2259A5B57005BF7AA /* SlotsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */; };
 		A677BEB4259A5B68005BF7AA /* SlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */; };
 		A677BEB7259A5C0D005BF7AA /* SlotsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */; };
@@ -173,7 +174,8 @@
 		A6778F3425AA69560057AE8A /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		A6778F4125AA78170057AE8A /* MatchMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MatchMO+CoreDataProperties.swift"; path = "VIPER-Hybrid-Container/Resources/MatchMO+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A6778F4225AA78170057AE8A /* MatchMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MatchMO+CoreDataClass.swift"; path = "VIPER-Hybrid-Container/Resources/MatchMO+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		A6778F4725AA9C930057AE8A /* ManagedObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectProtocol.swift; sourceTree = "<group>"; };
+		A6778F4725AA9C930057AE8A /* ManagedObjectProtocolExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectProtocolExtension.swift; sourceTree = "<group>"; };
+		A6778F4925AAAE5F0057AE8A /* ViperStoreExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViperStoreExtension.swift; sourceTree = "<group>"; };
 		A677BEB1259A5B57005BF7AA /* SlotsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SlotsStoryboard.storyboard; sourceTree = "<group>"; };
 		A677BEB3259A5B68005BF7AA /* SlotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsViewController.swift; sourceTree = "<group>"; };
 		A677BEB6259A5C0D005BF7AA /* SlotsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsRouter.swift; sourceTree = "<group>"; };
@@ -467,7 +469,8 @@
 				A657A7E82585ABDE008130A9 /* UITableViewCellExtension.swift */,
 				A657A7EA2585B3AF008130A9 /* IndicatableViewExtension.swift */,
 				A657A7F02585B68F008130A9 /* StringExtension.swift */,
-				A6778F4725AA9C930057AE8A /* ManagedObjectProtocol.swift */,
+				A6778F4725AA9C930057AE8A /* ManagedObjectProtocolExtension.swift */,
+				A6778F4925AAAE5F0057AE8A /* ViperStoreExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1021,6 +1024,7 @@
 				A657A7C625859C27008130A9 /* RootRouter.swift in Sources */,
 				A657A7E92585ABDE008130A9 /* UITableViewCellExtension.swift in Sources */,
 				A657A7DA2585A343008130A9 /* ReactAppsViewController.swift in Sources */,
+				A6778F4A25AAAE5F0057AE8A /* ViperStoreExtension.swift in Sources */,
 				A65B085F25939ABF00AF27D1 /* IntroRouter.swift in Sources */,
 				A6778F3125AA69390057AE8A /* StoreProtocols.swift in Sources */,
 				A657A7A1258572C9008130A9 /* AppDelegate.swift in Sources */,
@@ -1053,7 +1057,7 @@
 				A657A7F32585B6CD008130A9 /* ReactAppsInteractor.swift in Sources */,
 				A6E8A3AC259BBF1500EC4AEC /* Slot.swift in Sources */,
 				A664556925965B0C00D30078 /* NetworkProtocol.swift in Sources */,
-				A6778F4825AA9C930057AE8A /* ManagedObjectProtocol.swift in Sources */,
+				A6778F4825AA9C930057AE8A /* ManagedObjectProtocolExtension.swift in Sources */,
 				A65B08582593985C00AF27D1 /* IntroViewController.swift in Sources */,
 				A65B08712593DE9900AF27D1 /* SportsBookPresenter.swift in Sources */,
 				A657A7C525859C21008130A9 /* RootContract.swift in Sources */,

@@ -20,7 +20,7 @@ class SportsBookInteractor: SportsBookUseCase {
 
     func fetchMatches() {
 
-        storeService.get(with: nil, sortDescriptors: nil, fetchLimit: nil) { [weak self] (matches: [Match]?, error: Error?) in
+        storeService.get { [weak self] (matches: [Match]?, error: Error?) in
             
             if let `self` = self {
                 
