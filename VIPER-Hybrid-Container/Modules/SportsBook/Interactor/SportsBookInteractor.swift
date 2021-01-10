@@ -11,12 +11,20 @@ import Starscream
 import CoreData
 
 class SportsBookInteractor: SportsBookUseCase {
-
+    
     var storeService: ViperStore!
     var apiService: ViperNetwork!
     var socketService: ViperWebSocket!
 
     weak var output: SportsBookInteractorOutput!
+
+    func storeUpdatedMatch(match: Match) {
+        storeService.upsert(entities: [match]) {error in
+            if let error = error {
+                print("Error updating / local data! \(error)")
+            } 
+        }
+    }
 
     func fetchMatches() {
 

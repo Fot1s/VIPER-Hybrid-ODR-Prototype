@@ -120,6 +120,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
             match.updateMatchBetFromMatchUpdate(updatedMatch)
 
             self.liveMatches[oldMatchIndex] = match
+            interactor?.storeUpdatedMatch(match: match)
             view?.updateSportsBookData(withMatch: match, updatedMatch: updatedMatch, andIndex: oldMatchIndex)
         }
     }

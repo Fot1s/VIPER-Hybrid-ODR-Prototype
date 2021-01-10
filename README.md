@@ -35,6 +35,8 @@ At this point and in order to investigate modern usage of CoreData a generic Cor
 
 For testing purposes, we empty the DataStore every time the app starts, as we had some issues with the emulator not deleting data from the app finished handler.
 
+At this point a refactoring is needed to the module's presenter and interactor in order to update its local/stored content with updates received from the socket server. Presenter now calls updateStoredGames() every time it is notified with a new Match update.
+
 Now when users leave the SportsBook view and return they see the same data as the last time they opened the screen. This is not the normal flow for such an app, as in a real case we should fetch new data here, as matches would probably have been updated by now.
 
 Next a Generic data manager will be added, removing Storage and Network dependncies from the Interactors as they now only depend on a signle DataManager for their data.

@@ -33,6 +33,7 @@ protocol SportsBookUseCase: class {
 
     weak var output: SportsBookInteractorOutput! { get set }
 
+    func storeUpdatedMatch(match: Match)
     func fetchMatches()
     func connectToSocketServerForUpdates()
     func disconnectFromSocketServer()
