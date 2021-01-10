@@ -31,6 +31,9 @@ class SportsBookPresenterTest: XCTestCase {
         sut?.interactor = mockInteractor
         sut?.router = mockRouter
 
+        mockInteractor?.onTrueReturnImmediately = false
+        mockInteractor?.onTrueFailOnFetchMatches = false
+
         super.setUp()
     }
 
@@ -43,14 +46,14 @@ class SportsBookPresenterTest: XCTestCase {
     }
 
     func testViewIsLoadingWhileDataNotHere() {
-        mockInteractor?.returnImmediately = true
+        mockInteractor?.onTrueReturnImmediately = true
         sut?.viewDidLoad()
 
         XCTAssertTrue(mockView?.loading ?? false)
     }
 
     func testMatchesNeverReceivedAndErrorIsShown() {
-        mockInteractor?.failOnFetchMatches = true
+        mockInteractor?.onTrueFailOnFetchMatches = true
         sut?.viewDidLoad()
         XCTAssertTrue(mockView?.activityError ?? false)
         XCTAssertNil(mockView?.live)
@@ -125,6 +128,10 @@ class MockSportsBookRouter: SportsBookWireframe {
 
 class MockSportsBookInteractor: SportsBookUseCase {
     
+    enum MyError: Error {
+        case runtimeError(String)
+    }
+
     var storeService: ViperStore!
 
     var apiService: ViperNetwork!
@@ -135,16 +142,16 @@ class MockSportsBookInteractor: SportsBookUseCase {
     
     var socketConnected = false
 
-    var returnImmediately = false
+    var onTrueReturnImmediately = false
 
-    var failOnFetchMatches = false
+    var onTrueFailOnFetchMatches = false
 
     var matchToUpdate: MatchUpdate?
 
     func fetchMatches() {
-        guard !returnImmediately else { return }
+        guard !onTrueReturnImmediately else { return }
 
-        if failOnFetchMatches {
+        if onTrueFailOnFetchMatches {
             output.matchesFetchFailed("Error fetching matches!")
         } else {
             output.matchesFetched([
@@ -156,6 +163,11 @@ class MockSportsBookInteractor: SportsBookUseCase {
         }
     }
 
+    func storeUpdatedMatch(match: Match) {
+        //give it an error for code coverage
+        output.updatedMatchStored(error: MyError.runtimeError("Test"))
+    }
+    
     func connectToSocketServerForUpdates() {
         socketConnected = true
 

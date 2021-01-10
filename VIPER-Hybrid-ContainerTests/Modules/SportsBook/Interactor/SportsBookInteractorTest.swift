@@ -28,6 +28,13 @@ class SportsBookInteractorTest: XCTestCase {
         sut?.storeService = MockCoreDataService.shared
 
         sut?.output = mockOutput
+        
+        MockCoreDataService.shared.onTrueFailOnFetchMatches = false
+        MockCoreDataService.shared.onTrueReturnEmpty = false
+        MockCoreDataService.shared.onTrueFailToStoreMatch = false
+        MockAPIService.shared.onTrueFailOnFetchMatches = false
+        MockWebSocketService.shared.onTrueFailToConnect = false
+
         super.setUp()
     }
 
@@ -38,25 +45,21 @@ class SportsBookInteractorTest: XCTestCase {
     }
 
     func testFetchMatchesFailsCoreData() {
-        MockCoreDataService.shared.failOnFetchMatches = true
+        MockCoreDataService.shared.onTrueFailOnFetchMatches = true
         sut?.fetchMatches()
 
         XCTAssertNotNil(mockOutput?.matchesFailedWithError, "matchesFailedWithError should not be nil")
     }
 
     func testFetchMatchesFailsNet() {
-        MockCoreDataService.shared.failOnFetchMatches = false
-        MockCoreDataService.shared.returnEmpty = true
-        MockAPIService.shared.failOnFetchMatches = true
+        MockCoreDataService.shared.onTrueReturnEmpty = true
+        MockAPIService.shared.onTrueFailOnFetchMatches = true
         sut?.fetchMatches()
         
         XCTAssertNotNil(mockOutput?.matchesFailedWithError, "matchesFailedWithError should not be nil")
     }
 
     func testFetchMatchesFromCoreData() {
-        MockCoreDataService.shared.failOnFetchMatches = false
-        MockCoreDataService.shared.returnEmpty = false
-        MockAPIService.shared.failOnFetchMatches = false
         sut?.fetchMatches()
         
         XCTAssertNotNil(mockOutput?.matches, "matches should not be nil")
@@ -64,9 +67,7 @@ class SportsBookInteractorTest: XCTestCase {
     }
 
     func testFetchMatchesNet() {
-        MockCoreDataService.shared.failOnFetchMatches = false
-        MockCoreDataService.shared.returnEmpty = true
-        MockAPIService.shared.failOnFetchMatches = false
+        MockCoreDataService.shared.onTrueReturnEmpty = true
 
         //fetch matches - MockAPIService will return 1 match
         sut?.fetchMatches()
@@ -90,7 +91,7 @@ class SportsBookInteractorTest: XCTestCase {
 
     func testConnectToSocketServerFails() {
 
-        MockWebSocketService.shared.failToConnect = true
+        MockWebSocketService.shared.onTrueFailToConnect = true
         sut?.connectToSocketServerForUpdates()
 
         XCTAssertNotNil(mockOutput?.socketConnected)
@@ -110,11 +111,17 @@ class SportsBookInteractorTest: XCTestCase {
         XCTAssertFalse(mockOutput?.socketConnected ?? true)
     }
 
-    func testConnectToSocketSendAndReceiveAMatchUpdate() {
+    func testConnectToSocketSendAndReceiveAMatchUpdateAndStoreIt() {
 
-        //connection
+        //fetch matches - MockAPIService will return 1 match
+        sut?.fetchMatches()
+
+        XCTAssertNotNil(mockOutput?.matches, "matches should not be nil")
+        XCTAssertTrue(mockOutput?.matches?.count == 1)
+
+        //connect to the socket server
         sut?.connectToSocketServerForUpdates()
-
+        
         //test an update
         let matchToUpdate = MatchUpdate(id: 1, updateFor: .draw, value: 250)
 
@@ -126,6 +133,30 @@ class SportsBookInteractorTest: XCTestCase {
         XCTAssertTrue(matchToUpdate.id == updatedMatch?.id)
         XCTAssertTrue(matchToUpdate.updateFor == updatedMatch?.updateFor)
         XCTAssertTrue(matchToUpdate.value == updatedMatch?.value)
+        
+        var newMatch: Match = (mockOutput?.matches![0])!
+        newMatch.updateMatchBetFromMatchUpdate(updatedMatch!)
+        
+        //test storage error:
+        MockCoreDataService.shared.onTrueFailToStoreMatch = true
+        sut?.storeUpdatedMatch(match: newMatch)
+
+        XCTAssertTrue(mockOutput?.matchFailedToStore ?? false == true)
+
+        //test storage ok
+        MockCoreDataService.shared.onTrueFailToStoreMatch = false
+        sut?.storeUpdatedMatch(match: newMatch)
+        
+        XCTAssertTrue(mockOutput?.matchStored  ?? false == true)
+    }
+    
+    func testJustForCodeCoverageEmptyDataFetchFromNetOkButFailToSaveToStore() {
+        MockCoreDataService.shared.onTrueReturnEmpty = true
+        MockCoreDataService.shared.onTrueFailToStoreMatch = true 
+        MockAPIService.shared.onTrueFailOnFetchMatches = false
+        sut?.fetchMatches()
+        
+        //we could really test this if needed by returning an optional Error to the Presenter and checking there
     }
 
 }
@@ -136,6 +167,8 @@ class MockSportsBookInteractorOutput: SportsBookInteractorOutput {
     var socketConnected: Bool?
     var updatedMatch: MatchUpdate?
     var matchesFailedWithError: String?
+    var matchStored = false
+    var matchFailedToStore = false
 
     func matchesFetched(_ matches: [Match]) {
         self.matches = matches
@@ -156,6 +189,14 @@ class MockSportsBookInteractorOutput: SportsBookInteractorOutput {
     func updatedMatchReceivedFromSocketServer(updatedMatch: MatchUpdate) {
         self.updatedMatch = updatedMatch
     }
+    
+    func updatedMatchStored(error: Error?) {
+        if error != nil {
+            matchFailedToStore = true
+        } else {
+            matchStored = true
+        }
+    }
 }
 
 class MockCoreDataService: ViperStore {
@@ -163,18 +204,20 @@ class MockCoreDataService: ViperStore {
     enum MyError: Error {
         case runtimeError(String)
     }
+    
     static let shared = MockCoreDataService()
     
-    var failOnFetchMatches = false
-    var returnEmpty = false
-
+    var onTrueFailOnFetchMatches = false
+    var onTrueReturnEmpty = false
+    var onTrueFailToStoreMatch = false
+    
     func delete<Entity>(_ type: Entity.Type) where Entity: ManagedObjectConvertible {
     }
     
     func get<Entity>(with predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, fetchLimit: Int?,
                      completion: @escaping ([Entity]?, Error?) -> Void) where Entity: ManagedObjectConvertible {
         
-        if failOnFetchMatches {
+        if onTrueFailOnFetchMatches {
             completion(nil, nil)
         } else {
             let matches: [Match]? = [Match(id: 1, live: 1, time: 300, date: "n/a", home: "home", away: "away",
@@ -182,7 +225,7 @@ class MockCoreDataService: ViperStore {
             
             let emptyMatches = [Match]()
             
-            if returnEmpty {
+            if onTrueReturnEmpty {
                 completion(emptyMatches as? [Entity], nil)
             } else {
                 completion(matches as? [Entity], nil)
@@ -191,9 +234,11 @@ class MockCoreDataService: ViperStore {
     }
     
     func upsert<Entity>(entities: [Entity], completion: @escaping (Error?) -> Void) where Entity: ManagedObjectConvertible {
-        //just for code coverage
-
-        completion(MyError.runtimeError("Test"))
+        if onTrueFailToStoreMatch {
+            completion(MyError.runtimeError("Test"))
+        } else {
+            completion(nil)
+        }
     }
 }
 
@@ -203,7 +248,7 @@ class MockWebSocketService: ViperWebSocket {
 
     var websocket: WebSocket!
 
-    var failToConnect = false
+    var onTrueFailToConnect = false
 
     private init() {
         let url = URL(string: "ws://none")!
@@ -215,7 +260,7 @@ class MockWebSocketService: ViperWebSocket {
     func connect(withDelegate delegate: WebSocketDelegate) {
         websocket.delegate = delegate
 
-        if failToConnect {
+        if onTrueFailToConnect {
             websocket.delegate?.websocketDidDisconnect(socket: websocket, error: nil)
         } else {
             websocket.delegate?.websocketDidConnect(socket: websocket)
@@ -257,14 +302,14 @@ class MockAPIService: ViperNetwork {
 
     static let shared = MockAPIService()
 
-    var failOnFetchMatches = false
+    var onTrueFailOnFetchMatches = false
 
     private init() {
 
     }
 
     func fetch<T>(endPointURL: String, completion: @escaping ([T]?) -> Void) where T: Codable {
-        if failOnFetchMatches {
+        if onTrueFailOnFetchMatches {
             completion(nil)
         } else {
             let matches: [Match]? = [Match(id: 1, live: 1, time: 300, date: "n/a", home: "home", away: "away",

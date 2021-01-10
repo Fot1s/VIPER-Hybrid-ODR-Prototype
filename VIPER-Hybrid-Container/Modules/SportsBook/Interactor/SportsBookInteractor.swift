@@ -19,10 +19,8 @@ class SportsBookInteractor: SportsBookUseCase {
     weak var output: SportsBookInteractorOutput!
 
     func storeUpdatedMatch(match: Match) {
-        storeService.upsert(entities: [match]) {error in
-            if let error = error {
-                print("Error updating / local data! \(error)")
-            } 
+        storeService.upsert(entities: [match]) { [weak self] error in
+            self?.output.updatedMatchStored(error: error)
         }
     }
 

@@ -47,6 +47,12 @@ class SportsBookPresenter: SportsBookPresentation {
 
 extension SportsBookPresenter: SportsBookInteractorOutput {
 
+    func updatedMatchStored(error: Error?) {
+        if let error = error {
+            print("Error storing match: \(error.localizedDescription)")
+        }
+    }
+
     func matchesFetched(_ matches: [Match]) {
 
         var live: [Match] = []

@@ -41,6 +41,7 @@ protocol SportsBookUseCase: class {
 }
 
 protocol SportsBookInteractorOutput: class {
+    func updatedMatchStored(error: Error?)
     func matchesFetched(_ matches: [Match])
     func matchesFetchFailed(_ error: String)
     func connectedToSocketServer()
