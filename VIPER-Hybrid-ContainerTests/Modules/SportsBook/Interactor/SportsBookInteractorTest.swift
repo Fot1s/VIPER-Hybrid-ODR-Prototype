@@ -25,7 +25,7 @@ class SportsBookInteractorTest: XCTestCase {
 
         sut?.apiService = MockAPIService.shared
         sut?.socketService = MockWebSocketService.shared
-        sut?.storeService = CoreDataService.shared
+        sut?.storeService = MockCoreDataService.shared
 
         sut?.output = mockOutput
         super.setUp()
@@ -37,14 +37,36 @@ class SportsBookInteractorTest: XCTestCase {
         super.tearDown()
     }
 
-    func testFetchMatchesFails() {
-        MockAPIService.shared.failOnFetchMatches = true
+    func testFetchMatchesFailsCoreData() {
+        MockCoreDataService.shared.failOnFetchMatches = true
         sut?.fetchMatches()
 
         XCTAssertNotNil(mockOutput?.matchesFailedWithError, "matchesFailedWithError should not be nil")
     }
 
-    func testFetchMatches() {
+    func testFetchMatchesFailsNet() {
+        MockCoreDataService.shared.failOnFetchMatches = false
+        MockCoreDataService.shared.returnEmpty = true
+        MockAPIService.shared.failOnFetchMatches = true
+        sut?.fetchMatches()
+        
+        XCTAssertNotNil(mockOutput?.matchesFailedWithError, "matchesFailedWithError should not be nil")
+    }
+
+    func testFetchMatchesFromCoreData() {
+        MockCoreDataService.shared.failOnFetchMatches = false
+        MockCoreDataService.shared.returnEmpty = false
+        MockAPIService.shared.failOnFetchMatches = false
+        sut?.fetchMatches()
+        
+        XCTAssertNotNil(mockOutput?.matches, "matches should not be nil")
+        XCTAssertTrue(mockOutput?.matches?.count == 1)
+    }
+
+    func testFetchMatchesNet() {
+        MockCoreDataService.shared.failOnFetchMatches = false
+        MockCoreDataService.shared.returnEmpty = true
+        MockAPIService.shared.failOnFetchMatches = false
 
         //fetch matches - MockAPIService will return 1 match
         sut?.fetchMatches()
@@ -133,6 +155,39 @@ class MockSportsBookInteractorOutput: SportsBookInteractorOutput {
 
     func updatedMatchReceivedFromSocketServer(updatedMatch: MatchUpdate) {
         self.updatedMatch = updatedMatch
+    }
+}
+
+class MockCoreDataService: ViperStore {
+    
+    static let shared = MockCoreDataService()
+    
+    var failOnFetchMatches = false
+    var returnEmpty = false
+
+    func delete<Entity>(_ type: Entity.Type) where Entity: ManagedObjectConvertible {
+    }
+    
+    func get<Entity>(with predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, fetchLimit: Int?,
+                     completion: @escaping ([Entity]?, Error?) -> Void) where Entity: ManagedObjectConvertible {
+        
+        if failOnFetchMatches {
+            completion(nil, nil)
+        } else {
+            let matches: [Match]? = [Match(id: 1, live: 1, time: 300, date: "n/a", home: "home", away: "away",
+                                           homeGoals: 0, awayGoals: 0, bet1: 100, betX: 200, bet2: 300)]
+            
+            let emptyMatches = [Match]()
+            
+            if returnEmpty {
+                completion(emptyMatches as? [Entity], nil)
+            } else {
+                completion(matches as? [Entity], nil)
+            }
+        }
+    }
+    
+    func upsert<Entity>(entities: [Entity], completion: @escaping (Error?) -> Void) where Entity: ManagedObjectConvertible {
     }
 }
 
