@@ -39,9 +39,13 @@ class SportsBookViewController: UIViewController {
 
             UIDevice.current.setValue(UIDevice.current.orientation.rawValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
-        } else if savedOrientationRawValue != UIDeviceOrientation.portrait.rawValue {
-
+        } else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown &&
+                   savedOrientationRawValue == 3 || //landscape values are 3 or 4
+                   savedOrientationRawValue == 4 {
             UIDevice.current.setValue(savedOrientationRawValue, forKey: "orientation")
+            UINavigationController.attemptRotationToDeviceOrientation()
+        } else {
+            UIDevice.current.setValue(UIDeviceOrientation.portrait.rawValue, forKey: "orientation")
             UINavigationController.attemptRotationToDeviceOrientation()
         }
     }
@@ -51,8 +55,14 @@ class SportsBookViewController: UIViewController {
 
         savedOrientationRawValue = UIDevice.current.orientation.rawValue
 
-        UIDevice.current.setValue(UIInterfaceOrientationMask.portrait.rawValue, forKey: "orientation")
-        UINavigationController.attemptRotationToDeviceOrientation()
+        if savedOrientationRawValue == 0 {//unknown turn into portrait
+            savedOrientationRawValue = UIDeviceOrientation.portrait.rawValue
+        }
+        
+        if allowedOrientations().rawValue != UIDevice.current.orientation.rawValue {
+            UIDevice.current.setValue(allowedOrientations().rawValue, forKey: "orientation")
+            UINavigationController.attemptRotationToDeviceOrientation()
+        }
     }
 
     private func setupView() {
