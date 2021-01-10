@@ -46,9 +46,112 @@ This will change in the near future when a DataManager will be introduced which 
 
 Now when users exit the SportsBook screen and then return they see the same data as the last time they opened the screen. This is not exactly the normal flow for such an app, as in a real case we should fetch new match data here, as matches could probably have been updated (at the moment we are fine for the list of cached matches as their updates will be received from the socket server).
 
-1.  VIPER Architecture
-2.  Project Structure
-3.  Localisation
+In the following sections we are going to provide an overview of the subject, give some implementation details, and discuss some of the more interesting bits of the code / design.
+
+Maybe re-write this readme into a series of tutorials? U+1F609
+
+## 1.  VIPER Architecture
+
+```
+  //TODO: High Level View of the VIPER architecture
+          Reference Links
+          & Reference to VIPER Tutorial that the initial structure was based upon
+```
+
+## 2.  Project Structure
+
+![Project Structure Image](images/project-structure.png)
+
+As you can see in the previous image, our project contains quite a elements, but
+do not worry as in this section we will go through them and explain the reasons of their existence!
+
+Some are specific to this project and will be marked so, for example the topmost directory "iGames" which holds our HTML5 content that we want to provision via ODR delivery.
+
+The rest could become a very good starting point / skeleton project for our next VIPER based project.
+
+### iGames
+
+As already mentioned, this folder contains two HTML5 Apps that we will provision via ODR.
+
+The first is a minimal ReactWeb Application which we build here locally, while the second is a slot machine implementation in HTML5 ```( //TODO: ref: bellow )```
+
+More info will be provided in the relevant section.
+
+### Localization
+
+As its name suggest, this directory contains the Localizable strings of the application (an xCode feature). More info is provided in the next section.
+
+### Application
+
+Just the AppDelegate of our application
+
+### Resources
+
+The LaunchScreen Storyboard, info.plist and our main Assets.xcassets containing the icons of our app, launch screen images.
+
+#### R.generated.swift
+
+```
+  //TODO: Description of R.swift
+          Reference Links
+```
+
+### CoreDataModels
+
+xCode's Data Model definition file and any Entity Managed objects. More info will be provided in the relevant section
+
+### Enums
+
+#### Constants
+
+Our main Constants definition enum. Quite minimal at the moment:
+
+```
+enum Constants {
+    enum Images {
+        static let imagePlaceholder = "image-placeholder"
+    }
+}
+```
+
+The nested enum allows for clean and structured usage of the constants such as this:
+
+```
+    placeholder: UIImage(named: Constants.Images.imagePlaceholder)
+```
+
+as well as allowing us to extend this Constants Enum per module U+1F609 as here:
+
+```
+extension Constants {
+
+    enum Playbook {
+        enum Values {
+            static let rowHeight = CGFloat(106.0)     //the match cell row height
+            ...
+        }
+
+        enum Colors {
+            static let screenBGColor = UIColor.init(red: 48/255, green: 53/255, blue: 64/255, alpha: 1) //darkgrey
+            ...
+        }
+    }
+}
+```
+
+### Protocols
+
+```
+//TODO: TO BE CONTINUED SORTLY...
+```
+
+
+
+## 3.  Localisation
+
+
+In the
+
 4.  On Demand Delivery (ODR)
 5.  Local HTML5 Content
 6.  A Generic Web Service
