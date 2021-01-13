@@ -28,7 +28,7 @@ class SportsBookPresenter: SportsBookPresentation {
 
     func viewDidLoad() {
         view?.showActivityIndicator()
-        interactor.fetchMatches()
+        interactor.fetchMatchesAndSubscribeToLiveUpdates()
     }
 
     func viewWillDisappear(_ animated: Bool) {
@@ -36,7 +36,7 @@ class SportsBookPresenter: SportsBookPresentation {
             liveSecondsTimer.invalidate()
         }
 
-        interactor.disconnectFromSocketServer()
+        interactor.unsubscribeFromLiveUpdates()
 
         #if WITH_SOCKET_UPDATES_EMULATOR
             print("Stoped the emulator from sending any more updates")
@@ -46,12 +46,6 @@ class SportsBookPresenter: SportsBookPresentation {
 }
 
 extension SportsBookPresenter: SportsBookInteractorOutput {
-
-    func updatedMatchStored(error: Error?) {
-        if let error = error {
-            print("Error storing match: \(error.localizedDescription)")
-        }
-    }
 
     func matchesFetched(_ matches: [Match]) {
 
@@ -76,7 +70,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
 
         view?.showSportsBookData(self.liveMatches, self.futureMatches)
         view?.hideActivityIndicator()
-        interactor.connectToSocketServerForUpdates()
 
         //update the live matches every second
         //Add a timer to thr current runloop so they work even when the user is interacting
@@ -89,7 +82,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         }
     }
 
-    func connectedToSocketServer() {
+    func liveDataAvailable() {
         print("Connection Started!")
 
         #if WITH_SOCKET_UPDATES_EMULATOR
@@ -109,14 +102,12 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         view?.updateLiveMatchesWithNewTimes(self.liveMatches)
     }
 
-    func connectionToSocketServerLost() {
+    func liveDataNotAvailable() {
         //TODO: IMPLEMENT RECONNECTION HERE
         print("Connection Dropped!")
     }
 
-    func updatedMatchReceivedFromSocketServer(updatedMatch: MatchUpdate) {
-        //TODO:IMPLEMENT TABLE UPDATE
-//        print("Updated received: \(updatedMatch)")
+    func updatedMatchReceived(updatedMatch: MatchUpdate) {
 
         if let oldMatchIndex = self.liveMatches.index(where: { matchFromArray in
             return (matchFromArray.id == updatedMatch.id)
@@ -126,7 +117,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
             match.updateMatchBetFromMatchUpdate(updatedMatch)
 
             self.liveMatches[oldMatchIndex] = match
-            interactor?.storeUpdatedMatch(match: match)
             view?.updateSportsBookData(withMatch: match, updatedMatch: updatedMatch, andIndex: oldMatchIndex)
         }
     }

@@ -25,18 +25,10 @@ class SportsBookRouter: SportsBookWireframe {
         presenter.router = router
 
         interactor.output = presenter
-        interactor.apiService = APIService.shared
-        interactor.socketService = WebSocketService.shared
-        interactor.storeService = CoreDataService.shared
+        interactor.sportsBookDataManager = SportsBookDataManager(CoreDataService.shared, APIService.shared, WebSocketService.shared)
 
         router.viewController = view
 
         return view!
     }
-
-//    func presentHybridContent(forReactApp reactApp: ReactApp) {
-//        let hybridContentViewController = HybridContentRouter.assembleModule(reactApp)
-//        viewController?.navigationController?.pushViewController(hybridContentViewController, animated: true)
-//    }
-//
 }

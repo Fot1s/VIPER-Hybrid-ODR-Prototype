@@ -77,6 +77,7 @@
 		A677BEC2259A77AC005BF7AA /* gameSprites.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A677BEC1259A77AC005BF7AA /* gameSprites.xcassets */; };
 		A67E281B2596817E00E86846 /* SportsBookEntitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281A2596817E00E86846 /* SportsBookEntitiesTest.swift */; };
 		A67E281D259688A600E86846 /* SportsBookInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67E281C259688A600E86846 /* SportsBookInteractorTest.swift */; };
+		A6C61D5525AE6FC400F7DD33 /* SportsBookDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C61D5425AE6FC400F7DD33 /* SportsBookDataManager.swift */; };
 		A6E8A3AC259BBF1500EC4AEC /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3AB259BBF1500EC4AEC /* Slot.swift */; };
 		A6E8A3AE259BBFCF00EC4AEC /* SlotsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3AD259BBF9B00EC4AEC /* SlotsConstants.swift */; };
 		A6E8A3B0259BC18200EC4AEC /* SlotRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */; };
@@ -188,6 +189,7 @@
 		A67E28242596AC3500E86846 /* VIPER-Hybrid-ContainerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VIPER-Hybrid-ContainerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A67E28262596AC3500E86846 /* VIPER_Hybrid_ContainerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPER_Hybrid_ContainerUITests.swift; sourceTree = "<group>"; };
 		A67E28282596AC3500E86846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6C61D5425AE6FC400F7DD33 /* SportsBookDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsBookDataManager.swift; sourceTree = "<group>"; };
 		A6E8A3AB259BBF1500EC4AEC /* Slot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		A6E8A3AD259BBF9B00EC4AEC /* SlotsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotsConstants.swift; sourceTree = "<group>"; };
 		A6E8A3AF259BC18200EC4AEC /* SlotRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotRow.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 		A65B08602593D2AE00AF27D1 /* SportsBook */ = {
 			isa = PBXGroup;
 			children = (
+				A6C61D5325AE6FC400F7DD33 /* Manager */,
 				A64E28982597AF90009F2603 /* SportsBookConstants.swift */,
 				A65B08612593D2CA00AF27D1 /* Contract */,
 				A65B08782593EDA100AF27D1 /* Entity */,
@@ -757,6 +760,14 @@
 				A67E28282596AC3500E86846 /* Info.plist */,
 			);
 			path = "VIPER-Hybrid-ContainerUITests";
+			sourceTree = "<group>";
+		};
+		A6C61D5325AE6FC400F7DD33 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A6C61D5425AE6FC400F7DD33 /* SportsBookDataManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1047,6 +1058,7 @@
 				A65B086A2593D84300AF27D1 /* SportsBookTableViewCell.swift in Sources */,
 				A657A7ED2585B40D008130A9 /* ReactAppsPresenter.swift in Sources */,
 				A657A7BC25859140008130A9 /* ReactApp.swift in Sources */,
+				A6C61D5525AE6FC400F7DD33 /* SportsBookDataManager.swift in Sources */,
 				A65B08742593E04300AF27D1 /* SportsBookInteractor.swift in Sources */,
 				A657A7CD25859D90008130A9 /* ReactAppsRouter.swift in Sources */,
 				A65B085C25939A7400AF27D1 /* IntroPresenter.swift in Sources */,

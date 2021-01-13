@@ -27,26 +27,20 @@ protocol SportsBookPresentation: class {
 }
 
 protocol SportsBookUseCase: class {
-    var storeService: ViperStore! { get set }
-    var apiService: ViperNetwork! { get set }
-    var socketService: ViperWebSocket! { get set }
+    var sportsBookDataManager: SportsBookDataManager! { get set }
 
     weak var output: SportsBookInteractorOutput! { get set }
 
-    func storeUpdatedMatch(match: Match)
-    func fetchMatches()
-    func connectToSocketServerForUpdates()
-    func disconnectFromSocketServer()
-//    func fakeUpdateSend(matchToUpdate: MatchUpdate?) 
+    func fetchMatchesAndSubscribeToLiveUpdates()
+    func unsubscribeFromLiveUpdates()
 }
 
 protocol SportsBookInteractorOutput: class {
-    func updatedMatchStored(error: Error?)
     func matchesFetched(_ matches: [Match])
     func matchesFetchFailed(_ error: String)
-    func connectedToSocketServer()
-    func connectionToSocketServerLost()
-    func updatedMatchReceivedFromSocketServer(updatedMatch: MatchUpdate)
+    func liveDataAvailable()
+    func liveDataNotAvailable()
+    func updatedMatchReceived(updatedMatch: MatchUpdate)
 }
 
 protocol SportsBookWireframe: class {
