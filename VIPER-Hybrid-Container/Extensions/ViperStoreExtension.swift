@@ -14,7 +14,7 @@ extension ViperStore {
          sortDescriptors: [NSSortDescriptor]? = nil,
          fetchLimit: Int? = nil,
          completion: @escaping ([Entity]?, Error?) -> Void) {
-        get(with: nil, sortDescriptors: nil, fetchLimit: nil) { entityArray, error in
+        get(with: nil, sortDescriptors: [NSSortDescriptor(key: "id", ascending: true)], fetchLimit: nil) { entityArray, error in
             completion(entityArray, error)
         }
     }
