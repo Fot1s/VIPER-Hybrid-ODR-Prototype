@@ -89,11 +89,21 @@ class SportsBookDataManager {
     }
     
     func unsubscribeFromLiveUpdates() {
+        socketService.disconnect()
+
         self.updatedMatchesHandler = nil
         self.connectedHandler = nil
         self.disConnectedHandler = nil
         
-        socketService.disconnect()
+        #if WITH_SOCKET_UPDATES_EMULATOR
+            print("Stoped the emulator from sending any more updates")
+            SocketServerEmulator.shared.stopSendingEmulatedMatchUpdates()
+        #endif
+        
+        if let disConnectedHandler = disConnectedHandler {
+            disConnectedHandler()
+        }
+
     }
 }
 
@@ -113,15 +123,6 @@ extension SportsBookDataManager: WebSocketDelegate {
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
 
         print(error?.localizedDescription ?? "Missing Error!")
-        
-        #if WITH_SOCKET_UPDATES_EMULATOR
-            print("Stoped the emulator from sending any more updates")
-            SocketServerEmulator.shared.stopSendingEmulatedMatchUpdates()
-        #endif
-
-        if let disConnectedHandler = disConnectedHandler {
-            disConnectedHandler()
-        }
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
@@ -144,6 +145,9 @@ extension SportsBookDataManager: WebSocketDelegate {
             }
 
             if let updatedMatchesHandler = updatedMatchesHandler {
+                DispatchQueue.main.async {
+                    print("update")
+                }
                 updatedMatchesHandler(matchUpdate)
             }
         } catch {
