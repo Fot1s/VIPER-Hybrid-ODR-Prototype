@@ -19,8 +19,15 @@ class SportsBookDataManager {
     private var connectedHandler: (() -> Void)?
     private var disConnectedHandler: (() -> Void)?
 
-    private var cachedMatches: [Match]?
-    
+    private var cachedMatches: [Match]? {
+        didSet {
+            #if WITH_SOCKET_UPDATES_EMULATOR
+                print("Running with MockerSocketEmulator! Matches Set")
+                SocketServerEmulator.shared.liveMatches = cachedMatches?.filter { $0.live == 1 }                
+            #endif
+        }
+    }
+
     init (_ storeService: ViperStore, _ apiService: ViperNetwork, _ socketService: ViperWebSocket) {
         self.storeService = storeService
         self.apiService  = apiService
@@ -92,13 +99,26 @@ class SportsBookDataManager {
 
 extension SportsBookDataManager: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
+        
+        #if WITH_SOCKET_UPDATES_EMULATOR
+            print("Started emulating match updates with an interval of \(Constants.SocketServerEmulator.fakeUpdateEvery) seconds")
+            SocketServerEmulator.shared.startSendingEmulatedMatchUpdates()
+        #endif
+
         if let connectedHandler = connectedHandler {
             connectedHandler()
         }
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+
         print(error?.localizedDescription ?? "Missing Error!")
+        
+        #if WITH_SOCKET_UPDATES_EMULATOR
+            print("Stoped the emulator from sending any more updates")
+            SocketServerEmulator.shared.stopSendingEmulatedMatchUpdates()
+        #endif
+
         if let disConnectedHandler = disConnectedHandler {
             disConnectedHandler()
         }

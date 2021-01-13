@@ -585,7 +585,6 @@
 		A65B08602593D2AE00AF27D1 /* SportsBook */ = {
 			isa = PBXGroup;
 			children = (
-				A6C61D5325AE6FC400F7DD33 /* Manager */,
 				A64E28982597AF90009F2603 /* SportsBookConstants.swift */,
 				A65B08612593D2CA00AF27D1 /* Contract */,
 				A65B08782593EDA100AF27D1 /* Entity */,
@@ -593,6 +592,7 @@
 				A65B08722593E00F00AF27D1 /* Interactor */,
 				A65B086F2593DE7300AF27D1 /* Presenter */,
 				A65B08752593E0DB00AF27D1 /* Router */,
+				A6C61D5325AE6FC400F7DD33 /* Manager */,
 			);
 			path = SportsBook;
 			sourceTree = "<group>";

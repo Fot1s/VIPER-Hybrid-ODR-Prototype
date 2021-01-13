@@ -37,11 +37,6 @@ class SportsBookPresenter: SportsBookPresentation {
         }
 
         interactor.unsubscribeFromLiveUpdates()
-
-        #if WITH_SOCKET_UPDATES_EMULATOR
-            print("Stoped the emulator from sending any more updates")
-            SocketServerEmulator.shared.stopSendingEmulatedMatchUpdates()
-        #endif
     }
 }
 
@@ -63,11 +58,6 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         self.liveMatches = live
         self.futureMatches = future
 
-        #if WITH_SOCKET_UPDATES_EMULATOR
-            print("Running with MockerSocketEmulator! Matches Set")
-            SocketServerEmulator.shared.liveMatches = live
-        #endif
-
         view?.showSportsBookData(self.liveMatches, self.futureMatches)
         view?.hideActivityIndicator()
 
@@ -85,11 +75,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
     func liveDataAvailable() {
         print("Connection Started!")
 
-        #if WITH_SOCKET_UPDATES_EMULATOR
-            print("Started emulating match updates with an interval of \(Constants.SocketServerEmulator.fakeUpdateEvery) seconds")
-            SocketServerEmulator.shared.startSendingEmulatedMatchUpdates()
-        #endif
-
+        //TODO: remove connection lost if visible
     }
 
     @objc func fireTimerForLiveUpdates() {
@@ -103,7 +89,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
     }
 
     func liveDataNotAvailable() {
-        //TODO: IMPLEMENT RECONNECTION HERE
+        //todo: show connection lost to user
         print("Connection Dropped!")
     }
 
@@ -121,7 +107,7 @@ extension SportsBookPresenter: SportsBookInteractorOutput {
         }
     }
 
-    internal func matchesFetchFailed(_ error: String) {
+    func matchesFetchFailed(_ error: String) {
         view?.showActivityError(error)
     }
 }
